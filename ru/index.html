@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Путь Феникса — система выхода из кризиса</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Стили полностью рабочие, я их не менял */
+        :root {
+            --primary: #FF6B35;
+            --primary-light: #FF8C61;
+            --secondary: #0F2027;
+            --bg-dark: #0b0b0d;
+            --bg-card: #16161a;
+            --text-light: #e8e0d8;
+            --text-muted: #a09080;
+            --border-color: #2a2a2a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            z-index: 1000;
+            transition: background 0.4s ease;
+            flex-wrap: wrap;
+        }
+        header.scrolled {
+            background: rgba(11, 11, 13, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: var(--primary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .lang-switcher a {
+            color: #a09080;
+            text-decoration: none;
+            margin: 0 4px;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .lang-switcher a:hover,
+        .lang-switcher a.active {
+            background: var(--primary);
+            color: #0b0b0d;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 11, 13, 0.6);
+            z-index: 1;
+        }
+        .hero .content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(36px, 7vw, 60px);
+            color: #FFD166;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 40px rgba(0,0,0,0.7);
+        }
+        .hero .sub {
+            font-size: clamp(18px, 2.2vw, 26px);
+            color: #d4c5b5;
+            max-width: 650px;
+            margin: 0 auto 32px;
+            font-weight: 300;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+        .hero .price-block {
+            margin-top: 12px;
+        }
+        .hero .price-block .price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+        }
+        .hero .price-block .price span {
+            color: #FFD166;
+        }
+        .hero .price-block .sub-price {
+            font-size: 16px;
+            color: #b0a090;
+        }
+        .hero .exclusive {
+            font-size: 14px;
+            color: #b0a090;
+            margin-top: 8px;
+            background: rgba(0,0,0,0.4);
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 18px 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s ease;
+            box-shadow: 0 0 40px rgba(255, 107, 53, 0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 60px rgba(255, 107, 53, 0.5);
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(28px, 4vw, 40px);
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .section-title span { color: var(--primary); }
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 620px;
+            margin: 0 auto 48px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .about-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            justify-content: center;
+        }
+        .about-grid .cover {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+        }
+        .about-grid .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .about-grid .text {
+            max-width: 600px;
+            font-size: 18px;
+            color: #d4c5b5;
+            line-height: 1.8;
+        }
+        .about-grid .text strong {
+            color: #ffffff;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .benefit-item {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 28px 24px;
+            border: 1px solid rgba(255, 107, 53, 0.08);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .benefit-item:hover {
+            border-color: rgba(255, 107, 53, 0.25);
+            background: rgba(22, 22, 26, 0.8);
+        }
+        .benefit-item .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        .benefit-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .benefit-item p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .system-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid rgba(255, 107, 53, 0.08);
+            transition: 0.3s;
+        }
+        .system-card:hover {
+            border-color: rgba(255, 107, 53, 0.25);
+        }
+        .system-card .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        .system-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .system-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .system-summary {
+            margin-top: 40px;
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 107, 53, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 107, 53, 0.1);
+        }
+        .system-summary p {
+            font-size: 18px;
+            color: #d4c5b5;
+            line-height: 1.7;
+        }
+        .system-summary strong {
+            color: #FFD166;
+        }
+
+        .manifesto-block {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .manifesto-block h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(24px, 3.5vw, 36px);
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .manifesto-block h2 span { color: var(--primary); }
+        .manifesto-block p {
+            font-size: 18px;
+            color: #d4c5b5;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .manifesto-block .btn-wrap {
+            margin-top: 30px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px 20px;
+            border-left: 3px solid var(--primary);
+            transition: 0.3s;
+        }
+        .testimonial-card:hover {
+            background: rgba(22, 22, 26, 0.8);
+        }
+        .testimonial-card .text {
+            font-size: 15px;
+            color: #d4c5b5;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+        .testimonial-card .author {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .testimonial-card .author span {
+            color: var(--primary);
+        }
+        .testimonial-card.negative {
+            border-left-color: #6a4a3a;
+            opacity: 0.85;
+        }
+        .testimonial-card.negative .text {
+            color: #b0a090;
+        }
+        .testimonial-card.negative .author {
+            color: #7a6a5a;
+        }
+        .negative-label {
+            display: inline-block;
+            background: rgba(100, 60, 40, 0.3);
+            color: #9a7a6a;
+            font-size: 11px;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-top: 6px;
+            letter-spacing: 0.3px;
+        }
+        .testimonials-footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .pricing-section {
+            background: rgba(22, 22, 26, 0.5);
+            border-radius: 16px;
+            padding: 48px 32px;
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            box-shadow: 0 0 60px rgba(255, 107, 53, 0.05);
+            position: relative;
+        }
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), transparent 40%, transparent 60%, rgba(255, 107, 53, 0.05));
+            z-index: -1;
+            pointer-events: none;
+        }
+        .pricing-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .pricing-section .price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: #FFD166;
+            margin: 8px 0 4px;
+        }
+        .pricing-section .sub-price {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .pricing-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 28px;
+            text-align: left;
+            display: inline-block;
+        }
+        .pricing-section ul li {
+            font-size: 16px;
+            color: #d4c5b5;
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .pricing-section ul li .check {
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .pricing-section ul li strong {
+            color: #ffffff;
+        }
+        .pricing-section .secure-note {
+            margin-top: 16px;
+            font-size: 13px;
+            color: #8a7a6a;
+        }
+        .pricing-section .secure-note strong {
+            color: #b0a090;
+        }
+
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 30px; }
+            .hero .sub { font-size: 17px; }
+            .hero .price-block .price { font-size: 22px; }
+            .about-grid { flex-direction: column; text-align: center; }
+            .about-grid .cover { width: 140px; height: 140px; }
+            .about-grid .text { font-size: 16px; }
+            section { padding: 48px 0; }
+            .pricing-section { padding: 32px 16px; }
+            .pricing-section .price { font-size: 34px; }
+            .pricing-section ul li { font-size: 14px; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .system-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .lang-switcher a { font-size: 10px; padding: 2px 5px; }
+            .logo { font-size: 18px; }
+            header { padding: 12px 16px; }
+            .btn-primary { padding: 14px 32px; font-size: 16px; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 24px; }
+            .hero .sub { font-size: 15px; }
+            .pricing-section .price { font-size: 28px; }
+            .pricing-section ul li { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ХЕДЕР -->
+    <header id="header">
+        <div class="logo">ФЕНИКС</div>
+        <div class="lang-switcher">
+            <a href="#" class="active">RU</a>
+            <a href="en/index.html">EN</a>
+            <a href="#">中文</a>
+            <a href="#">ES</a>
+            <a href="#">DE</a>
+            <a href="#">FR</a>
+            <a href="#">PT</a>
+            <a href="#">IT</a>
+            <a href="#">AR</a>
+            <a href="#">HI</a>
+            <a href="#">JA</a>
+            <a href="#">KO</a>
+            <a href="#">NL</a>
+            <a href="#">PL</a>
+            <a href="#">TR</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <video autoplay muted loop playsinline preload="none" id="hero-video" poster="images/hero-bg.jpg">
+            <source src="video/hero-fire.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>«Я был там, где ты сейчас. Я вышел.»</h1>
+            <p class="sub">Путь Феникса. Как я перестал быть жертвой и стал творцом</p>
+            <a href="#pricing" class="btn-primary">Начать возрождение</a>
+            <div class="price-block">
+                <div class="price">Инвестиция: <span>2 498 ₽</span></div>
+                <div class="sub-price">или $28</div>
+            </div>
+            <div class="exclusive">* Эта книга не продаётся на маркетплейсах. Только здесь. *</div>
+        </div>
+    </section>
+
+    <!-- ОБ АВТОРЕ -->
+    <section>
+        <div class="container">
+            <div class="about-grid">
+                <div class="cover">
+                    <img src="https://placehold.co/400x400/16161a/FF6B35?text=ОБЛОЖКА" alt="Обложка книги Путь Феникса">
+                </div>
+                <div class="text">
+                    <p><strong>Меня зовут Александр.</strong> Я прошёл через клиническую смерть, потерю бизнеса, алкоголь, а потом — восстал. Я написал эту книгу не для того, чтобы тебя мотивировать. Я написал её, чтобы ты знал: <strong>выход есть.</strong></p>
+                    <p style="margin-top:12px;">Ты — не жертва. Ты — Феникс. И ты уже начал восставать, просто ещё не заметил.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ТРИ ПРЕИМУЩЕСТВА -->
+    <section style="background: rgba(22,22,26,0.3);">
+        <div class="container">
+            <h2 class="section-title">Что даёт <span>эта система</span></h2>
+            <!-- ПОДСКАЗКА УБРАНА! -->
+            <div class="benefits-grid">
+                <div class="benefit-item" onclick="alert('«Прощение — это не акт милости, а акт освобождения себя.»')">
+                    <div class="icon">🧠</div>
+                    <h3>Перестать быть удобным</h3>
+                    <p>Ты перестаёшь быть жертвой и начинаешь жить для себя. Никаких «хороших мальчиков».</p>
+                </div>
+                <div class="benefit-item" onclick="alert('«Алкоголь был не причиной, а следствием боли.»')">
+                    <div class="icon">🔥</div>
+                    <h3>Выйти из «серого шторма»</h3>
+                    <p>Апатия, алкоголь, обесценивание — это не приговор. Это следствие. И у него есть решение.</p>
+                </div>
+                <div class="benefit-item" onclick="alert('«Когда я стоял на пепелище, я понял: я не сломлен.»')">
+                    <div class="icon">🏗️</div>
+                    <h3>Построить новую жизнь из пепла</h3>
+                    <p>Ты — Феникс. Ты уже начал восставать. Эта система — твои крылья.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- НЕ НАДО КОРМИТЬ ПСИХОЛОГОВ -->
+    <section>
+        <div class="container">
+            <div class="manifesto-block">
+                <h2>Ты уже знаешь, что тебе нужно.<br>Просто не хватает <span>системы</span>.</h2>
+                <p>Психологи — хорошие специалисты. Но они не живут твоей жизнью. Они не знают, как ты просыпаешься в 4 утра и не можешь заснуть. Они не чувствуют тот ком в горле, когда смотришь на счета. Они не сидели на пепелище твоей мастерской.</p>
+                <p><strong>«Путь Феникса» — не терапия. Это — твой собственный инструмент.</strong> Ты сам разбираешь свой шторм, сам находишь точки опоры, сам строишь путь. Без посредников. Без бесконечных сессий, которые тянут деньги и время.</p>
+                <p>Ты не больной. Ты — человек в кризисе. И у тебя есть ключ.</p>
+                <div class="btn-wrap">
+                    <a href="#pricing" class="btn-primary">Начать разбираться</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СИСТЕМА -->
+    <section style="background: rgba(22,22,26,0.3);">
+        <div class="container">
+            <h2 class="section-title">Как работает система <span>«Путь Феникса»</span></h2>
+            <p class="section-sub">Это не просто книга. Это инструмент, который проведёт тебя от серого шторма к новой жизни.</p>
+            <div class="system-grid">
+                <div class="system-card">
+                    <div class="icon">📖</div>
+                    <h3>Книга</h3>
+                    <p>Ты читаешь историю человека, который прошёл через то же, что и ты. Она даёт осознание и веру, что выход есть.</p>
+                </div>
+                <div class="system-card">
+                    <div class="icon">📓</div>
+                    <h3>Тетрадь</h3>
+                    <p>Ты выполняешь упражнения и фиксируешь каждый шаг. Тетрадь — твой дневник трансформации, где виден прогресс.</p>
+                </div>
+                <div class="system-card">
+                    <div class="icon">🤖</div>
+                    <h3>AI-анализ</h3>
+                    <p>Ты вставляешь свои ответы в DeepSeek и получаешь разбор твоего «серого шторма» и план выхода. ИИ видит то, что ты сам не замечаешь.</p>
+                </div>
+            </div>
+            <div class="system-summary">
+                <p><strong>Книга + тетрадь + AI-анализ + план действий.</strong> Всё в одном месте. Без скрытых платежей. Без ежемесячных подписок. Одна цена — и ты получаешь систему, которая работает на тебя всю жизнь.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">📬 1785 писем <span>благодарности</span></h2>
+            <p class="section-sub">Реальные голоса людей, которые прошли через пепел и восстали</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="text">«Я жил в сарае полгода. Думал, жизнь кончена. Сейчас сторожем работаю. Но я живу.»</div>
+                    <div class="author">— Иван, 58 лет, Тверская область</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="text">«Я перестал быть удобным. Жена сначала злилась, а потом сказала — ты стал другим, лучше. Я не стал лучше. Я стал собой.»</div>
+                    <div class="author">— Михаил, 49 лет, Москва</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="text">«Брат, я купил книгу когда был бухой. Потом открыл и не мог остановиться. Теперь я живу.»</div>
+                    <div class="author">— Дмитрий, 34 года, Краснодар</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="text">«Я купил старую "Волгу". Жена говорит — дурак. А я счастлив.»</div>
+                    <div class="author">— Сергей, 61 год, Екатеринбург</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="text">"Your book saved my life. 6 months sober. Thanks."</div>
+                    <div class="author">— Mike, 52, Texas</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="text">«我破产了。房子没了。老婆走了。我本来要跳楼。看了你的书。我没跳。现在我送外卖。但我活着。」</div>
+                    <div class="author">— 张先生, 39岁, 广州</div>
+                </div>
+                <div class="testimonial-card negative">
+                    <div class="text">«Я прочитал страниц тридцать и закрыл. Мне нужны готовые инструкции, а не чужие драмы. Никакого "вау-эффекта" я не получил.»</div>
+                    <div class="author">— @igor_k79 <span class="negative-label">негативный отзыв</span></div>
+                </div>
+                <div class="testimonial-card negative">
+                    <div class="text">«Я купил книгу для мотивации, а не чтобы делать задания. Пролистал упражнения. Закрыл — и ничего не изменилось.»</div>
+                    <div class="author">— @dmitry_v_pro <span class="negative-label">негативный отзыв</span></div>
+                </div>
+            </div>
+            <div class="testimonials-footer">
+                1785 писем благодарности. Здесь — первые 8 из них. Остальные — в закрытом Telegram-канале.
+                <br>Мы публикуем все письма — даже те, где нас критикуют. Потому что система не для всех. И это честно.
+            </div>
+        </div>
+    </section>
+
+    <!-- ЦЕНА И ОПЛАТА -->
+    <section id="pricing">
+        <div class="container">
+            <div class="pricing-section">
+                <h2>Инвестируй в себя</h2>
+                <div class="price">2 498 ₽</div>
+                <div class="sub-price">или $28</div>
+                <ul>
+                    <li><span class="check">✓</span> <strong>Полная система:</strong> книга + тетрадь + AI-анализ</li>
+                    <li><span class="check">✓</span> <strong>15 языков</strong> — выбери свой</li>
+                    <li><span class="check">✓</span> <strong>Мгновенный доступ</strong> после оплаты</li>
+                    <li><span class="check">✓</span> <strong>Без скрытых подписок</strong> — платишь один раз</li>
+                </ul>
+                <a href="#" class="btn-primary" onclick="alert('🔧 Платёжная форма будет подключена через RollyPay.io / CryptoCloud')">Начать путь</a>
+                <div class="secure-note"><strong>🔒 Оплата через защищённый платёжный шлюз</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer>
+        <div class="container">
+            <p>© 2026 «Путь Феникса» &nbsp;·&nbsp; <a href="#">Политика конфиденциальности</a></p>
+            <p style="font-size:12px; color:#3a3a3a; margin-top:4px;">Сайт работает на безопасных платёжных системах</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>f

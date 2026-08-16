@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Cammino della Fenice — Quaderno di Lavoro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-light: #FFF0EB;
+            --secondary: #0F2027;
+            --bg-page: #FFFFFF;
+            --bg-card: #F8F9FA;
+            --text-main: #212529;
+            --text-muted: #6C757D;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #e9ecef;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 20px auto;
+            background: var(--bg-page);
+            padding: 18mm 20mm;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(1.2);
+            width: 500px; height: 500px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 60,40 90,40 65,60 75,90 50,75 25,90 35,60 10,40 40,40" fill="%23FF6B35" opacity="0.04"/></svg>') no-repeat center;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .page > * { position: relative; z-index: 1; }
+
+        /* ===== COVER ===== */
+        .cover {
+            padding: 0;
+            background: url('../images/frame-breakthrough.jpg') no-repeat center center / cover;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .cover .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.35);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .cover .overlay .line1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 44pt;
+            color: #FFD166;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            letter-spacing: 4px;
+            line-height: 1.2;
+        }
+        .cover .overlay .line2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 44pt;
+            color: #FFD166;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            letter-spacing: 4px;
+            line-height: 1.2;
+        }
+        .cover .overlay .line3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48pt;
+            color: #FF6B35;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            letter-spacing: 4px;
+            line-height: 1.2;
+            margin-top: 10px;
+        }
+        .cover .overlay .sub {
+            margin-top: 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14pt;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-top: 2px solid rgba(255,107,53,0.4);
+            padding-top: 20px;
+            width: 60%;
+        }
+
+        /* ===== COMMON BLOCKS ===== */
+        .page-header {
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .chapter-pill {
+            background: var(--primary);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 9pt;
+            padding: 4px 14px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+        .chapter-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 22pt;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .chapter-icon {
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--primary-light);
+            flex-shrink: 0;
+        }
+        .chapter-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .task-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--primary);
+            clear: both;
+        }
+        .task-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .task-description {
+            font-size: 11pt;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .task-field {
+            width: 100%;
+            border: 2px dashed #DEE2E6;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11pt;
+            color: var(--text-main);
+            background: white;
+            resize: vertical;
+            min-height: 60px;
+            transition: border-color 0.3s;
+        }
+        .task-field:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .task-field-small {
+            min-height: 40px;
+        }
+
+        .columns {
+            display: flex;
+            gap: 16px;
+            margin-top: 6px;
+        }
+        .column {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #E9ECEF;
+        }
+        .column-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            color: var(--secondary);
+            text-align: center;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .column .task-field {
+            min-height: 80px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #E9ECEF;
+        }
+        .checklist-square {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            background: white;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--primary);
+            user-select: none;
+        }
+        .checklist-square.checked {
+            background: var(--primary);
+            color: white;
+        }
+        .checklist-text {
+            font-size: 11pt;
+            color: var(--text-main);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF8C61 100%);
+            color: white;
+            padding: 14px;
+            margin: 10px 0;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13pt;
+            font-weight: 700;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(255,107,53,0.2);
+        }
+
+        .table-expenses {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #E9ECEF;
+            background: white;
+        }
+        .table-expenses th {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            color: var(--secondary);
+            text-transform: uppercase;
+            padding: 8px 10px;
+            background: var(--primary-light);
+            border-bottom: 2px solid var(--primary);
+            text-align: left;
+        }
+        .table-expenses td {
+            padding: 4px 10px;
+            border-bottom: 1px solid #E9ECEF;
+        }
+        .table-expenses tr:last-child td {
+            background: var(--primary-light);
+            font-weight: 700;
+        }
+        .table-expenses input[type="text"] {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-size: 11pt;
+            padding: 6px 0;
+            border-bottom: 1px dotted #DEE2E6;
+        }
+        .table-expenses input[type="text"]:focus {
+            border-bottom-color: var(--primary);
+            outline: none;
+        }
+        .table-expenses .checkbox-cell {
+            text-align: center;
+        }
+        .table-expenses .checkbox-cell input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 15mm;
+            right: 20mm;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+        .page-number span {
+            color: var(--primary);
+            font-size: 14pt;
+        }
+
+        .intro-quote {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: var(--secondary);
+            text-align: center;
+            line-height: 1.4;
+            margin: 10px 0 16px;
+            padding: 16px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            position: relative;
+            clear: both;
+        }
+        .intro-quote::before {
+            content: '“';
+            position: absolute;
+            top: 0px;
+            left: 15px;
+            font-size: 50pt;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: serif;
+            line-height: 1;
+        }
+        .intro-text {
+            font-size: 11.5pt;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .date-field {
+            margin-top: 20px;
+            padding: 16px;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            text-align: center;
+            background: rgba(255,107,53,0.04);
+        }
+        .date-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .date-line {
+            font-size: 16pt;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            min-width: 200px;
+            padding: 4px 16px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--primary);
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 16pt;
+            width: 60%;
+        }
+        .date-line:focus {
+            outline: none;
+            border-bottom-color: #FF8C61;
+        }
+
+        .spread {
+            padding: 0;
+            background: #0F2027;
+            justify-content: center;
+            align-items: center;
+        }
+        .spread img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .spread .caption {
+            position: absolute;
+            bottom: 20mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Inter', sans-serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            max-width: 85%;
+            text-shadow: 0 8px 30px rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.5);
+            padding: 10px 28px;
+            border-radius: 12px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.1);
+            line-height: 1.4;
+        }
+
+        .action-bar {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .btn-collect {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 14pt;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255,107,53,0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-collect:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 35px rgba(255,107,53,0.4);
+        }
+        .btn-collect:active {
+            transform: scale(0.98);
+        }
+
+        #outputArea {
+            margin-top: 30px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            display: none;
+        }
+        #outputArea h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+        #outputArea textarea {
+            width: 100%;
+            min-height: 300px;
+            border: 1px solid #DEE2E6;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11pt;
+            resize: vertical;
+        }
+        #outputArea .copy-btn {
+            margin-top: 10px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; height: 297mm; }
+            .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .task-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .formula-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .spread { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .btn-collect, #outputArea { display: none !important; }
+            .task-field { border: 1px solid #ccc; background: transparent; min-height: 40px; }
+        }
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .page { padding: 12mm 14mm; }
+            .chapter-title { font-size: 18pt; }
+            .cover .overlay .line1,
+            .cover .overlay .line2 { font-size: 32pt; }
+            .cover .overlay .line3 { font-size: 36pt; }
+            .columns { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- COVER -->
+    <!-- ============================================================ -->
+    <div class="page cover" id="page-cover">
+        <div class="overlay">
+            <div class="line1">Lavora con il libro.</div>
+            <div class="line2">Riempi.</div>
+            <div class="line3">Trasformati.</div>
+            <div class="sub">Il Cammino della Fenice · Quaderno di Lavoro</div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SPREAD: INTRODUCTION (frame #2) -->
+    <!-- ============================================================ -->
+    <div class="page spread" id="page-intro-spread">
+        <img src="../images/frame-destiny-author.jpg" alt="Autore del tuo destino" loading="lazy">
+        <div class="caption">"Spezzerai il muro. Io l'ho fatto. Puoi farlo anche tu."</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- PAGE 1: INTRODUCTION TEXT -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-intro-text">
+        <div class="page-header">
+            <span class="chapter-pill">Inizio</span>
+            <h2 class="chapter-title">Introduzione</h2>
+        </div>
+        <div class="intro-quote">
+            Ogni esercizio è un passo.<br>Falli con onestà. Senza censura. Senza auto‑inganno.
+        </div>
+        <p class="intro-text">Questo quaderno non è solo un taccuino. È il tuo strumento personale di trasformazione. Scriverai su ciò che fa male. Registrerai piccole vittorie. Vedrai progressi reali.</p>
+        <p class="intro-text">Tra un mese lo aprirà e non ti riconoscerai.</p>
+        <p class="intro-text">Non ci sono risposte giuste qui. Solo le tue. Scrivi a mano, digita, disegna. L'importante è non fermarti.</p>
+        <p class="intro-text" style="color: var(--primary); font-weight: 600;">Questo quaderno sarà testimone della tua trasformazione. Da vittima a creatore. Dalle ceneri alle ali di fuoco.</p>
+        <div class="date-field">
+            <div class="date-label">🔥 Data di inizio del tuo cammino</div>
+            <input type="text" class="date-line" id="start_date" placeholder="__.__.____">
+        </div>
+        <div class="page-number"><span>01</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 1 (page 02) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch1-1">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 1</span>
+            <h2 class="chapter-title">La Tempesta Grigia</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch1-storm.jpg" alt="La Tempesta Grigia" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 1. Descrivi la tua tempesta</div>
+            <div class="task-description">Chiudi gli occhi. Ricorda il momento in cui hai capito che la vita non stava andando bene. Descrivilo in dettaglio: cosa hai visto, sentito, udito. Senza filtri.</div>
+            <textarea class="task-field" id="task_1_1" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 2. Tre segnali</div>
+            <div class="task-description">Indica tre segnali che indicano che sei nella "tempesta grigia" in questo momento.</div>
+            <div style="margin-top: 6px;">
+                <input type="text" class="task-field task-field-small" id="task_1_2_1" placeholder="1.">
+                <input type="text" class="task-field task-field-small" id="task_1_2_2" placeholder="2.">
+                <input type="text" class="task-field task-field-small" id="task_1_2_3" placeholder="3.">
+            </div>
+        </div>
+        <div class="page-number"><span>02</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 1 (cont., page 03) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch1-2">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 1</span>
+            <h2 class="chapter-title" style="font-size:18pt;">La Tempesta Grigia</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch1-storm.jpg" alt="La Tempesta Grigia" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 3. Quello che provi</div>
+            <div class="task-description">Spunta ciò che risuona con te. Aggiungi i tuoi se necessario.</div>
+            <div class="checklist" id="checklist_1_3">
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Stanchezza e burnout</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Paura del futuro</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Rabbia nascosta</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Impotenza di cambiare qualcosa</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Solitudine</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Speranza (anche una piccola scintilla)</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text"><input type="text" style="border:none; border-bottom:1px dashed #ccc; width:180px; font-family:inherit; font-size:11pt;" placeholder="Altro..." id="task_1_3_other"></div></div>
+            </div>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 4. Una frase su di te</div>
+            <div class="task-description">Completa la frase: "In questo momento, io sono..."</div>
+            <textarea class="task-field" id="task_1_4" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="page-number"><span>03</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 2 (page 04) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch2-1">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 2</span>
+            <h2 class="chapter-title">Due Sé</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch2-two-faces.jpg" alt="Due Sé" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 1. Voci interiori</div>
+            <div class="task-description">Ricorda le ultime cinque frasi che ti sei detto nella tua testa. Scrivile parola per parola, senza abbellimenti.</div>
+            <textarea class="task-field" id="task_2_1" placeholder="1. ..."></textarea>
+            <textarea class="task-field" id="task_2_1b" placeholder="2. ..."></textarea>
+            <textarea class="task-field" id="task_2_1c" placeholder="3. ..."></textarea>
+            <textarea class="task-field" id="task_2_1d" placeholder="4. ..."></textarea>
+            <textarea class="task-field" id="task_2_1e" placeholder="5. ..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 2. Separa le voci</div>
+            <div class="task-description">Quali di queste voci sono "loro" (genitori, società, esperienze passate) e quali sono veramente tue?</div>
+            <div class="columns">
+                <div class="column">
+                    <div class="column-title">Voci "loro"</div>
+                    <textarea class="task-field" id="task_2_2_their" placeholder="..."></textarea>
+                </div>
+                <div class="column">
+                    <div class="column-title">Le mie voci</div>
+                    <textarea class="task-field" id="task_2_2_mine" placeholder="..."></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="page-number"><span>04</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 2 (cont., page 05) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch2-2">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 2</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Due Sé</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch2-two-faces.jpg" alt="Due Sé" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 3. Il tuo ruolo</div>
+            <div class="task-description">Che ruolo hai giocato negli ultimi anni? Vittima? Salvatore? Osservatore? Descrivi quel ruolo e rispondi: ti si addice?</div>
+            <textarea class="task-field" id="task_2_3" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 4. Chi vuoi essere</div>
+            <div class="task-description">Se potessi scegliere qualsiasi ruolo senza limiti, cosa saresti?</div>
+            <textarea class="task-field" id="task_2_4" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="page-number"><span>05</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SPREAD: MOMENT OF REBIRTH (frame #3) -->
+    <!-- ============================================================ -->
+    <div class="page spread" id="page-spread-rebirth">
+        <img src="../images/frame-rebirth.jpg" alt="Momento di rinascita" loading="lazy">
+        <div class="caption">"Silenzio dopo la tempesta. Sei tra rovine e luce. Scegli l'alba."</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 3 (page 06) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch3-1">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 3</span>
+            <h2 class="chapter-title">Risveglio del Ribelle</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch3-spark.jpg" alt="Risveglio del Ribelle" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 1. Il tuo primo "no"</div>
+            <div class="task-description">Ricorda l'ultima volta che hai detto "no" — ed era giusto. Descrivi la situazione e come ti sei sentito.</div>
+            <textarea class="task-field" id="task_3_1" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 2. Ciò che hai avuto paura di dire</div>
+            <div class="task-description">Scrivi tre cose che hai voluto dire per molto tempo ma hai avuto paura. Nessuno leggerà questo tranne te.</div>
+            <textarea class="task-field task-field-small" id="task_3_2_1" placeholder="1."></textarea>
+            <textarea class="task-field task-field-small" id="task_3_2_2" placeholder="2."></textarea>
+            <textarea class="task-field task-field-small" id="task_3_2_3" placeholder="3."></textarea>
+        </div>
+        <div class="page-number"><span>06</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 3 (cont., page 07) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch3-2">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 3</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Risveglio del Ribelle</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch3-spark.jpg" alt="Risveglio del Ribelle" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 3. Il tuo ribelle interiore</div>
+            <div class="task-description">Descrivi il tuo ribelle interiore. Che aspetto ha? Cosa dice? Cosa vuole per te?</div>
+            <textarea class="task-field" id="task_3_3" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 4. Prima azione</div>
+            <div class="task-description">Quale azione piccola ma concreta puoi fare oggi per esprimere la tua ribellione?</div>
+            <textarea class="task-field" id="task_3_4" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="page-number"><span>07</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 4 (page 08) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch4-1">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 4</span>
+            <h2 class="chapter-title">La Deviazione</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch4-road.jpg" alt="La Deviazione" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 1. La mia mappa</div>
+            <div class="task-description">Disegna o descrivi la tua attuale "mappa della vita". Dove sei ora? Dove stai andando? Dov'è la deviazione?</div>
+            <textarea class="task-field" id="task_4_1" placeholder="Scrivi qui o disegna uno schema..."></textarea>
+        </div>
+        <div class="page-number"><span>08</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 4 (cont., page 09) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch4-2">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 4</span>
+            <h2 class="chapter-title" style="font-size:18pt;">La Deviazione</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch4-road.jpg" alt="La Deviazione" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 2. Una scelta</div>
+            <div class="task-description">Quale scelta importante stai evitando di fare? Cosa succederebbe se la facessi?</div>
+            <textarea class="task-field" id="task_4_2" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 3. Il prezzo dell'inerzia</div>
+            <div class="task-description">Cosa perderai (tempo, denaro, relazioni, salute) se non cambi nulla nei prossimi 5 anni?</div>
+            <textarea class="task-field" id="task_4_3" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="page-number"><span>09</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5 (page 10) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch5-1">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 5</span>
+            <h2 class="chapter-title">Piano per 1 Anno e 10 Anni</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch5-horizon.jpg" alt="Piano per 1 Anno e 10 Anni" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 1. Il mio numero di libertà</div>
+            <div class="task-description">Calcola il tuo "cuscinetto di libertà" con la formula:</div>
+            <div class="formula-box">(Spese mensili × 6) + (Debiti) + (Obiettivo sogno) = Numero di libertà</div>
+            <div style="margin-top: 6px;">
+                <input type="text" class="task-field task-field-small" id="task_5_1_expenses" placeholder="Le mie spese mensili: _______________ ₽">
+                <input type="text" class="task-field task-field-small" id="task_5_1_debts" placeholder="I miei debiti: _______________ ₽">
+                <input type="text" class="task-field task-field-small" id="task_5_1_goal" placeholder="Il mio obiettivo sogno: _______________ ₽">
+                <input type="text" class="task-field task-field-small" id="task_5_1_result" placeholder="Il mio numero di libertà: _______________ ₽" style="border-bottom: 2px solid var(--primary); font-weight: 700; color: var(--primary);">
+            </div>
+        </div>
+        <div class="page-number"><span>10</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5 (cont., page 11) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch5-2">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 5</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Piano per 1 Anno e 10 Anni</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch5-horizon.jpg" alt="Piano per 1 Anno e 10 Anni" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 2. I miei 3 obiettivi per l'anno</div>
+            <div class="task-description">Formulare tre obiettivi concreti per l'anno a venire. Devono essere misurabili.</div>
+            <input type="text" class="task-field task-field-small" id="task_5_2_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_5_2_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_5_2_3" placeholder="3.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 3. Il mio obiettivo tra 10 anni</div>
+            <div class="task-description">Descrivi la tua vita tra 10 anni. Dove sei? Chi c'è con te? Cosa fai? Quanto guadagni?</div>
+            <textarea class="task-field" id="task_5_3" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="page-number"><span>11</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5 (cont., page 12) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch5-3">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 5</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Piano per 1 Anno e 10 Anni</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch5-horizon.jpg" alt="Piano per 1 Anno e 10 Anni" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 4. Primo passo</div>
+            <div class="task-description">Che azione puoi fare questa settimana per avvicinarti al tuo obiettivo a 10 anni?</div>
+            <textarea class="task-field" id="task_5_4" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 5. Cosa mi ferma</div>
+            <div class="task-description">Onestamente: cosa ti impedisce di iniziare ora? (paura, pigrizia, mancanza di conoscenza, ambiente)</div>
+            <textarea class="task-field" id="task_5_5" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="page-number"><span>12</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 6 (page 13) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch6-1">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 6</span>
+            <h2 class="chapter-title">Il Mio Sistema Finanziario</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch6-money.jpg" alt="Il Mio Sistema Finanziario" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 1. Dove vanno i soldi</div>
+            <div class="task-description">Compila la tabella delle tue spese reali del mese scorso.</div>
+            <table class="table-expenses" id="expense-table">
+                <thead>
+                    <tr><th>Categoria</th><th>Importo (₽)</th><th>Essenziale?</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Alloggio</td><td><input type="text" id="exp_1" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_1_chk"></td></tr>
+                    <tr><td>Cibo</td><td><input type="text" id="exp_2" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_2_chk"></td></tr>
+                    <tr><td>Trasporti</td><td><input type="text" id="exp_3" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_3_chk"></td></tr>
+                    <tr><td>Comunicazioni</td><td><input type="text" id="exp_4" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_4_chk"></td></tr>
+                    <tr><td>Divertimento</td><td><input type="text" id="exp_5" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_5_chk"></td></tr>
+                    <tr><td>Altro</td><td><input type="text" id="exp_6" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_6_chk"></td></tr>
+                    <tr><td><b>TOTALE</b></td><td><input type="text" id="exp_total" placeholder="₽" readonly style="font-weight:700; background:transparent; border:none;"></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="page-number"><span>13</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 6 (cont., page 14) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch6-2">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 6</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Il Mio Sistema Finanziario</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch6-money.jpg" alt="Il Mio Sistema Finanziario" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 2. Tre perdite</div>
+            <div class="task-description">Trova tre spese che puoi ridurre o eliminare senza sacrificare la qualità della vita.</div>
+            <input type="text" class="task-field task-field-small" id="task_6_2_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_6_2_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_6_2_3" placeholder="3.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 3. Un bene</div>
+            <div class="task-description">Quale bene puoi creare o acquisire nei prossimi 6 mesi?</div>
+            <textarea class="task-field" id="task_6_3" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="page-number"><span>14</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 7 (page 15) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch7-1">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 7</span>
+            <h2 class="chapter-title">Ali di Fuoco della Fenice</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch7-fire-wings.jpg" alt="Ali di Fuoco" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 1. Cosa prendo dalle ceneri</div>
+            <div class="task-description">Quali tre lezioni o forze prendi dalle tue "ceneri"? Cosa ti ha reso più forte?</div>
+            <input type="text" class="task-field task-field-small" id="task_7_1_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_7_1_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_7_1_3" placeholder="3.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 2. Le mie ali di fuoco</div>
+            <div class="task-description">Cosa ti dà la forza di rialzarti? Tre fonti della tua energia interiore.</div>
+            <input type="text" class="task-field task-field-small" id="task_7_2_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_7_2_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_7_2_3" placeholder="3.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 3. Manifesto della Fenice</div>
+            <div class="task-description">Scrivi un manifesto breve — 3‑5 frasi su chi sei ora.</div>
+            <textarea class="task-field" id="task_7_3" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="page-number"><span>15</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 8 (page 16) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch8-1">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 8</span>
+            <h2 class="chapter-title">Perché Sei Diventato un Debole</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch8-chain.jpg" alt="Perché Sei Diventato un Debole" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 1. Le mie convinzioni</div>
+            <div class="task-description">Scrivi tre convinzioni tossiche che ti rendono un "debole".</div>
+            <input type="text" class="task-field task-field-small" id="task_8_1_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_8_1_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_8_1_3" placeholder="3.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 2. Nuova convinzione</div>
+            <div class="task-description">Riformula ciascuna di esse in una forza. Trasforma il veleno in medicina.</div>
+            <input type="text" class="task-field task-field-small" id="task_8_2_1" placeholder="Era: ... → Ora: ...">
+            <input type="text" class="task-field task-field-small" id="task_8_2_2" placeholder="Era: ... → Ora: ...">
+            <input type="text" class="task-field task-field-small" id="task_8_2_3" placeholder="Era: ... → Ora: ...">
+        </div>
+        <div class="page-number"><span>16</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 8 (cont., page 17) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch8-2">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 8</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Perché Sei Diventato un Debole</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch8-chain.jpg" alt="Perché Sei Diventato un Debole" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 3. Chi sei se non una vittima?</div>
+            <div class="task-description">Descriviti senza il ruolo della vittima. Chi sei veramente quando togli quella maschera?</div>
+            <textarea class="task-field" id="task_8_3" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 4. Confini</div>
+            <div class="task-description">Nomina tre confini fermi che sei pronto a stabilire ora.</div>
+            <input type="text" class="task-field task-field-small" id="task_8_4_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_8_4_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_8_4_3" placeholder="3.">
+        </div>
+        <div class="page-number"><span>17</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 9 (page 18) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch9-1">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 9</span>
+            <h2 class="chapter-title">Nuova Vita</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch9-sunrise.jpg" alt="Nuova Vita" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 1. Il mio giorno perfetto tra un anno</div>
+            <div class="task-description">Descrivi un giorno della tua vita tra un anno. Dal mattino alla sera. In dettaglio, con emozioni.</div>
+            <textarea class="task-field" id="task_9_1" placeholder="Scrivi qui..." style="min-height:120px;"></textarea>
+        </div>
+        <div class="page-number"><span>18</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 9 (cont., page 19) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch9-2">
+        <div class="page-header">
+            <span class="chapter-pill">Capitolo 9</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Nuova Vita</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch9-sunrise.jpg" alt="Nuova Vita" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 2. Primo passo</div>
+            <div class="task-description">Che azione concreta farai domani mattina per iniziare a muoverti verso quel giorno?</div>
+            <textarea class="task-field" id="task_9_2" placeholder="Scrivi qui..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Esercizio 3. La mia squadra</div>
+            <div class="task-description">Chi sono tre persone che possono aiutarti in questo cammino? (mentori/amici reali o futuri)</div>
+            <input type="text" class="task-field task-field-small" id="task_9_3_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_9_3_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_9_3_3" placeholder="3.">
+        </div>
+        <div class="page-number"><span>19</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 10 (page 20) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch10">
+        <div class="page-header">
+            <span class="chapter-pill">Finale</span>
+            <h2 class="chapter-title">Conclusione</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch10-letter.jpg" alt="Conclusione" loading="lazy"></div>
+        <div class="task-card" style="border-left-color: var(--secondary);">
+            <div class="task-number" style="color: var(--secondary);">Esercizio 1. Lettera a te stesso tra un anno</div>
+            <div class="task-description">Scrivi una lettera a te stesso — alla persona che leggerà questo quaderno tra un anno. Racconta dove sei ora, cosa temi, cosa speri. Sigilla. Aprila tra 12 mesi.</div>
+            <textarea class="task-field" id="task_10_1" placeholder="Caro io tra un anno..." style="min-height:180px;"></textarea>
+            <div style="margin-top:8px; text-align:right;">
+                <span style="font-weight:600;">Con fiducia in te, </span><input type="text" id="task_10_sig" placeholder="___________________" style="border:none; border-bottom:1px solid #ccc; width:150px; font-family:inherit; font-size:11pt;">
+                <span style="font-weight:600; margin-left:20px;">Data: </span><input type="text" id="task_10_date" placeholder="__.__.____" style="border:none; border-bottom:1px solid #ccc; width:100px; font-family:inherit; font-size:11pt;">
+            </div>
+        </div>
+        <div class="page-number"><span>20</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- FINAL SPREAD (frame #4) -->
+    <!-- ============================================================ -->
+    <div class="page spread" id="page-spread-final">
+        <img src="../images/frame-new-life.jpg" alt="Nuova Vita" loading="lazy">
+        <div class="caption">"Non è un sogno. È un piano. Lo stai già costruendo."</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SUBMIT PAGE -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-submit" style="justify-content: center; align-items: center; text-align: center; padding: 30mm 20mm;">
+        <h2 style="font-family: 'Montserrat', sans-serif; color: var(--secondary); margin-bottom: 20px;">Il tuo lavoro è pronto</h2>
+        <p style="font-size: 14pt; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;">
+            Hai compilato il quaderno. Ora puoi raccogliere tutte le tue risposte e inviarle a DeepSeek per l'analisi.
+        </p>
+        <button class="btn-collect" onclick="collectAnswers()">Raccogli risposte per IA</button>
+        <div id="outputArea">
+            <h3>Copia questo testo e incollalo in DeepSeek</h3>
+            <textarea id="outputText" readonly></textarea>
+            <button class="copy-btn" onclick="copyOutput()">📋 Copia</button>
+        </div>
+        <div class="page-number" style="bottom: 15mm; right: 20mm;"><span>—</span></div>
+    </div>
+
+    <script>
+        // ===== Helper functions =====
+
+        function toggleCheck(el) {
+            el.classList.toggle('checked');
+            el.dataset.checked = el.classList.contains('checked') ? 'true' : 'false';
+        }
+
+        function collectAnswers() {
+            const fields = document.querySelectorAll('input[type="text"], textarea, input[type="checkbox"]:checked');
+            let result = 'Le mie risposte dal quaderno "Il Cammino della Fenice":\n\n';
+
+            const textInputs = document.querySelectorAll('input[type="text"]:not(.date-line):not([readonly]), textarea');
+            textInputs.forEach(el => {
+                if (el.value && el.value.trim() !== '') {
+                    const label = el.closest('.task-card')?.querySelector('.task-number')?.innerText || el.placeholder || 'Campo';
+                    const id = el.id || 'unknown';
+                    result += `${label} (${id}):\n${el.value.trim()}\n\n`;
+                }
+            });
+
+            const checkboxes = document.querySelectorAll('.checklist-square.checked');
+            if (checkboxes.length > 0) {
+                result += 'Elementi selezionati:\n';
+                checkboxes.forEach(el => {
+                    const text = el.closest('.checklist-item')?.querySelector('.checklist-text')?.innerText || 'elemento';
+                    result += `- ${text}\n`;
+                });
+                result += '\n';
+            }
+
+            const startDate = document.getElementById('start_date')?.value;
+            if (startDate) {
+                result += `Data di inizio: ${startDate}\n\n`;
+            }
+
+            const expenseInputs = document.querySelectorAll('#expense-table input[type="text"]');
+            let total = 0;
+            if (expenseInputs.length > 0) {
+                result += 'Spese mensili:\n';
+                expenseInputs.forEach(el => {
+                    const val = parseFloat(el.value.replace(/\s/g, '')) || 0;
+                    if (val > 0) {
+                        const label = el.closest('tr')?.querySelector('td:first-child')?.innerText || 'categoria';
+                        result += `${label}: ${val} ₽\n`;
+                        total += val;
+                    }
+                });
+                result += `TOTALE: ${total} ₽\n\n`;
+            }
+
+            if (result.trim() === 'Le mie risposte dal quaderno "Il Cammino della Fenice":\n\n') {
+                result = 'Non hai ancora inserito nulla. Compila almeno alcuni campi per ottenere un\'analisi.';
+            } else {
+                result += '\n---\nAnalizza queste risposte. Cosa vedi? Quali schemi si ripetono? A cosa dovrei prestare attenzione? Cosa posso fare per andare avanti?';
+            }
+
+            document.getElementById('outputText').value = result;
+            document.getElementById('outputArea').style.display = 'block';
+            document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyOutput() {
+            const text = document.getElementById('outputText');
+            text.select();
+            document.execCommand('copy');
+            alert('Testo copiato negli appunti. Incollalo in DeepSeek.');
+        }
+
+        document.addEventListener('input', function(e) {
+            if (e.target.closest('#expense-table input[type="text"]')) {
+                const inputs = document.querySelectorAll('#expense-table input[type="text"]:not([readonly])');
+                let total = 0;
+                inputs.forEach(inp => {
+                    const val = parseFloat(inp.value.replace(/\s/g, '')) || 0;
+                    total += val;
+                });
+                const totalField = document.getElementById('exp_total');
+                if (totalField) totalField.value = total + ' ₽';
+            }
+        });
+    </script>
+
+</body>
+</html>

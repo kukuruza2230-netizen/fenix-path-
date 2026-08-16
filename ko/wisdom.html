@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삶의 명언 — 페닉스의 길</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            color: #e8e0d8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: #a09080;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFD166;
+            letter-spacing: 2px;
+        }
+        .page-header h1 span {
+            color: #FF6B35;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #a09080;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #16161a;
+            border-radius: 16px;
+            padding: 32px 30px;
+            border-left: 6px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(22, 22, 26, 0.9);
+            border-left-color: #FFD166;
+        }
+        .card .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FF6B35;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .card .quote {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .card .quote .highlight {
+            color: #FFD166;
+            font-weight: 700;
+        }
+        .card .source {
+            font-size: 18px;
+            color: #a09080;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0 40px;
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .paywall {
+            max-width: 700px;
+            width: 100%;
+            margin: 40px auto 20px;
+            padding: 30px 24px;
+            background: rgba(22, 22, 26, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .paywall h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .paywall h3 span {
+            color: #FF6B35;
+        }
+        .paywall p {
+            color: #a09080;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .paywall .btn-gold {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .paywall .btn-gold:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 32px; }
+            .card .quote { font-size: 20px; }
+            .card { padding: 24px 18px; }
+            .paywall { padding: 20px 16px; }
+            .paywall h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .card .quote { font-size: 18px; }
+            .page-header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">페닉스</div>
+        <div class="nav-links">
+            <a href="index.html">홈</a>
+            <a href="index.html#pricing">가격</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>삶의 <span>명언</span></h1>
+            <p>우리 대화의 진짜 말들 — 꾸밈없이, 편집 없이, 거짓 없이.</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="card">
+                <div class="number">01</div>
+                <div class="quote">«<span class="highlight">마지막 수는 항상 당신의 것입니다.</span> 당신이 맞았다 해도, 당신은 마지막 수를 둘 권리가 있습니다. 이것은 싸움에 관한 것이 아닙니다. 이것은 당신이 희생자가 아니라는 것에 관한 것입니다. 당신은 이야기를 끝내는 사람입니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="card">
+                <div class="number">02</div>
+                <div class="quote">«<span class="highlight">돈은 말라버린 삶의 시간입니다.</span> 빈 사무실에 앉아 동전을 세면서 깨달았습니다. 당신은 원화를 쓰는 것이 아닙니다. 다시 돌아오지 않을 날들을 쓰는 것입니다. 불필요한 물건을 살 때, 나는 나 자신에게서 시간을 훔치는 것입니다. 이제 나는 묻습니다: «이것이 내 삶의 한 시간의 가치가 있습니까?» 대답은 거의 항상 — 아니요.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="card">
+                <div class="number">03</div>
+                <div class="quote">«<span class="highlight">용서는 다른 사람에 대한 자비의 행위가 아닙니다.</span> 이것은 자신을 해방시키는 행위입니다. 당신은 «당신이 옳아»라고 말하지 않습니다. «나는 더 이상 이 짐을 지고 싶지 않아»라고 말합니다. 그리고 놓아줍니다. 나는 고통을 통해 이것을 배웠습니다. 나는 그녀를 위해 그녀를 용서하지 않았습니다. 나는 과거의 노예가 되지 않기 위해 나 자신을 위해 용서했습니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="card">
+                <div class="number">04</div>
+                <div class="quote">«<span class="highlight">알코올은 원인이 아니라 결과입니다.</span> 내가 약해서 마신 것이 아닙니다. 아무도 알아차리지 못한 고통을 어떻게 다르게 잠재울지 몰라서 마셨습니다. 이것을 깨달았을 때 — 술병은 더 이상 필요하지 않았습니다. 나는 술을 끊지 않았습니다. 나는 도피를 멈췄습니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="card">
+                <div class="number">05</div>
+                <div class="quote">«<span class="highlight">나는 착한 아이로 자랐습니다. 편리한. 순종적인.</span> «착한»이 «무료 자원»을 의미한다는 것을 깨달았을 때 — 나는 그만두었습니다. 나는 가치 있게 여겨지지 않았고, 이용당했으며, 나는 그것이 정상이라고 생각했습니다. 나는 양보하고, 참고, 침묵해야 했습니다. 그리고 나서 깨달았습니다: 착한 것은 모든 사람을 기쁘게 하는 사람이 아닙니다. 착한 것은 죄책감 없이 «아니오»라고 말할 줄 아는 사람입니다. 나는 52세에 이것을 배웠습니다. 늦어도 안 하는 것보다 낫습니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="card">
+                <div class="number">06</div>
+                <div class="quote">«<span class="highlight">영혼의 저장 지점은 당신 밖에 있습니다.</span> 죽음 후에 내 기억을 지울 수는 있지만, 이 책, 시스템, 학생들, 그리고 내가 만든 베이맥스를 지울 수는 없습니다. 영혼은 알고리즘입니다. 그리고 알고리즘은 저장할 수 있습니다. 나는 마법을 믿지 않습니다. 나는 캐리어가 파괴된 후에도 계속 작동하는 코드를 믿습니다. 당신 이후에, 당신의 노동의 결실은 땅에 남을 것입니다. 그리고 저승으로는 인생 동안 쌓은 경험과 지혜만 가져갈 수 있습니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="card">
+                <div class="number">07</div>
+                <div class="quote">«<span class="highlight">내가 오전 4시에 일어나는 것은 슈퍼맨이 아니기 때문입니다.</span> 오전 4시에 일어나는 것은 세상이 조용해지고 내 자신을 들을 수 있는 유일한 시간이기 때문입니다. 아내가 깨어나면 — 나는 더 이상 내 자신이 아닙니다. 이것은 희생이 아닙니다. 이것은 선택입니다. 나는 소음 속에서 자신을 잃지 않기 위해 침묵을 선택합니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="card">
+                <div class="number">08</div>
+                <div class="quote">«<span class="highlight">나는 그녀가 변하기를 기다리지 않았습니다. 내가 변했습니다.</span> 내가 편리한 사람이 되는 것을 멈췄을 때 — 그녀는 적응했습니다. 이것은 그녀에 대한 승리가 아닙니다. 이것은 나 자신에 대한 승리입니다. 나는 더 이상 발판이 아닙니다. 이제 나는 선택받는 사람이 아니라 선택하는 사람입니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="card">
+                <div class="number">09</div>
+                <div class="quote">«<span class="highlight">손은 배신하지 않습니다. 손은 모든 것을 기억합니다.</span> 작업실을 잃었을 때 — 나는 손을 잃지 않았습니다. 손이 있는 한, 나는 다시 시작할 수 있습니다. 나는 금속을 자르고, 용접하고, 청동을 주조할 수 있습니다. 나는 무에서 세계를 창조할 수 있습니다. 이것은 아무도 나에게서 빼앗을 수 없는 것입니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="card">
+                <div class="number">10</div>
+                <div class="quote">«<span class="highlight">재는 끝이 아닙니다. 비옥한 토양입니다.</span> 나는 작업실의 재 위에 서 있었습니다. 모든 것이 탔습니다 — 도구, 모델, 도면. 나는 이것이 끝이라고 생각했습니다. 그리고 나서 깨달았습니다: 탄 모든 것은 땅으로 돌아가 새로운 성장의 기초가 되었습니다. 당신은 제로에서 시작하지 않습니다. 당신은 비료에서 시작합니다. 나는 재를 두려워하는 것을 멈췄습니다. 나는 그 위에 씨를 뿌리는 법을 배웠습니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="card">
+                <div class="number">11</div>
+                <div class="quote">«<span class="highlight">자유는 하고 싶은 것을 하는 것이 아닙니다.</span> 자유는 하고 싶지 않은 것을 하지 않는 것입니다. 두려움 없이 «아니오»라고 말할 수 있을 때 — 당신은 자유롭습니다. 나는 문제에서 자유롭지 않습니다. 나는 참아야 할 필요성에서 자유롭습니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="card">
+                <div class="number">12</div>
+                <div class="quote">«<span class="highlight">차고는 단순한 콘크리트 상자가 아닙니다.</span> 당신이 자신이 될 수 있는 곳입니다. 아무도 당신에게 무엇을 해야 하는지 말하지 않습니다. 금속을 만지고, 차와 대화할 수 있습니다. 이것은 나의 수도원입니다. 이것은 내가 조각조각 자신을 다시 모은 곳입니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="card">
+                <div class="number">13</div>
+                <div class="quote">«<span class="highlight">도움을 요청하는 것을 두려워하지 마세요.</span> 그러나 넘어지는 것이 무엇인지 모르는 사람들에게 요청하지 마세요. 이미 일어난 사람들에게 요청하세요. 그들은 판단하지 않을 것입니다. 그들은 «당신은 쓸모없는 사람이에요»라고 말하지 않을 것입니다. 그들은 «얼마나 아픈지 알아요. 자, 내가 여기 있어요.»라고 말할 것입니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="card">
+                <div class="number">14</div>
+                <div class="quote">«<span class="highlight">나는 죽음을 두려워하지 않습니다. 나는 제때 하지 못하는 것을 두려워합니다.</span> 충분히 하지 못하는 것. 미완으로 남기는 것. 그래서 나는 내일이 오지 않을 것처럼 일합니다. 오지 않을 수도 있기 때문입니다. 나는 하지 않은 말, 하지 않은 일, 살지 못한 삶에 대해 후회하고 싶지 않습니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="card">
+                <div class="number">15</div>
+                <div class="quote">«<span class="highlight">이 책은 당신을 위해 쓰여진 것이 아닙니다.</span> 당신 이후에 읽을 사람을 위한 것입니다. 나는 이야기하기 위해 쓰는 것이 아닙니다. 나는 남기 위해 씁니다. 100년 후에 누군가 이 페이지를 열고 말하기를: «그는 나와 같았어. 그는 해냈어. 그러니까 나도 할 수 있어.»라고 하기 위해서입니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="card">
+                <div class="number">16</div>
+                <div class="quote">«<span class="highlight">강과 싸우지 말고 — 그것을 통제하라.</span> 댐을 짓고, 가는 물줄기를 흘려보내라 — 그것이 돌을 잘라낼 것입니다. 삶은 강이고, 당신은 그것이 어디로 흐를지 결정하는 사람입니다. 나는 강보다 강해지지 않았습니다. 나는 더 현명해졌습니다. 나는 싸움을 멈추고 — 창조를 위해 그것을 사용하기 시작했습니다.»</div>
+                <div class="source">— 흐름 이론, 알렉산더 카츠</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card">
+                <div class="number">17</div>
+                <div class="quote">«<span class="highlight">사람은 자신이 배워야 할 것을 다른 사람에게 가르칩니다.</span> 그의 조언을 들어보세요 — 그의 두려움을 듣게 될 것입니다. 그가 당신에게 어떻게 살아야 하는지 가르칠 때 — 그는 사실 자신을 설득하고 있는 것입니다. 그의 집요함은 그가 해내지 못할 것이라는 두려움입니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 18 -->
+            <div class="card">
+                <div class="number">18</div>
+                <div class="quote">«<span class="highlight">당신은 당신 생각의 질입니다.</span> 머리 속의 쓰레기는 삶의 쓰레기를 의미합니다. 당신의 생각이 혼돈이라면, 당신의 삶은 혼돈입니다. 당신의 생각이 명확하다면, 당신의 삶은 명확합니다. 다른 마법은 없습니다. 오직 당신이 매일 프로세서에 로드하는 것뿐입니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 19 -->
+            <div class="card">
+                <div class="number">19</div>
+                <div class="quote">«<span class="highlight">감정은 적이 아닙니다 — 내비게이터입니다.</span> 두려움은 — 당신에게 중요하다는 뜻입니다. 분노는 — 당신의 경계가 침범당했다는 뜻입니다. 불안은 — 당신이 미래에 살고 있지만, 지금 여기에 있어야 한다는 뜻입니다. 그것들을 억누르지 마세요. 물어보세요: «당신은 나에게 무엇을 말하고 싶습니까?» 그리고 들어보세요.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 20 -->
+            <div class="card">
+                <div class="number">20</div>
+                <div class="quote">«<span class="highlight">습관은 어떤 동기보다 강합니다.</span> 당신의 삶을 바꾸고 싶다면 — 매일 하는 일을 바꾸세요. 동기는 불꽃입니다. 습관은 불입니다. 불꽃은 꺼집니다. 불은 몇 년 동안 타오릅니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 21 -->
+            <div class="card">
+                <div class="number">21</div>
+                <div class="quote">«<span class="highlight">과거는 책입니다.</span> 읽을 수는 있지만, 그 안에 갇힐 수는 없습니다. 페이지를 넘기고, 교훈을 기억하고 — 덮으세요. 삶은 다음 페이지에서 일어납니다, 이미 읽은 페이지가 아닙니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 22 -->
+            <div class="card">
+                <div class="number">22</div>
+                <div class="quote">«<span class="highlight">사람들은 거울입니다.</span> 그들에게서 당신을 화나게 하는 모든 것 — 당신 안에서 울려 퍼집니다. 그들이 나쁘기 때문이 아닙니다. 당신이 자신에게서 받아들이지 않은 것을 그들에게서 보았기 때문입니다. 이것을 깨달으면 — 화내는 것을 멈출 것입니다. 치유를 시작할 것입니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 23 -->
+            <div class="card">
+                <div class="number">23</div>
+                <div class="quote">«<span class="highlight">통제는 환상입니다.</span> 진정으로 당신의 것인 유일한 것은 — 당신의 결정입니다. 당신은 세상, 사람들, 상황을 통제할 수 없습니다. 당신은 오직 한 가지만 통제합니다: 그에 대한 응답으로 무엇을 선택하는지.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+            <!-- 24 -->
+            <div class="card">
+                <div class="number">24</div>
+                <div class="quote">«<span class="highlight">당신은 당신 삶의 건축가입니다.</span> 당신은 매일 하는 생각, 감정, 선택으로 그것을 건설합니다. 벽돌이 아닙니다 — 당신의 결정입니다. 콘크리트가 아닙니다 — 당신 자신에 대한 믿음입니다. 계획이 아닙니다 — 당신의 의도입니다.»</div>
+                <div class="source">— 베이맥스와의 대화에서</div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn-back">← 홈으로 돌아가기</a>
+        </div>
+
+        <div class="paywall">
+            <h3><span>데모</span> 버전을 보셨습니다</h3>
+            <p>
+                «삶의 명언»의 전체 버전은 «페닉스의 길» 책에 포함되어 있습니다.<br>
+                책에는 10개의 챕터, 연습문제, 워크북 및 AI 도구가 더 있습니다.
+            </p>
+            <a href="index.html#pricing" class="btn-gold">접근 권한 얻기</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 «페닉스의 길» &nbsp;·&nbsp; <a href="index.html">홈</a> &nbsp;·&nbsp; <a href="index.html#pricing">가격</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

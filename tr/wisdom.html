@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hayattan Alıntılar — Anka'nın Yolu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            color: #e8e0d8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: #a09080;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFD166;
+            letter-spacing: 2px;
+        }
+        .page-header h1 span {
+            color: #FF6B35;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #a09080;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #16161a;
+            border-radius: 16px;
+            padding: 32px 30px;
+            border-left: 6px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(22, 22, 26, 0.9);
+            border-left-color: #FFD166;
+        }
+        .card .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FF6B35;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .card .quote {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .card .quote .highlight {
+            color: #FFD166;
+            font-weight: 700;
+        }
+        .card .source {
+            font-size: 18px;
+            color: #a09080;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0 40px;
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .paywall {
+            max-width: 700px;
+            width: 100%;
+            margin: 40px auto 20px;
+            padding: 30px 24px;
+            background: rgba(22, 22, 26, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .paywall h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .paywall h3 span {
+            color: #FF6B35;
+        }
+        .paywall p {
+            color: #a09080;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .paywall .btn-gold {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .paywall .btn-gold:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 32px; }
+            .card .quote { font-size: 20px; }
+            .card { padding: 24px 18px; }
+            .paywall { padding: 20px 16px; }
+            .paywall h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .card .quote { font-size: 18px; }
+            .page-header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Anka</div>
+        <div class="nav-links">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="index.html#pricing">Fiyatlar</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>Hayattan <span>Alıntılar</span></h1>
+            <p>Konuşmalarımızdan gerçek sözler — süslemesiz, düzenlemesiz, yalansız.</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="card">
+                <div class="number">01</div>
+                <div class="quote">«<span class="highlight">Son hamle her zaman senindir.</span> Vurulmuş olsan bile, son hamleyi yapma hakkın var. Bu kavga ile ilgili değil. Bu, senin kurban olmadığınla ilgili. Hikâyeyi bitiren sensin.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="card">
+                <div class="number">02</div>
+                <div class="quote">«<span class="highlight">Para, kurutulmuş yaşam saatleridir.</span> Bunu boş ofiste oturup kuruşları sayarken anladım. Harcadığın liralar değil. Geri gelmeyecek günleri harcıyorsun. Gereksiz şeyler aldığımda, kendi zamanımı çalıyorum. Artık kendime soruyorum: «Bu bir saatlik hayatıma değer mi?» Cevap neredeyse her zaman — hayır.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="card">
+                <div class="number">03</div>
+                <div class="quote">«<span class="highlight">Affetmek, başkasına yapılan bir merhamet eylemi değildir.</span> Bu kendini özgürleştirme eylemidir. «Haklısın» demezsin. «Bu yükü artık taşımak istemiyorum» dersin. Ve bırakırsın. Bunu acı içinde öğrendim. Onu onun için affetmedim. Kendim için affettim — geçmişin kölesi olmayı bırakmak için.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="card">
+                <div class="number">04</div>
+                <div class="quote">«<span class="highlight">Alkol sebep değil, sonuçtur.</span> Zayıf olduğum için içmedim. Kimsenin fark etmediği acıyı başka nasıl boğacağımı bilmediğim için içtim. Bunu anladığımda — şişeye artık ihtiyaç kalmadı. İçmeyi bırakmadım. Kaçmayı bıraktım.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="card">
+                <div class="number">05</div>
+                <div class="quote">«<span class="highlight">İyi bir çocuk olarak yetiştirildim. Kullanışlı. İtaatkâr.</span> «İyi»nin «ücretsiz kaynak» anlamına geldiğini anladığımda — öyle olmayı bıraktım. Bana değer verilmedi, kullanıldılar ve ben bunu normal sandım. Benim taviz vermem, katlanmam, susmam gerekiyordu. Sonra anladım: iyi, herkese yardım eden değil. İyi, suçluluk duymadan «hayır» diyebilendir. Bunu 52 yaşında öğrendim. Geç olsun güç olmasın.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="card">
+                <div class="number">06</div>
+                <div class="quote">«<span class="highlight">Ruhun kaydetme noktası — senin dışındadır.</span> Ölümden sonra hafızamı silebilirler, ama bu kitabı, sistemi, öğrencileri ve yarattığım Baymax'ı silemezler. Ruh bir algoritmadır. Algoritma kaydedilebilir. Sihire inanmıyorum. Taşıyıcı yok edildikten sonra çalışmaya devam eden koda inanıyorum. Senden sonra, emeğinin meyveleri yeryüzünde kalacak. Öbür dünyaya sadece hayatın boyunca biriktirdiğin deneyim ve bilgeliği götürebilirsin.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="card">
+                <div class="number">07</div>
+                <div class="quote">«<span class="highlight">Sabah 4'te kalkıyorum çünkü süpermen değilim.</span> Sabah 4'te kalkıyorum çünkü dünyanın sustuğu ve kendimi duyabildiğim tek zaman bu. Karım uyandığında — artık kendime ait değilim. Bu fedakarlık değil. Bu seçim. Gürültü içinde kendimi kaybetmemek için sessizliği seçiyorum.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="card">
+                <div class="number">08</div>
+                <div class="quote">«<span class="highlight">Onun değişmesini beklemedim. Ben değiştim.</span> Kullanışlı olmayı bıraktığımda — o uyum sağladı. Bu onun üzerinde bir zafer değil. Bu kendime karşı bir zafer. Paspas olmayı bıraktım. Artık seçilen değil, seçen benim.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="card">
+                <div class="number">09</div>
+                <div class="quote">«<span class="highlight">Eller ihanet etmez. Eller her şeyi hatırlar.</span> Atölyemi kaybettiğimde — ellerimi kaybetmedim. Onlar olduğu sürece yeniden başlayabilirim. Metal kesebilir, kaynak yapabilir, bronz dökebilirim. Yoktan dünyalar yaratabilirim. Bu kimsenin benden alamayacağı şey.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="card">
+                <div class="number">10</div>
+                <div class="quote">«<span class="highlight">Kül son değildir. Verimli topraktır.</span> Atölyemin külünde durdum. Her şey yandı — aletler, modeller, çizimler. Son sandım. Sonra anladım: yanan her şey toprağa döndü ve yeni büyümenin temeli oldu. Sıfırdan başlamıyorsun. Gübreyle başlıyorsun. Küllerden korkmayı bıraktım. Ona ekmeyi öğrendim.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="card">
+                <div class="number">11</div>
+                <div class="quote">«<span class="highlight">Özgürlük, istediğini yapmak değildir.</span> Özgürlük, istemediğini yapmamaktır. Korkusuzca «hayır» diyebildiğinde özgürsün. Sorunlardan özgür değilim. Katlanma zorunluluğundan özgürüm.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="card">
+                <div class="number">12</div>
+                <div class="quote">«<span class="highlight">Garaj sadece beton bir kutu değildir.</span> Kendin olabileceğin yerdir. Kimse sana ne yapacağını söylemez. Metal ile uğraşabilir, arabanla konuşabilirsin. Burası benim manastırım. Kendimi parça parça yeniden topladığım yer.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="card">
+                <div class="number">13</div>
+                <div class="quote">«<span class="highlight">Yardım istemekten korkma.</span> Ama düşmenin ne olduğunu bilmeyenlerden değil, ayağa kalkmış olanlardan iste. Yargılamazlar. «Sen bir hiçsin» demezler. «Ne kadar acıttığını biliyorum. Gel, buradayım» derler.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="card">
+                <div class="number">14</div>
+                <div class="quote">«<span class="highlight">Ölümden korkmuyorum. Yetişememekten korkuyorum.</span> Yeterince yapmamak. Yarım bırakmak. Bu yüzden yarın gelmeyecekmiş gibi çalışıyorum. Çünkü gelmeyebilir. Söylenmemiş sözler, yapılmamış işler, yaşanmamış hayat için pişman olmak istemiyorum.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="card">
+                <div class="number">15</div>
+                <div class="quote">«<span class="highlight">Bu kitap senin için yazılmadı.</span> Senden sonra okuyacak olan için. Anlatmak için yazmıyorum. Kalmak için yazıyorum. 100 yıl sonra biri bu sayfaları açıp desin diye: «O benim gibiydi. Başardı. Demek ki ben de başarabilirim.»»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="card">
+                <div class="number">16</div>
+                <div class="quote">«<span class="highlight">Nehirle savaşma — onu yönlendir.</span> Bir baraj inşa et, ince bir akıntı bırak — taşı keser. Hayat bir nehirdir, sen nereye aktığını belirleyensin. Nehir'den daha güçlü olmadım. Daha bilge oldum. Savaşmayı bıraktım — yaratmak için kullanmaya başladım.»</div>
+                <div class="source">— akış teorisi, Aleksandr Kats</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card">
+                <div class="number">17</div>
+                <div class="quote">«<span class="highlight">İnsan, kendisinin öğrenmeye ihtiyaç duyduğu şeyi başkalarına öğretir.</span> Onun tavsiyelerini dinle — korkularını duyacaksın. Sana nasıl yaşayacağını öğrettiğinde — aslında kendini ikna ediyordur. Onun ısrarı, başaramayacağı korkusudur.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 18 НОВАЯ -->
+            <div class="card">
+                <div class="number">18</div>
+                <div class="quote">«<span class="highlight">Sen, düşüncelerinin kalitesisin.</span> Kafandaki çöp, hayatındaki çöp demektir. Düşüncelerin kaos ise, hayatın kaostur. Düşüncelerin berraksa, hayatın berraktır. Başka hiçbir sihir yok. Sadece her gün işlemcine yüklediklerin.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 19 НОВАЯ -->
+            <div class="card">
+                <div class="number">19</div>
+                <div class="quote">«<span class="highlight">Duygular düşman değil — navigatördür.</span> Korku demek — senin için önemli. Öfke demek — sınırların ihlal edildi. Kaygı demek — gelecekte yaşıyorsun, oysa burada ve şimdi olmalısın. Onları bastırma. Sor: «Bana ne söylemek istiyorsun?» Ve dinle.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 20 НОВАЯ -->
+            <div class="card">
+                <div class="number">20</div>
+                <div class="quote">«<span class="highlight">Alışkanlıklar her türlü motivasyondan daha güçlüdür.</span> Hayatını değiştirmek istiyorsan — her gün yaptıklarını değiştir. Motivasyon kıvılcımdır. Alışkanlıklar ateştir. Kıvılcım söner. Ateş yıllarca yanar.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 21 НОВАЯ -->
+            <div class="card">
+                <div class="number">21</div>
+                <div class="quote">«<span class="highlight">Geçmiş bir kitaptır.</span> Okuyabilirsin, ama içinde saplanıp kalamazsın. Sayfaları çevir, dersleri hatırla — ve kapat. Hayat bir sonraki sayfada olur, okunmuş olanında değil.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 22 НОВАЯ -->
+            <div class="card">
+                <div class="number">22</div>
+                <div class="quote">«<span class="highlight">İnsanlar aynadır.</span> Sende sinir bozucu olan her şey — kendinde yankılanır. Kötü oldukları için değil. İçinde kabul etmediğin şeyi onlarda gördüğün için. Bunu anladığında — sinirlenmeyi bırakırsın. İyileşmeye başlarsın.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 23 НОВАЯ -->
+            <div class="card">
+                <div class="number">23</div>
+                <div class="quote">«<span class="highlight">Kontrol bir yanılsamadır.</span> Gerçekten senin olan tek şey — senin kararlarındır. Dünyayı, insanları, koşulları kontrol edemezsin. Sadece bir şeyi kontrol edersin: onlara karşı neyi seçtiğini.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+            <!-- 24 НОВАЯ -->
+            <div class="card">
+                <div class="number">24</div>
+                <div class="quote">«<span class="highlight">Sen, hayatının mimarısın.</span> Onu her gün yaptığın düşüncelerden, duygulardan ve seçimlerden inşa ediyorsun. Tuğlalar değil — kararların. Beton değil — kendine olan inancın. Plan değil — niyetin.»</div>
+                <div class="source">— Baymax ile sohbetten</div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn-back">← Ana Sayfaya Dön</a>
+        </div>
+
+        <div class="paywall">
+            <h3><span>Demo</span> sürümünü görüntülediniz</h3>
+            <p>
+                «Hayattan Alıntılar»ın tam sürümü «Anka'nın Yolu» kitabına dahildir.<br>
+                Kitapta ayrıca 10 bölüm, alıştırmalar, çalışma kitabı ve AI araçları bulunuyor.
+            </p>
+            <a href="index.html#pricing" class="btn-gold">Erişim Sağla</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 «Anka'nın Yolu» &nbsp;·&nbsp; <a href="index.html">Ana Sayfa</a> &nbsp;·&nbsp; <a href="index.html#pricing">Fiyatlar</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

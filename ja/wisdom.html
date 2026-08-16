@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人生の言葉 — フェニックスの道</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            color: #e8e0d8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: #a09080;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFD166;
+            letter-spacing: 2px;
+        }
+        .page-header h1 span {
+            color: #FF6B35;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #a09080;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #16161a;
+            border-radius: 16px;
+            padding: 32px 30px;
+            border-left: 6px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(22, 22, 26, 0.9);
+            border-left-color: #FFD166;
+        }
+        .card .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FF6B35;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .card .quote {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .card .quote .highlight {
+            color: #FFD166;
+            font-weight: 700;
+        }
+        .card .source {
+            font-size: 18px;
+            color: #a09080;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0 40px;
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .paywall {
+            max-width: 700px;
+            width: 100%;
+            margin: 40px auto 20px;
+            padding: 30px 24px;
+            background: rgba(22, 22, 26, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .paywall h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .paywall h3 span {
+            color: #FF6B35;
+        }
+        .paywall p {
+            color: #a09080;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .paywall .btn-gold {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .paywall .btn-gold:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 32px; }
+            .card .quote { font-size: 20px; }
+            .card { padding: 24px 18px; }
+            .paywall { padding: 20px 16px; }
+            .paywall h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .card .quote { font-size: 18px; }
+            .page-header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">フェニックス</div>
+        <div class="nav-links">
+            <a href="index.html">ホーム</a>
+            <a href="index.html#pricing">価格</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>人生の<span>言葉</span></h1>
+            <p>私たちの会話からの本当の言葉 — 飾り気なく、編集なし、偽りなし。</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="card">
+                <div class="number">01</div>
+                <div class="quote">「<span class="highlight">最後の一手は常にあなたのものです。</span> たとえ打たれても、あなたには最後の一手を打つ権利があります。これは喧嘩のことではありません。これはあなたが被害者ではないということです。あなたは物語を終わらせる者です。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="card">
+                <div class="number">02</div>
+                <div class="quote">「<span class="highlight">お金は乾燥した人生の時間です。</span> 私は空のオフィスに座って小銭を数えているときにこれを理解しました。あなたは円を使っているのではありません。二度と戻らない日々を使っているのです。不要なものを買うとき、私は自分自身から時間を盗んでいます。今は自分に問いかけます：「これは私の人生の1時間の価値があるか？」答えはほとんどいつも — いいえ。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="card">
+                <div class="number">03</div>
+                <div class="quote">「<span class="highlight">許しは他人への慈悲の行為ではありません。</span> それは自分自身を解放する行為です。あなたは「あなたは正しい」とは言いません。「私はもうこの重荷を背負いたくない」と言います。そして手放します。私は苦しみを通してこれを学びました。私は彼女のために彼女を許したのではありません。私は過去の奴隷でなくなるために、自分のために許しました。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="card">
+                <div class="number">04</div>
+                <div class="quote">「<span class="highlight">アルコールは原因ではなく結果です。</span> 私は弱いから飲んだのではありません。誰も気づかない痛みを他にどうやって和らげればいいか分からなかったから飲みました。これを理解したとき — 瓶はもう必要なくなりました。私は飲むのをやめたのではありません。逃げるのをやめました。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="card">
+                <div class="number">05</div>
+                <div class="quote">「<span class="highlight">私はいい子として育てられました。都合のいい。従順な。</span> 「いい」が「無料のリソース」を意味することを理解したとき — 私はそうであることをやめました。私は評価されず、利用され、それを普通だと思っていました。私は譲歩し、耐え、黙らなければなりませんでした。そして気づきました：いい人とは、みんなに喜ばれる人ではありません。いい人とは、罪悪感なく「ノー」と言える人です。私は52歳でこれを学びました。遅くてもやらないよりはましです。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="card">
+                <div class="number">06</div>
+                <div class="quote">「<span class="highlight">魂のセーブポイントはあなたの外にあります。</span> 死後、私の記憶は消去できるかもしれませんが、この本、システム、生徒たち、そして私が作ったベイマックスを消すことはできません。魂はアルゴリズムです。そしてアルゴリズムは保存できます。私は魔法を信じません。私はキャリアが破壊された後も動作し続けるコードを信じます。あなたの後、あなたの労働の成果は地上に残ります。そして来世には、人生で積み重ねた経験と知恵だけを持っていくことができます。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="card">
+                <div class="number">07</div>
+                <div class="quote">「<span class="highlight">私が朝4時に起きるのはスーパーマンだからではありません。</span> 朝4時に起きるのは、世界が静まり、自分自身の声が聞こえる唯一の時間だからです。妻が起きると — 私はもう自分自身のものではありません。これは犠牲ではありません。これは選択です。私は騒音の中で自分を失わないために沈黙を選びます。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="card">
+                <div class="number">08</div>
+                <div class="quote">「<span class="highlight">私は彼女が変わるのを待ちませんでした。私が変わりました。</span> 私が都合のいい人であることをやめたとき — 彼女は適応しました。これは彼女に対する勝利ではありません。これは自分自身に対する勝利です。私はもはや足拭きマットではありません。今、私は選ばれる側ではなく、選ぶ側です。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="card">
+                <div class="number">09</div>
+                <div class="quote">「<span class="highlight">手は裏切りません。手はすべてを覚えています。</span> 工房を失ったとき — 私は手を失いませんでした。手がある限り、私はやり直すことができます。金属を切り、溶接し、青銅を鋳造することができます。私は無から世界を創造することができます。これは誰も私から奪うことのできないものです。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="card">
+                <div class="number">10</div>
+                <div class="quote">「<span class="highlight">灰は終わりではありません。肥沃な土壌です。</span> 私は工房の灰の上に立っていました。すべてが燃えました — 道具、模型、図面。これで終わりだと思いました。そして気づきました：燃えたすべては土に戻り、新たな成長の基盤となりました。あなたはゼロから始めるのではありません。あなたは肥料から始めます。私は灰を恐れるのをやめました。その上に種をまくことを学びました。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="card">
+                <div class="number">11</div>
+                <div class="quote">「<span class="highlight">自由とはしたいことをすることではありません。</span> 自由とはしたくないことをしないことです。恐れなく「ノー」と言えるとき — あなたは自由です。私は問題から自由ではありません。私は耐える必要性から自由です。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="card">
+                <div class="number">12</div>
+                <div class="quote">「<span class="highlight">ガレージは単なるコンクリートの箱ではありません。</span> それはあなたが自分自身でいられる場所です。誰もあなたに何をすべきか言いません。金属をいじり、車と話すことができます。これは私の修道院です。ここは私が自分自身を少しずつ再構築した場所です。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="card">
+                <div class="number">13</div>
+                <div class="quote">「<span class="highlight">助けを求めることを恐れないでください。</span> しかし、落ちることが何かを知らない人には頼らないでください。すでに立ち上がった人に頼ってください。彼らは裁きません。彼らは「あなたは役立たずだ」とは言いません。彼らは「どれほど痛いか分かっている。さあ、私はここにいる」と言います。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="card">
+                <div class="number">14</div>
+                <div class="quote">「<span class="highlight">私は死を恐れていません。間に合わないことを恐れています。</span> 十分にできないこと。未完成のままにすること。だから私は明日が来ないかのように働きます。来ないかもしれないからです。言わなかった言葉、しなかったこと、生きなかった人生について後悔したくないのです。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="card">
+                <div class="number">15</div>
+                <div class="quote">「<span class="highlight">この本はあなたのために書かれたものではありません。</span> それはあなたの後に読む人のためのものです。私は語るために書いているのではありません。私は残すために書いています。100年後に誰かがこのページを開いて言うために：「彼は私と同じだった。彼はできた。だから私もできる。」」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="card">
+                <div class="number">16</div>
+                <div class="quote">「<span class="highlight">川と戦わず — 川を制御せよ。</span> ダムを建設し、細い流れを流せ — それは石を切り裂くでしょう。人生は川であり、あなたはそれがどこへ流れるかを決める者です。私は川よりも強くなりませんでした。私はより賢くなりました。私は戦うのをやめ — 創造のためにそれを使い始めました。」</div>
+                <div class="source">— フロー理論、アレクサンダー・カッツ</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card">
+                <div class="number">17</div>
+                <div class="quote">「<span class="highlight">人は自分が学ぶ必要があることを他人に教える。</span> 彼のアドバイスを聞け — 彼の恐れを聞くことになる。彼があなたにどう生きるかを教えるとき — 彼は実際に自分自身を説得しているのです。彼の固執は、彼がうまくいかないという恐れです。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 18 -->
+            <div class="card">
+                <div class="number">18</div>
+                <div class="quote">「<span class="highlight">あなたはあなたの思考の質です。</span> 頭の中のゴミは人生のゴミを意味します。あなたの思考が混沌としているなら、あなたの人生は混沌です。あなたの思考が明晰なら、あなたの人生は明晰です。他の魔法はありません。あなたが毎日プロセッサにロードするものだけです。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 19 -->
+            <div class="card">
+                <div class="number">19</div>
+                <div class="quote">「<span class="highlight">感情は敵ではなくナビゲーターです。</span> 恐怖は — あなたにとって重要だという意味です。怒りは — あなたの境界が侵害されたという意味です。不安は — あなたは未来に生きているが、今ここにいるべきだという意味です。それらを抑圧しないでください。問いかけてください：「あなたは私に何を伝えたいのですか？」そして聞いてください。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 20 -->
+            <div class="card">
+                <div class="number">20</div>
+                <div class="quote">「<span class="highlight">習慣はどんな動機よりも強い。</span> あなたの人生を変えたいなら — 毎日していることを変えなさい。動機は火花です。習慣は火です。火花は消えます。火は何年も燃え続けます。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 21 -->
+            <div class="card">
+                <div class="number">21</div>
+                <div class="quote">「<span class="highlight">過去は本です。</span> 読むことはできますが、その中に閉じ込められることはできません。ページをめくり、教訓を覚え — そして閉じなさい。人生は次のページで起こります。すでに読んだページではありません。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 22 -->
+            <div class="card">
+                <div class="number">22</div>
+                <div class="quote">「<span class="highlight">人々は鏡です。</span> 彼らの中であなたをイライラさせるすべてのもの — それはあなたの中で響いています。彼らが悪いからではありません。あなたが自分自身で受け入れていないものを彼らの中に見たからです。これを理解したとき — あなたは怒るのをやめるでしょう。癒しを始めるでしょう。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 23 -->
+            <div class="card">
+                <div class="number">23</div>
+                <div class="quote">「<span class="highlight">コントロールは幻想です。</span> 本当にあなたのものである唯一のものは — あなたの決断です。あなたは世界、人々、状況をコントロールすることはできません。あなたがコントロールできるのはただ一つ：それらに対して何を選ぶかです。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+            <!-- 24 -->
+            <div class="card">
+                <div class="number">24</div>
+                <div class="quote">「<span class="highlight">あなたはあなたの人生の建築家です。</span> あなたは毎日行う思考、感情、選択からそれを構築します。レンガではありません — あなたの決断です。コンクリートではありません — あなた自身への信念です。計画ではありません — あなたの意図です。」</div>
+                <div class="source">— ベイマックスとの対話から</div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn-back">← ホームに戻る</a>
+        </div>
+
+        <div class="paywall">
+            <h3><span>デモ</span> バージョンを閲覧しました</h3>
+            <p>
+                「人生の言葉」の完全版は「フェニックスの道」の本に含まれています。<br>
+                本にはさらに10章、演習、ワークブック、AIツールがあります。
+            </p>
+            <a href="index.html#pricing" class="btn-gold">アクセスを取得</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 «フェニックスの道» &nbsp;·&nbsp; <a href="index.html">ホーム</a> &nbsp;·&nbsp; <a href="index.html#pricing">価格</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

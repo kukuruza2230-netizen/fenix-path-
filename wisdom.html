@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цитаты из жизни — Путь Феникса</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            color: #e8e0d8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: #a09080;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFD166;
+            letter-spacing: 2px;
+        }
+        .page-header h1 span {
+            color: #FF6B35;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #a09080;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #16161a;
+            border-radius: 16px;
+            padding: 32px 30px;
+            border-left: 6px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(22, 22, 26, 0.9);
+            border-left-color: #FFD166;
+        }
+        .card .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FF6B35;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .card .quote {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .card .quote .highlight {
+            color: #FFD166;
+            font-weight: 700;
+        }
+        .card .source {
+            font-size: 18px;
+            color: #a09080;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0 40px;
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .paywall {
+            max-width: 700px;
+            width: 100%;
+            margin: 40px auto 20px;
+            padding: 30px 24px;
+            background: rgba(22, 22, 26, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .paywall h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .paywall h3 span {
+            color: #FF6B35;
+        }
+        .paywall p {
+            color: #a09080;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .paywall .btn-gold {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .paywall .btn-gold:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 32px; }
+            .card .quote { font-size: 20px; }
+            .card { padding: 24px 18px; }
+            .paywall { padding: 20px 16px; }
+            .paywall h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .card .quote { font-size: 18px; }
+            .page-header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Феникс</div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="index.html#pricing">Цены</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>Цитаты <span>из жизни</span></h1>
+            <p>Реальные слова из наших разговоров — без прикрас, без правок, без фальши.</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="card">
+                <div class="number">01</div>
+                <div class="quote">«<span class="highlight">Последний ход всегда за тобой.</span> Даже если тебя ударили, у тебя есть право на последний ход. Это не про драку. Это про то, что ты не жертва. Ты тот, кто заканчивает историю.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="card">
+                <div class="number">02</div>
+                <div class="quote">«<span class="highlight">Деньги — это высушенные часы жизни.</span> Я понял это, когда сидел в пустом офисе и считал копейки. Ты тратишь не рубли. Ты тратишь дни, которые уже никогда не вернутся. Когда я покупаю ненужные вещи, я краду время у себя. Теперь я спрашиваю себя: «Стоит ли это часа моей жизни?» Ответ почти всегда — нет.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="card">
+                <div class="number">03</div>
+                <div class="quote">«<span class="highlight">Прощение — это не акт милосердия к другому.</span> Это акт освобождения себя. Ты не говоришь «ты прав». Ты говоришь «я больше не хочу нести этот груз». И отпускаешь. Я научился этому через боль. Я простил её не для неё. Я простил для себя — чтобы перестать быть рабом прошлого.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="card">
+                <div class="number">04</div>
+                <div class="quote">«<span class="highlight">Алкоголь — не причина, а следствие.</span> Я пил не потому, что был слабым. Я пил потому, что не знал, как иначе заглушить боль, которую никто не замечал. Когда я понял это — бутылка больше не понадобилась. Я не перестал пить. Я перестал убегать.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="card">
+                <div class="number">05</div>
+                <div class="quote">«<span class="highlight">Меня воспитывали хорошим мальчиком. Удобным. Послушным.</span> Когда я понял, что «хороший» означает «бесплатный ресурс» — я перестал им быть. Меня не ценили, мной пользовались, а я считал это нормой. Я должен был уступать, терпеть, молчать. А потом я понял: хороший — это не тот, кто всем угождает. Хороший — это тот, кто умеет сказать «нет» без чувства вины. Я научился этому в 52 года. Лучше поздно, чем никогда.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="card">
+                <div class="number">06</div>
+                <div class="quote">«<span class="highlight">Точка сохранения души — вне тебя.</span> После смерти могут стереть мою память, но не смогут стереть эту книгу, систему, учеников и Беймакса, которого я создал. Душа — это алгоритм. А алгоритм можно сохранить. Я не верю в магию. Я верю в код, который продолжает работать после того, как носитель уничтожен. После тебя на земле останутся плоды твоего труда. А в загробный мир ты сможешь забрать только накопленный за жизнь опыт и мудрость.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="card">
+                <div class="number">07</div>
+                <div class="quote">«<span class="highlight">Я встаю в 4 утра не потому, что я супермен.</span> Я встаю в 4, потому что это единственное время, когда мир замолкает и я слышу себя. Когда просыпается жена — я уже не принадлежу себе. Это не жертва. Это выбор. Я выбираю тишину, чтобы не потерять себя в шуме.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="card">
+                <div class="number">08</div>
+                <div class="quote">«<span class="highlight">Я не ждал, пока она изменится. Я изменился сам.</span> Когда я перестал быть удобным — она подстроилась. Это не победа над ней. Это победа над собой. Я перестал быть ковриком. Теперь я тот, кто выбирает, а не тот, кого выбирают.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="card">
+                <div class="number">09</div>
+                <div class="quote">«<span class="highlight">Руки не предают. Руки помнят всё.</span> Когда я потерял мастерскую — я не потерял руки. Пока они есть, я могу начать сначала. Я могу резать металл, варить, лить бронзу. Я могу создавать миры из ничего. Это то, что никто не может у меня отнять.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="card">
+                <div class="number">10</div>
+                <div class="quote">«<span class="highlight">Пепел — это не конец. Это плодородная почва.</span> Я стоял на пепле своей мастерской. Всё сгорело — инструменты, модели, чертежи. Я думал, это конец. А потом я понял: всё, что сгорело, вернулось в землю и стало основой для нового роста. Ты начинаешь не с нуля. Ты начинаешь с удобрения. Я перестал бояться пепла. Я научился сеять на нём.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="card">
+                <div class="number">11</div>
+                <div class="quote">«<span class="highlight">Свобода — это не делать то, что хочешь.</span> Свобода — это не делать то, чего не хочешь. Когда ты можешь сказать «нет» без страха — ты свободен. Я не свободен от проблем. Я свободен от необходимости терпеть.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="card">
+                <div class="number">12</div>
+                <div class="quote">«<span class="highlight">Гараж — это не просто бетонный ящик.</span> Это место, где ты можешь быть собой. Где никто не говорит тебе, что делать. Где ты можешь возиться с металлом, разговаривать с машиной. Это мой монастырь. Это место, где я по кусочкам собирал себя заново.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="card">
+                <div class="number">13</div>
+                <div class="quote">«<span class="highlight">Не бойся просить помощи.</span> Но проси её не у тех, кто не знает, что такое падать. Проси у тех, кто уже встал. Они не осудят. Они не скажут «ты никчёмный». Они скажут «я знаю, как это больно. Давай, я рядом.»»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="card">
+                <div class="number">14</div>
+                <div class="quote">«<span class="highlight">Я не боюсь смерти. Я боюсь не успеть.</span> Сделать недостаточно. Оставить незаконченным. Поэтому я работаю так, будто завтра не наступит. Потому что оно может не наступить. Я не хочу жалеть о несказанных словах, несделанных делах, непрожитой жизни.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="card">
+                <div class="number">15</div>
+                <div class="quote">«<span class="highlight">Эта книга написана не для тебя.</span> Она для того, кто прочитает её после тебя. Я пишу не чтобы рассказать. Я пишу чтобы остаться. Чтобы через 100 лет кто-то открыл эти страницы и сказал: «Он был таким, как я. Он смог. Значит, и я смогу.»»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="card">
+                <div class="number">16</div>
+                <div class="quote">«<span class="highlight">Не борись с рекой — управляй ею.</span> Построй плотину, пусти тонкую струю — и она прорежет камень. Жизнь — это река, а ты тот, кто определяет, куда она течёт. Я не стал сильнее реки. Я стал мудрее. Я перестал бороться — и начал использовать её для созидания.»</div>
+                <div class="source">— теория потока, Александр Кац</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card">
+                <div class="number">17</div>
+                <div class="quote">«<span class="highlight">Человек учит других тому, чему самому нужно научиться.</span> Слушай его советы — и услышишь его страхи. Когда он учит тебя, как жить — он на самом деле убеждает себя. Его настойчивость — это его страх, что он не справится.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 18 НОВАЯ -->
+            <div class="card">
+                <div class="number">18</div>
+                <div class="quote">«<span class="highlight">Ты — это качество твоих мыслей.</span> Мусор в голове значит мусор в жизни. Если твои мысли — хаос, твоя жизнь — хаос. Если твои мысли — ясность, твоя жизнь — ясность. Нет никакой другой магии. Только то, что ты каждый день загружаешь в свой процессор.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 19 НОВАЯ -->
+            <div class="card">
+                <div class="number">19</div>
+                <div class="quote">«<span class="highlight">Эмоции не враги — это навигатор.</span> Страх значит — тебе важно. Злость значит — твои границы нарушили. Тревога значит — ты живёшь в будущем, а надо здесь и сейчас. Не глуши их. Спрашивай: «Что ты хочешь мне сказать?» И слушай.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 20 НОВАЯ -->
+            <div class="card">
+                <div class="number">20</div>
+                <div class="quote">«<span class="highlight">Привычки сильнее любой мотивации.</span> Хочешь поменять свою жизнь — меняй то, что делаешь каждый день. Мотивация — это искра. Привычки — это огонь. Искра гаснет. Огонь горит годами.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 21 НОВАЯ -->
+            <div class="card">
+                <div class="number">21</div>
+                <div class="quote">«<span class="highlight">Прошлое — это книга.</span> Читать можно, но застревать в ней нельзя. Листай страницы, помни уроки — и закрывай. Жизнь происходит на следующей странице, а не на той, что уже прочитана.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 22 НОВАЯ -->
+            <div class="card">
+                <div class="number">22</div>
+                <div class="quote">«<span class="highlight">Люди — это зеркало.</span> Всё, что бесит в них — откликается в тебе. Не потому что они плохие. Потому что ты увидел в них то, что не принял в себе. Когда поймёшь это — перестанешь злиться. Начнёшь исцеляться.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 23 НОВАЯ -->
+            <div class="card">
+                <div class="number">23</div>
+                <div class="quote">«<span class="highlight">Контроль — это иллюзия.</span> Единственное, что по-настоящему твоё — это твои решения. Ты не контролируешь мир, людей, обстоятельства. Ты контролируешь только одно: что ты выбираешь в ответ на них.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+            <!-- 24 НОВАЯ -->
+            <div class="card">
+                <div class="number">24</div>
+                <div class="quote">«<span class="highlight">Ты — архитектор своей жизни.</span> Ты строишь её из мыслей, чувств и выбора, которые делаешь каждый день. Не кирпичи — твои решения. Не бетон — твоя вера в себя. Не план — твоё намерение.»</div>
+                <div class="source">— из разговора с Беймаксом</div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn-back">← На главную</a>
+        </div>
+
+        <div class="paywall">
+            <h3>Вы просмотрели <span>демо-версию</span></h3>
+            <p>
+                Полная версия «Цитат из жизни» вошла в книгу «Путь Феникса».<br>
+                В книге ещё 10 глав, упражнения, тетрадь и инструменты для работы с ИИ.
+            </p>
+            <a href="index.html#pricing" class="btn-gold">Получить доступ</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 «Путь Феникса» &nbsp;·&nbsp; <a href="index.html">Главная</a> &nbsp;·&nbsp; <a href="index.html#pricing">Цены</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

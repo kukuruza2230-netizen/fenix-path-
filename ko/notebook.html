@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페닉스의 길 — 워크북</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-light: #FFF0EB;
+            --secondary: #0F2027;
+            --bg-page: #FFFFFF;
+            --bg-card: #F8F9FA;
+            --text-main: #212529;
+            --text-muted: #6C757D;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #e9ecef;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 20px auto;
+            background: var(--bg-page);
+            padding: 18mm 20mm;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(1.2);
+            width: 500px; height: 500px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 60,40 90,40 65,60 75,90 50,75 25,90 35,60 10,40 40,40" fill="%23FF6B35" opacity="0.04"/></svg>') no-repeat center;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .page > * { position: relative; z-index: 1; }
+
+        /* ===== COVER ===== */
+        .cover {
+            padding: 0;
+            background: url('../images/frame-breakthrough.jpg') no-repeat center center / cover;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .cover .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.35);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .cover .overlay .line1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 44pt;
+            color: #FFD166;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            letter-spacing: 4px;
+            line-height: 1.2;
+        }
+        .cover .overlay .line2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 44pt;
+            color: #FFD166;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            letter-spacing: 4px;
+            line-height: 1.2;
+        }
+        .cover .overlay .line3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48pt;
+            color: #FF6B35;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            letter-spacing: 4px;
+            line-height: 1.2;
+            margin-top: 10px;
+        }
+        .cover .overlay .sub {
+            margin-top: 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14pt;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-top: 2px solid rgba(255,107,53,0.4);
+            padding-top: 20px;
+            width: 60%;
+        }
+
+        /* ===== COMMON BLOCKS ===== */
+        .page-header {
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .chapter-pill {
+            background: var(--primary);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 9pt;
+            padding: 4px 14px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+        .chapter-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 22pt;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .chapter-icon {
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--primary-light);
+            flex-shrink: 0;
+        }
+        .chapter-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .task-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--primary);
+            clear: both;
+        }
+        .task-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .task-description {
+            font-size: 11pt;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .task-field {
+            width: 100%;
+            border: 2px dashed #DEE2E6;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11pt;
+            color: var(--text-main);
+            background: white;
+            resize: vertical;
+            min-height: 60px;
+            transition: border-color 0.3s;
+        }
+        .task-field:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .task-field-small {
+            min-height: 40px;
+        }
+
+        .columns {
+            display: flex;
+            gap: 16px;
+            margin-top: 6px;
+        }
+        .column {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #E9ECEF;
+        }
+        .column-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            color: var(--secondary);
+            text-align: center;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .column .task-field {
+            min-height: 80px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #E9ECEF;
+        }
+        .checklist-square {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            background: white;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--primary);
+            user-select: none;
+        }
+        .checklist-square.checked {
+            background: var(--primary);
+            color: white;
+        }
+        .checklist-text {
+            font-size: 11pt;
+            color: var(--text-main);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF8C61 100%);
+            color: white;
+            padding: 14px;
+            margin: 10px 0;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13pt;
+            font-weight: 700;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(255,107,53,0.2);
+        }
+
+        .table-expenses {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #E9ECEF;
+            background: white;
+        }
+        .table-expenses th {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            color: var(--secondary);
+            text-transform: uppercase;
+            padding: 8px 10px;
+            background: var(--primary-light);
+            border-bottom: 2px solid var(--primary);
+            text-align: left;
+        }
+        .table-expenses td {
+            padding: 4px 10px;
+            border-bottom: 1px solid #E9ECEF;
+        }
+        .table-expenses tr:last-child td {
+            background: var(--primary-light);
+            font-weight: 700;
+        }
+        .table-expenses input[type="text"] {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-size: 11pt;
+            padding: 6px 0;
+            border-bottom: 1px dotted #DEE2E6;
+        }
+        .table-expenses input[type="text"]:focus {
+            border-bottom-color: var(--primary);
+            outline: none;
+        }
+        .table-expenses .checkbox-cell {
+            text-align: center;
+        }
+        .table-expenses .checkbox-cell input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 15mm;
+            right: 20mm;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+        .page-number span {
+            color: var(--primary);
+            font-size: 14pt;
+        }
+
+        .intro-quote {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: var(--secondary);
+            text-align: center;
+            line-height: 1.4;
+            margin: 10px 0 16px;
+            padding: 16px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            position: relative;
+            clear: both;
+        }
+        .intro-quote::before {
+            content: '“';
+            position: absolute;
+            top: 0px;
+            left: 15px;
+            font-size: 50pt;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: serif;
+            line-height: 1;
+        }
+        .intro-text {
+            font-size: 11.5pt;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .date-field {
+            margin-top: 20px;
+            padding: 16px;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            text-align: center;
+            background: rgba(255,107,53,0.04);
+        }
+        .date-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .date-line {
+            font-size: 16pt;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            min-width: 200px;
+            padding: 4px 16px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--primary);
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 16pt;
+            width: 60%;
+        }
+        .date-line:focus {
+            outline: none;
+            border-bottom-color: #FF8C61;
+        }
+
+        .spread {
+            padding: 0;
+            background: #0F2027;
+            justify-content: center;
+            align-items: center;
+        }
+        .spread img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .spread .caption {
+            position: absolute;
+            bottom: 20mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Inter', sans-serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            max-width: 85%;
+            text-shadow: 0 8px 30px rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.5);
+            padding: 10px 28px;
+            border-radius: 12px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.1);
+            line-height: 1.4;
+        }
+
+        .action-bar {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .btn-collect {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 14pt;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255,107,53,0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-collect:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 35px rgba(255,107,53,0.4);
+        }
+        .btn-collect:active {
+            transform: scale(0.98);
+        }
+
+        #outputArea {
+            margin-top: 30px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            display: none;
+        }
+        #outputArea h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+        #outputArea textarea {
+            width: 100%;
+            min-height: 300px;
+            border: 1px solid #DEE2E6;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11pt;
+            resize: vertical;
+        }
+        #outputArea .copy-btn {
+            margin-top: 10px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; height: 297mm; }
+            .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .task-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .formula-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .spread { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .btn-collect, #outputArea { display: none !important; }
+            .task-field { border: 1px solid #ccc; background: transparent; min-height: 40px; }
+        }
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .page { padding: 12mm 14mm; }
+            .chapter-title { font-size: 18pt; }
+            .cover .overlay .line1,
+            .cover .overlay .line2 { font-size: 32pt; }
+            .cover .overlay .line3 { font-size: 36pt; }
+            .columns { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- COVER -->
+    <!-- ============================================================ -->
+    <div class="page cover" id="page-cover">
+        <div class="overlay">
+            <div class="line1">책과 함께 일하라.</div>
+            <div class="line2">작성하라.</div>
+            <div class="line3">변화하라.</div>
+            <div class="sub">페닉스의 길 · 워크북</div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SPREAD: INTRODUCTION (frame #2) -->
+    <!-- ============================================================ -->
+    <div class="page spread" id="page-intro-spread">
+        <img src="../images/frame-destiny-author.jpg" alt="자신의 운명의 저자" loading="lazy">
+        <div class="caption">"너는 벽을 뚫을 것이다. 나는 해냈다. 너도 할 수 있다."</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- PAGE 1: INTRODUCTION TEXT -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-intro-text">
+        <div class="page-header">
+            <span class="chapter-pill">시작</span>
+            <h2 class="chapter-title">서문</h2>
+        </div>
+        <div class="intro-quote">
+            모든 운동은 한 걸음이다.<br>정직하게 하라. 검열 없이. 자기기만 없이.
+        </div>
+        <p class="intro-text">이 워크북은 단순한 노트가 아니다. 이것은 당신의 개인적인 변혁 도구다. 당신은 아픈 것에 대해 쓰고, 작은 승리를 기록하고, 실제 진전을 볼 것이다.</p>
+        <p class="intro-text">한 달 후, 당신은 그것을 열고 자신을 알아보지 못할 것이다.</p>
+        <p class="intro-text">여기에는 정답이 없다. 오직 당신의 답만 있다. 손으로 쓰고, 타자하고, 그림을 그려라. 중요한 것은 멈추지 않는 것이다.</p>
+        <p class="intro-text" style="color: var(--primary); font-weight: 600;">이 워크북은 당신의 변화를 목격할 것이다. 희생자에서 창조자로. 재에서 불의 날개로.</p>
+        <div class="date-field">
+            <div class="date-label">🔥 여정의 시작 날짜</div>
+            <input type="text" class="date-line" id="start_date" placeholder="__.__.____">
+        </div>
+        <div class="page-number"><span>０１</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 1 (page 02) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch1-1">
+        <div class="page-header">
+            <span class="chapter-pill">제1장</span>
+            <h2 class="chapter-title">회색 폭풍</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch1-storm.jpg" alt="회색 폭풍" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 1. 당신의 폭풍을 묘사하라</div>
+            <div class="task-description">눈을 감아라. 인생이 제대로 돌아가지 않는다는 것을 깨달은 순간을 기억하라. 무엇을 보고, 느끼고, 들었는지 자세히 묘사하라. 필터 없이.</div>
+            <textarea class="task-field" id="task_1_1" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 2. 세 가지 징후</div>
+            <div class="task-description">지금 당신이 "회색 폭풍" 속에 있다는 세 가지 징후를 말하라.</div>
+            <div style="margin-top: 6px;">
+                <input type="text" class="task-field task-field-small" id="task_1_2_1" placeholder="１.">
+                <input type="text" class="task-field task-field-small" id="task_1_2_2" placeholder="２.">
+                <input type="text" class="task-field task-field-small" id="task_1_2_3" placeholder="３.">
+            </div>
+        </div>
+        <div class="page-number"><span>０２</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 1 (cont., page 03) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch1-2">
+        <div class="page-header">
+            <span class="chapter-pill">제1장</span>
+            <h2 class="chapter-title" style="font-size:18pt;">회색 폭풍</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch1-storm.jpg" alt="회색 폭풍" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 3. 당신이 느끼는 것</div>
+            <div class="task-description">자신에게 해당하는 항목에 체크하라. 필요하면 자신만의 항목을 추가하라.</div>
+            <div class="checklist" id="checklist_1_3">
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">피로와 번아웃</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">미래에 대한 두려움</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">숨겨진 분노</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">무엇도 바꿀 수 없는 무력감</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">고독</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">희망 (작은 불꽃이라도)</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text"><input type="text" style="border:none; border-bottom:1px dashed #ccc; width:180px; font-family:inherit; font-size:11pt;" placeholder="기타..." id="task_1_3_other"></div></div>
+            </div>
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 4. 자신에 대한 한 문장</div>
+            <div class="task-description">다음 문장을 완성하라: "지금 나는..."</div>
+            <textarea class="task-field" id="task_1_4" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="page-number"><span>０３</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 2 (page 04) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch2-1">
+        <div class="page-header">
+            <span class="chapter-pill">제2장</span>
+            <h2 class="chapter-title">두 개의 자아</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch2-two-faces.jpg" alt="두 개의 자아" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 1. 내면의 목소리</div>
+            <div class="task-description">머릿속에서 자신에게 말한 마지막 다섯 문장을 기억하라. 꾸밈없이 그대로 적어라.</div>
+            <textarea class="task-field" id="task_2_1" placeholder="１. ..."></textarea>
+            <textarea class="task-field" id="task_2_1b" placeholder="２. ..."></textarea>
+            <textarea class="task-field" id="task_2_1c" placeholder="３. ..."></textarea>
+            <textarea class="task-field" id="task_2_1d" placeholder="４. ..."></textarea>
+            <textarea class="task-field" id="task_2_1e" placeholder="５. ..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 2. 목소리를 분리하라</div>
+            <div class="task-description">이 중 어떤 목소리가 "그들의 것"(부모, 사회, 과거 경험)이고, 어떤 것이 진정 당신의 것인가?</div>
+            <div class="columns">
+                <div class="column">
+                    <div class="column-title">"그들의" 목소리</div>
+                    <textarea class="task-field" id="task_2_2_their" placeholder="..."></textarea>
+                </div>
+                <div class="column">
+                    <div class="column-title">나의 목소리</div>
+                    <textarea class="task-field" id="task_2_2_mine" placeholder="..."></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="page-number"><span>０４</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 2 (cont., page 05) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch2-2">
+        <div class="page-header">
+            <span class="chapter-pill">제2장</span>
+            <h2 class="chapter-title" style="font-size:18pt;">두 개의 자아</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch2-two-faces.jpg" alt="두 개의 자아" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 3. 당신의 역할</div>
+            <div class="task-description">지난 몇 년 동안 당신은 어떤 역할을 해왔는가? 희생자? 구원자? 관찰자? 그 역할을 묘사하고 답하라: 그것이 당신에게 맞는가?</div>
+            <textarea class="task-field" id="task_2_3" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 4. 당신이 되고 싶은 것</div>
+            <div class="task-description">제한 없이 어떤 역할이든 선택할 수 있다면, 당신은 무엇이 되겠는가?</div>
+            <textarea class="task-field" id="task_2_4" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="page-number"><span>０５</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SPREAD: MOMENT OF REBIRTH (frame #3) -->
+    <!-- ============================================================ -->
+    <div class="page spread" id="page-spread-rebirth">
+        <img src="../images/frame-rebirth.jpg" alt="재탄생의 순간" loading="lazy">
+        <div class="caption">"폭풍 후의 고요. 당신은 폐허와 빛 사이에 서 있다. 새벽을 선택하라."</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 3 (page 06) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch3-1">
+        <div class="page-header">
+            <span class="chapter-pill">제3장</span>
+            <h2 class="chapter-title">반역자의 각성</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch3-spark.jpg" alt="반역자의 각성" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 1. 당신의 첫 번째 "아니오"</div>
+            <div class="task-description">마지막으로 "아니오"라고 말한 때를 기억하라 — 그것이 옳았을 때. 상황과 그때의 감정을 묘사하라.</div>
+            <textarea class="task-field" id="task_3_1" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 2. 말하기 두려웠던 것</div>
+            <div class="task-description">오랫동안 말하고 싶었지만 두려웠던 세 가지를 적어라. 당신 외에는 아무도 읽지 않을 것이다.</div>
+            <textarea class="task-field task-field-small" id="task_3_2_1" placeholder="１."></textarea>
+            <textarea class="task-field task-field-small" id="task_3_2_2" placeholder="２."></textarea>
+            <textarea class="task-field task-field-small" id="task_3_2_3" placeholder="３."></textarea>
+        </div>
+        <div class="page-number"><span>０６</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 3 (cont., page 07) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch3-2">
+        <div class="page-header">
+            <span class="chapter-pill">제3장</span>
+            <h2 class="chapter-title" style="font-size:18pt;">반역자의 각성</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch3-spark.jpg" alt="반역자의 각성" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 3. 당신의 내면의 반역자</div>
+            <div class="task-description">당신의 내면의 반역자를 묘사하라. 그는 어떻게 생겼는가? 그는 무엇이라고 말하는가? 그는 당신을 위해 무엇을 원하는가?</div>
+            <textarea class="task-field" id="task_3_3" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 4. 첫 번째 행동</div>
+            <div class="task-description">오늘 당신의 반역을 표현하기 위해 할 수 있는 작지만 구체적인 행동은 무엇인가?</div>
+            <textarea class="task-field" id="task_3_4" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="page-number"><span>０７</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 4 (page 08) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch4-1">
+        <div class="page-header">
+            <span class="chapter-pill">제4장</span>
+            <h2 class="chapter-title">우회로</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch4-road.jpg" alt="우회로" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 1. 나의 지도</div>
+            <div class="task-description">현재의 "인생 지도"를 그리거나 묘사하라. 당신은 지금 어디에 있는가? 어디로 가는가? 우회로는 어디에 있는가?</div>
+            <textarea class="task-field" id="task_4_1" placeholder="여기에 쓰거나 도표를 그리세요..."></textarea>
+        </div>
+        <div class="page-number"><span>０８</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 4 (cont., page 09) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch4-2">
+        <div class="page-header">
+            <span class="chapter-pill">제4장</span>
+            <h2 class="chapter-title" style="font-size:18pt;">우회로</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch4-road.jpg" alt="우회로" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 2. 하나의 선택</div>
+            <div class="task-description">당신이 피하고 있는 중요한 선택은 무엇인가? 그것을 하면 어떤 일이 일어날까?</div>
+            <textarea class="task-field" id="task_4_2" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 3. 무위의 대가</div>
+            <div class="task-description">앞으로 5년 동안 아무것도 바꾸지 않으면 무엇을 잃을 것인가? (시간, 돈, 관계, 건강)</div>
+            <textarea class="task-field" id="task_4_3" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="page-number"><span>０９</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5 (page 10) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch5-1">
+        <div class="page-header">
+            <span class="chapter-pill">제5장</span>
+            <h2 class="chapter-title">1년 계획과 10년 계획</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch5-horizon.jpg" alt="1년 계획과 10년 계획" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 1. 나의 자유 수</div>
+            <div class="task-description">다음 공식으로 "자유 쿠션"을 계산하라:</div>
+            <div class="formula-box">(월 지출 × 6) + (부채) + (꿈의 목표) = 자유 수</div>
+            <div style="margin-top: 6px;">
+                <input type="text" class="task-field task-field-small" id="task_5_1_expenses" placeholder="나의 월 지출: _______________ ₽">
+                <input type="text" class="task-field task-field-small" id="task_5_1_debts" placeholder="나의 부채: _______________ ₽">
+                <input type="text" class="task-field task-field-small" id="task_5_1_goal" placeholder="나의 꿈의 목표: _______________ ₽">
+                <input type="text" class="task-field task-field-small" id="task_5_1_result" placeholder="나의 자유 수: _______________ ₽" style="border-bottom: 2px solid var(--primary); font-weight: 700; color: var(--primary);">
+            </div>
+        </div>
+        <div class="page-number"><span>１０</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5 (cont., page 11) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch5-2">
+        <div class="page-header">
+            <span class="chapter-pill">제5장</span>
+            <h2 class="chapter-title" style="font-size:18pt;">1년 계획과 10년 계획</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch5-horizon.jpg" alt="1년 계획과 10년 계획" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 2. 올해의 나의 3가지 목표</div>
+            <div class="task-description">다가오는 한 해를 위한 구체적인 목표 세 가지를 세워라. 측정 가능해야 한다.</div>
+            <input type="text" class="task-field task-field-small" id="task_5_2_1" placeholder="１.">
+            <input type="text" class="task-field task-field-small" id="task_5_2_2" placeholder="２.">
+            <input type="text" class="task-field task-field-small" id="task_5_2_3" placeholder="３.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 3. 10년 후 나의 목표</div>
+            <div class="task-description">10년 후의 당신의 삶을 묘사하라. 당신은 어디에 있는가? 누구와 함께 있는가? 무엇을 하고 있는가? 얼마나 버는가?</div>
+            <textarea class="task-field" id="task_5_3" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="page-number"><span>１１</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5 (cont., page 12) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch5-3">
+        <div class="page-header">
+            <span class="chapter-pill">제5장</span>
+            <h2 class="chapter-title" style="font-size:18pt;">1년 계획과 10년 계획</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch5-horizon.jpg" alt="1년 계획과 10년 계획" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 4. 첫 걸음</div>
+            <div class="task-description">이번 주에 당신의 10년 목표에 다가가기 위해 할 수 있는 행동은 무엇인가?</div>
+            <textarea class="task-field" id="task_5_4" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 5. 나를 막는 것</div>
+            <div class="task-description">솔직히: 지금 시작하는 것을 막는 것은 무엇인가? (두려움, 게으름, 지식 부족, 환경)</div>
+            <textarea class="task-field" id="task_5_5" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="page-number"><span>１２</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 6 (page 13) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch6-1">
+        <div class="page-header">
+            <span class="chapter-pill">제6장</span>
+            <h2 class="chapter-title">나의 재무 시스템</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch6-money.jpg" alt="나의 재무 시스템" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 1. 돈이 어디로 가는가</div>
+            <div class="task-description">지난달 실제 지출 내역을 표에 채워라.</div>
+            <table class="table-expenses" id="expense-table">
+                <thead>
+                    <tr><th>카테고리</th><th>금액 (₽)</th><th>필수?</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>주거</td><td><input type="text" id="exp_1" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_1_chk"></td></tr>
+                    <tr><td>식료품</td><td><input type="text" id="exp_2" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_2_chk"></td></tr>
+                    <tr><td>교통</td><td><input type="text" id="exp_3" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_3_chk"></td></tr>
+                    <tr><td>통신</td><td><input type="text" id="exp_4" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_4_chk"></td></tr>
+                    <tr><td>오락</td><td><input type="text" id="exp_5" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_5_chk"></td></tr>
+                    <tr><td>기타</td><td><input type="text" id="exp_6" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_6_chk"></td></tr>
+                    <tr><td><b>합계</b></td><td><input type="text" id="exp_total" placeholder="₽" readonly style="font-weight:700; background:transparent; border:none;"></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="page-number"><span>１３</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 6 (cont., page 14) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch6-2">
+        <div class="page-header">
+            <span class="chapter-pill">제6장</span>
+            <h2 class="chapter-title" style="font-size:18pt;">나의 재무 시스템</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch6-money.jpg" alt="나의 재무 시스템" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 2. 세 가지 누수</div>
+            <div class="task-description">삶의 질을 희생하지 않고 줄이거나 없앨 수 있는 세 가지 지출을 찾아라.</div>
+            <input type="text" class="task-field task-field-small" id="task_6_2_1" placeholder="１.">
+            <input type="text" class="task-field task-field-small" id="task_6_2_2" placeholder="２.">
+            <input type="text" class="task-field task-field-small" id="task_6_2_3" placeholder="３.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 3. 하나의 자산</div>
+            <div class="task-description">앞으로 6개월 내에 만들거나 획득할 수 있는 자산은 무엇인가?</div>
+            <textarea class="task-field" id="task_6_3" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="page-number"><span>１４</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 7 (page 15) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch7-1">
+        <div class="page-header">
+            <span class="chapter-pill">제7장</span>
+            <h2 class="chapter-title">페닉스의 불꽃 날개</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch7-fire-wings.jpg" alt="불꽃 날개" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 1. 내가 재에서 가져가는 것</div>
+            <div class="task-description">당신의 "재"에서 얻은 세 가지 교훈이나 강점은 무엇인가? 무엇이 당신을 더 강하게 만들었는가?</div>
+            <input type="text" class="task-field task-field-small" id="task_7_1_1" placeholder="１.">
+            <input type="text" class="task-field task-field-small" id="task_7_1_2" placeholder="２.">
+            <input type="text" class="task-field task-field-small" id="task_7_1_3" placeholder="３.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 2. 나의 불꽃 날개</div>
+            <div class="task-description">당신에게 일어설 힘을 주는 것은 무엇인가? 당신의 내면 에너지의 세 가지 원천.</div>
+            <input type="text" class="task-field task-field-small" id="task_7_2_1" placeholder="１.">
+            <input type="text" class="task-field task-field-small" id="task_7_2_2" placeholder="２.">
+            <input type="text" class="task-field task-field-small" id="task_7_2_3" placeholder="３.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 3. 페닉스 선언문</div>
+            <div class="task-description">짧은 선언문을 작성하라 — 현재 자신이 누구인지 3~5문장으로.</div>
+            <textarea class="task-field" id="task_7_3" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="page-number"><span>１５</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 8 (page 16) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch8-1">
+        <div class="page-header">
+            <span class="chapter-pill">제8장</span>
+            <h2 class="chapter-title">왜 당신은 약자가 되었는가</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch8-chain.jpg" alt="왜 당신은 약자가 되었는가" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 1. 나의 신념</div>
+            <div class="task-description">당신을 "약자"로 만드는 세 가지 독성 신념을 적어라.</div>
+            <input type="text" class="task-field task-field-small" id="task_8_1_1" placeholder="１.">
+            <input type="text" class="task-field task-field-small" id="task_8_1_2" placeholder="２.">
+            <input type="text" class="task-field task-field-small" id="task_8_1_3" placeholder="３.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 2. 새로운 신념</div>
+            <div class="task-description">각각을 강점으로 재구성하라. 독을 약으로 바꾸라.</div>
+            <input type="text" class="task-field task-field-small" id="task_8_2_1" placeholder="이전: ... → 지금: ...">
+            <input type="text" class="task-field task-field-small" id="task_8_2_2" placeholder="이전: ... → 지금: ...">
+            <input type="text" class="task-field task-field-small" id="task_8_2_3" placeholder="이전: ... → 지금: ...">
+        </div>
+        <div class="page-number"><span>１６</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 8 (cont., page 17) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch8-2">
+        <div class="page-header">
+            <span class="chapter-pill">제8장</span>
+            <h2 class="chapter-title" style="font-size:18pt;">왜 당신은 약자가 되었는가</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch8-chain.jpg" alt="왜 당신은 약자가 되었는가" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 3. 희생자가 아니라면 당신은 누구인가?</div>
+            <div class="task-description">희생자 역할 없이 자신을 묘사하라. 그 가면을 벗었을 때 당신은 진짜 누구인가?</div>
+            <textarea class="task-field" id="task_8_3" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 4. 경계</div>
+            <div class="task-description">지금 설정할 준비가 된 세 가지 확고한 경계를 말하라.</div>
+            <input type="text" class="task-field task-field-small" id="task_8_4_1" placeholder="１.">
+            <input type="text" class="task-field task-field-small" id="task_8_4_2" placeholder="２.">
+            <input type="text" class="task-field task-field-small" id="task_8_4_3" placeholder="３.">
+        </div>
+        <div class="page-number"><span>１７</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 9 (page 18) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch9-1">
+        <div class="page-header">
+            <span class="chapter-pill">제9장</span>
+            <h2 class="chapter-title">새로운 삶</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch9-sunrise.jpg" alt="새로운 삶" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 1. 1년 후의 나의 완벽한 하루</div>
+            <div class="task-description">1년 후 당신의 삶의 어느 하루를 묘사하라. 아침부터 밤까지. 세부적으로, 감정을 담아.</div>
+            <textarea class="task-field" id="task_9_1" placeholder="여기에 쓰세요..." style="min-height:120px;"></textarea>
+        </div>
+        <div class="page-number"><span>１８</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 9 (cont., page 19) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch9-2">
+        <div class="page-header">
+            <span class="chapter-pill">제9장</span>
+            <h2 class="chapter-title" style="font-size:18pt;">새로운 삶</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch9-sunrise.jpg" alt="새로운 삶" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">운동 2. 첫 걸음</div>
+            <div class="task-description">내일 아침 그날을 향해 움직이기 시작하기 위해 구체적으로 무엇을 할 것인가?</div>
+            <textarea class="task-field" id="task_9_2" placeholder="여기에 쓰세요..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">운동 3. 나의 팀</div>
+            <div class="task-description">이 여정에서 당신을 도울 수 있는 세 사람은 누구인가? (실제 또는 미래의 멘토/친구)</div>
+            <input type="text" class="task-field task-field-small" id="task_9_3_1" placeholder="１.">
+            <input type="text" class="task-field task-field-small" id="task_9_3_2" placeholder="２.">
+            <input type="text" class="task-field task-field-small" id="task_9_3_3" placeholder="３.">
+        </div>
+        <div class="page-number"><span>１９</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 10 (page 20) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch10">
+        <div class="page-header">
+            <span class="chapter-pill">최종</span>
+            <h2 class="chapter-title">결론</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch10-letter.jpg" alt="결론" loading="lazy"></div>
+        <div class="task-card" style="border-left-color: var(--secondary);">
+            <div class="task-number" style="color: var(--secondary);">운동 1. 1년 후의 자신에게 보내는 편지</div>
+            <div class="task-description">1년 후 이 워크북을 읽을 자신에게 편지를 써라. 지금 어디에 있는지, 무엇을 두려워하는지, 무엇을 바라는지 말해라. 봉인하고 12개월 후에 열어라.</div>
+            <textarea class="task-field" id="task_10_1" placeholder="1년 후의 나에게..." style="min-height:180px;"></textarea>
+            <div style="margin-top:8px; text-align:right;">
+                <span style="font-weight:600;">당신에 대한 믿음을 담아, </span><input type="text" id="task_10_sig" placeholder="___________________" style="border:none; border-bottom:1px solid #ccc; width:150px; font-family:inherit; font-size:11pt;">
+                <span style="font-weight:600; margin-left:20px;">날짜: </span><input type="text" id="task_10_date" placeholder="__.__.____" style="border:none; border-bottom:1px solid #ccc; width:100px; font-family:inherit; font-size:11pt;">
+            </div>
+        </div>
+        <div class="page-number"><span>２０</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- FINAL SPREAD (frame #4) -->
+    <!-- ============================================================ -->
+    <div class="page spread" id="page-spread-final">
+        <img src="../images/frame-new-life.jpg" alt="새로운 삶" loading="lazy">
+        <div class="caption">"이것은 꿈이 아니다. 계획이다. 당신은 이미 그것을 짓고 있다."</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SUBMIT PAGE -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-submit" style="justify-content: center; align-items: center; text-align: center; padding: 30mm 20mm;">
+        <h2 style="font-family: 'Montserrat', sans-serif; color: var(--secondary); margin-bottom: 20px;">작업이 준비되었습니다</h2>
+        <p style="font-size: 14pt; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;">
+            워크북을 작성했습니다. 이제 모든 답변을 수집하여 DeepSeek에 보내 분석을 받을 수 있습니다.
+        </p>
+        <button class="btn-collect" onclick="collectAnswers()">AI용 답변 수집</button>
+        <div id="outputArea">
+            <h3>이 텍스트를 복사하여 DeepSeek에 붙여넣으세요</h3>
+            <textarea id="outputText" readonly></textarea>
+            <button class="copy-btn" onclick="copyOutput()">📋 복사</button>
+        </div>
+        <div class="page-number" style="bottom: 15mm; right: 20mm;"><span>—</span></div>
+    </div>
+
+    <script>
+        // ===== Helper functions =====
+
+        function toggleCheck(el) {
+            el.classList.toggle('checked');
+            el.dataset.checked = el.classList.contains('checked') ? 'true' : 'false';
+        }
+
+        function collectAnswers() {
+            const fields = document.querySelectorAll('input[type="text"], textarea, input[type="checkbox"]:checked');
+            let result = '페닉스의 길 워크북에서 나의 답변:\n\n';
+
+            const textInputs = document.querySelectorAll('input[type="text"]:not(.date-line):not([readonly]), textarea');
+            textInputs.forEach(el => {
+                if (el.value && el.value.trim() !== '') {
+                    const label = el.closest('.task-card')?.querySelector('.task-number')?.innerText || el.placeholder || '필드';
+                    const id = el.id || 'unknown';
+                    result += `${label} (${id}):\n${el.value.trim()}\n\n`;
+                }
+            });
+
+            const checkboxes = document.querySelectorAll('.checklist-square.checked');
+            if (checkboxes.length > 0) {
+                result += '체크된 항목:\n';
+                checkboxes.forEach(el => {
+                    const text = el.closest('.checklist-item')?.querySelector('.checklist-text')?.innerText || '항목';
+                    result += `- ${text}\n`;
+                });
+                result += '\n';
+            }
+
+            const startDate = document.getElementById('start_date')?.value;
+            if (startDate) {
+                result += `시작 날짜: ${startDate}\n\n`;
+            }
+
+            const expenseInputs = document.querySelectorAll('#expense-table input[type="text"]');
+            let total = 0;
+            if (expenseInputs.length > 0) {
+                result += '월 지출:\n';
+                expenseInputs.forEach(el => {
+                    const val = parseFloat(el.value.replace(/\s/g, '')) || 0;
+                    if (val > 0) {
+                        const label = el.closest('tr')?.querySelector('td:first-child')?.innerText || '카테고리';
+                        result += `${label}: ${val} ₽\n`;
+                        total += val;
+                    }
+                });
+                result += `합계: ${total} ₽\n\n`;
+            }
+
+            if (result.trim() === '페닉스의 길 워크북에서 나의 답변:\n\n') {
+                result = '아직 아무것도 입력하지 않았습니다. 분석을 받으려면 적어도 몇 개의 필드를 채우십시오.';
+            } else {
+                result += '\n---\n이 답변을 분석하십시오. 무엇이 보입니까? 어떤 패턴이 반복됩니까? 무엇에 주의해야 합니까? 앞으로 나아가기 위해 무엇을 할 수 있습니까?';
+            }
+
+            document.getElementById('outputText').value = result;
+            document.getElementById('outputArea').style.display = 'block';
+            document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyOutput() {
+            const text = document.getElementById('outputText');
+            text.select();
+            document.execCommand('copy');
+            alert('텍스트가 클립보드에 복사되었습니다. DeepSeek에 붙여넣으세요.');
+        }
+
+        document.addEventListener('input', function(e) {
+            if (e.target.closest('#expense-table input[type="text"]')) {
+                const inputs = document.querySelectorAll('#expense-table input[type="text"]:not([readonly])');
+                let total = 0;
+                inputs.forEach(inp => {
+                    const val = parseFloat(inp.value.replace(/\s/g, '')) || 0;
+                    total += val;
+                });
+                const totalField = document.getElementById('exp_total');
+                if (totalField) totalField.value = total + ' ₽';
+            }
+        });
+    </script>
+
+</body>
+</html>

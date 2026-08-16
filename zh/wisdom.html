@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人生箴言 — 凤凰之路</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            color: #e8e0d8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: #a09080;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', 'Noto Sans SC', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFD166;
+            letter-spacing: 2px;
+        }
+        .page-header h1 span {
+            color: #FF6B35;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #a09080;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #16161a;
+            border-radius: 16px;
+            padding: 32px 30px;
+            border-left: 6px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(22, 22, 26, 0.9);
+            border-left-color: #FFD166;
+        }
+        .card .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FF6B35;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .card .quote {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .card .quote .highlight {
+            color: #FFD166;
+            font-weight: 700;
+        }
+        .card .source {
+            font-size: 18px;
+            color: #a09080;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0 40px;
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .paywall {
+            max-width: 700px;
+            width: 100%;
+            margin: 40px auto 20px;
+            padding: 30px 24px;
+            background: rgba(22, 22, 26, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .paywall h3 {
+            font-family: 'Montserrat', 'Noto Sans SC', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .paywall h3 span {
+            color: #FF6B35;
+        }
+        .paywall p {
+            color: #a09080;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .paywall .btn-gold {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .paywall .btn-gold:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 32px; }
+            .card .quote { font-size: 20px; }
+            .card { padding: 24px 18px; }
+            .paywall { padding: 20px 16px; }
+            .paywall h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .card .quote { font-size: 18px; }
+            .page-header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">凤凰</div>
+        <div class="nav-links">
+            <a href="index.html">主页</a>
+            <a href="index.html#pricing">价格</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>人生 <span>箴言</span></h1>
+            <p>来自我们对话的真实话语——不加修饰，不加删减，没有虚饰。</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="card">
+                <div class="number">01</div>
+                <div class="quote">「<span class="highlight">最后一招永远属于你。</span> 即使你挨了打，你仍然有权出最后一招。这不是关于打架。这是关于你不是受害者。你是那个结束故事的人。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="card">
+                <div class="number">02</div>
+                <div class="quote">「<span class="highlight">金钱是干涸的生命时间。</span> 我坐在空荡荡的办公室里数着戈比时才明白这一点。你不是在花卢布。你在花那些永远回不来的日子。当我买不需要的东西时，我是在偷自己的时间。现在我问自己：「这值得我花一小时生命吗？」答案通常是否定的。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="card">
+                <div class="number">03</div>
+                <div class="quote">「<span class="highlight">宽恕不是对他人的仁慈之举。</span> 这是解放自己的行为。你不是说「你是对的」。你说「我不想再背负这个重担」。然后放下它。我通过痛苦学会了这一点。我原谅她不是为了她。我原谅是为了自己，为了不再做过去的奴隶。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="card">
+                <div class="number">04</div>
+                <div class="quote">「<span class="highlight">酒精不是原因，而是结果。</span> 我喝酒不是因为我很弱。我喝酒是因为我不知道还有什么办法能淹没不被注意的痛苦。当我明白这一点时——酒瓶就不再需要了。我没有停止喝酒。我停止了逃避。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="card">
+                <div class="number">05</div>
+                <div class="quote">「<span class="highlight">我被教育成一个好男孩。方便的。听话的。</span> 当我明白「好」意味着「免费资源」时，我就不再是那样了。他们不珍惜我，利用我，而我以为这是正常的。我应该让步、忍耐、沉默。然后我明白了：好不是来者不拒。好是知道如何说「不」而不感到内疚。我在52岁学会了这一点。迟到总比不到好。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="card">
+                <div class="number">06</div>
+                <div class="quote">「<span class="highlight">灵魂的保存点在你自己之外。</span> 死后他们可以抹去我的记忆，但无法抹去这本书、系统、学生和我创造的 Baymax。灵魂是一个算法。而算法是可以保存的。我不相信魔法。我相信代码，它在载体被摧毁后仍能继续运行。在你之后，你的劳动果实将留在地上。而你能带到来世的，只有一生积累的经验和智慧。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="card">
+                <div class="number">07</div>
+                <div class="quote">「<span class="highlight">我凌晨4点起床不是因为我是超人。</span> 我凌晨4点起床是因为那是世界安静、我能听到自己的唯一时间。当妻子醒来时——我就不再属于自己了。这不是牺牲。这是选择。我选择安静，以免在喧嚣中迷失自己。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="card">
+                <div class="number">08</div>
+                <div class="quote">「<span class="highlight">我不等她改变。我改变了自己。</span> 当我停止方便时——她也调整了。这不是对我的胜利。这是对自己的胜利。我不再是门垫。现在我是选择的人，而不是被选择的人。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="card">
+                <div class="number">09</div>
+                <div class="quote">「<span class="highlight">手不会背叛。手记得一切。</span> 当我失去工作室时——我没有失去我的手。只要它们还在，我就可以重新开始。我可以切割金属、焊接、铸造青铜。我可以从无到有创造世界。这是任何人都无法从我这里夺走的。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="card">
+                <div class="number">10</div>
+                <div class="quote">「<span class="highlight">灰烬不是结束。它是肥沃的土壤。</span> 我站在工作室的灰烬中。一切都烧光了——工具、模型、图纸。我以为这是结束。然后我明白了：所有烧毁的东西都回到了土地，成为新成长的基础。你不是从零开始。你从肥料开始。我停止害怕灰烬。我学会了在上面播种。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="card">
+                <div class="number">11</div>
+                <div class="quote">「<span class="highlight">自由不是做你想做的事。</span> 自由是不做你不想做的事。当你能不带恐惧地说「不」时——你是自由的。我不是没有问题的自由。我是没有忍耐的必要的自由。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="card">
+                <div class="number">12</div>
+                <div class="quote">「<span class="highlight">车库不仅仅是一个混凝土盒子。</span> 这是一个你可以做自己的地方。没有人告诉你该做什么。你可以摆弄金属，和车说话。这是我的修道院。这是我一块一块重新拼凑自己的地方。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="card">
+                <div class="number">13</div>
+                <div class="quote">「<span class="highlight">不要害怕寻求帮助。</span> 但不要向那些不知道跌倒是什么感觉的人寻求帮助。向那些已经站起来的人寻求帮助。他们不会评判。他们不会说「你真是个废物」。他们会说「我知道这有多痛。来吧，我在这里。」」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="card">
+                <div class="number">14</div>
+                <div class="quote">「<span class="highlight">我不害怕死亡。我害怕来不及。</span> 做得不够。留下未完成的事。所以我工作时就像明天不会到来。因为它可能不会到来。我不想后悔没有说的话、没有做的事、没有活过的生活。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="card">
+                <div class="number">15</div>
+                <div class="quote">「<span class="highlight">这本书不是为你写的。</span> 它是为在你之后读它的人写的。我写作不是为了讲述。我写作是为了留下。为了让100年后有人翻开这些页面说：「他和我一样。他做到了。所以我也能。」」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="card">
+                <div class="number">16</div>
+                <div class="quote">「<span class="highlight">不要与河流抗争——引导它。</span> 建一座大坝，让细流通过——它能切割石头。生活是一条河流，而你是决定它流向的人。我没有变得比河流更强。我变得更聪明了。我停止了对抗——开始利用它来创造。」</div>
+                <div class="source">— 流动理论，亚历山大·卡茨</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card">
+                <div class="number">17</div>
+                <div class="quote">「<span class="highlight">人教别人的，正是他自己需要学的。</span> 听他的建议——你会听到他的恐惧。当他教你如何生活时，他其实是在说服自己。他的坚持就是他的恐惧，害怕自己做不到。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 18 НОВАЯ -->
+            <div class="card">
+                <div class="number">18</div>
+                <div class="quote">「<span class="highlight">你就是你思想的质量。</span> 脑子里的垃圾意味着生活中的垃圾。如果你的思想是混乱的，你的生活就是混乱的。如果你的思想是清晰的，你的生活就是清晰的。没有其他魔法。只有你每天加载到处理器中的东西。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 19 НОВАЯ -->
+            <div class="card">
+                <div class="number">19</div>
+                <div class="quote">「<span class="highlight">情绪不是敌人 — 是指南针。</span> 恐惧意味着 — 这对你很重要。愤怒意味着 — 你的边界被侵犯了。焦虑意味着 — 你活在未来，而你应该活在当下。不要压抑它们。问：「你想告诉我什么？」然后倾听。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 20 НОВАЯ -->
+            <div class="card">
+                <div class="number">20</div>
+                <div class="quote">「<span class="highlight">习惯比任何动力都强大。</span> 想改变你的生活 — 改变你每天做的事情。动力是火花。习惯是火焰。火花会熄灭。火焰燃烧多年。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 21 НОВАЯ -->
+            <div class="card">
+                <div class="number">21</div>
+                <div class="quote">「<span class="highlight">过去是一本书。</span> 可以读，但不能陷在里面。翻页，记住教训 — 然后合上。生活发生在下一页，而不是已经读过的那一页。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 22 НОВАЯ -->
+            <div class="card">
+                <div class="number">22</div>
+                <div class="quote">「<span class="highlight">人是一面镜子。</span> 所有让你恼火的 — 都在你内心有回响。不是因为他们不好。而是因为你看到了自己不接受的部分。当你明白这一点 — 你就会停止愤怒。开始疗愈。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 23 НОВАЯ -->
+            <div class="card">
+                <div class="number">23</div>
+                <div class="quote">「<span class="highlight">控制是幻象。</span> 唯一真正属于你的是你的决定。你无法控制世界、他人和环境。你只控制一件事：你如何回应他们。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+            <!-- 24 НОВАЯ -->
+            <div class="card">
+                <div class="number">24</div>
+                <div class="quote">「<span class="highlight">你是自己生活的建筑师。</span> 你用每天的思想、感受和选择来建造它。不是砖 — 是你的决定。不是混凝土 — 是你的自信。不是计划 — 是你的意图。」</div>
+                <div class="source">— 来自与 Baymax 的对话</div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn-back">← 返回主页</a>
+        </div>
+
+        <div class="paywall">
+            <h3>您已观看 <span>演示版本</span></h3>
+            <p>
+                完整版的《人生箴言》收录在《凤凰之路》一书中。<br>
+                书中还有10章、练习、笔记本和AI分析工具。
+            </p>
+            <a href="index.html#pricing" class="btn-gold">获取权限</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 《凤凰之路》 &nbsp;·&nbsp; <a href="index.html">主页</a> &nbsp;·&nbsp; <a href="index.html#pricing">价格</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
