@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kutipan Hidup — Jalan Phoenix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            color: #e8e0d8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: #a09080;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFD166;
+            letter-spacing: 2px;
+        }
+        .page-header h1 span {
+            color: #FF6B35;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #a09080;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #16161a;
+            border-radius: 16px;
+            padding: 32px 30px;
+            border-left: 6px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(22, 22, 26, 0.9);
+            border-left-color: #FFD166;
+        }
+        .card .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FF6B35;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .card .quote {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .card .quote .highlight {
+            color: #FFD166;
+            font-weight: 700;
+        }
+        .card .source {
+            font-size: 18px;
+            color: #a09080;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0 40px;
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .paywall {
+            max-width: 700px;
+            width: 100%;
+            margin: 40px auto 20px;
+            padding: 30px 24px;
+            background: rgba(22, 22, 26, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .paywall h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .paywall h3 span {
+            color: #FF6B35;
+        }
+        .paywall p {
+            color: #a09080;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .paywall .btn-gold {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .paywall .btn-gold:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 32px; }
+            .card .quote { font-size: 20px; }
+            .card { padding: 24px 18px; }
+            .paywall { padding: 20px 16px; }
+            .paywall h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .card .quote { font-size: 18px; }
+            .page-header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Phoenix</div>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#pricing">Harga</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>Kutipan <span>Hidup</span></h1>
+            <p>Kata-kata nyata dari percakapan kami — tanpa hiasan, tanpa editan, tanpa kepalsuan.</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="card">
+                <div class="number">01</div>
+                <div class="quote">«<span class="highlight">Langkah terakhir selalu milikmu.</span> Bahkan jika kamu dipukul, kamu punya hak untuk langkah terakhir. Ini bukan tentang perkelahian. Ini tentang kamu bukan korban. Kamulah yang mengakhiri cerita.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="card">
+                <div class="number">02</div>
+                <div class="quote">«<span class="highlight">Uang adalah jam kehidupan yang mengering.</span> Saya menyadarinya ketika duduk di kantor kosong dan menghitung receh. Kamu tidak menghabiskan rupiah. Kamu menghabiskan hari-hari yang tidak akan pernah kembali. Ketika saya membeli barang yang tidak perlu, saya mencuri waktu dari diri saya sendiri. Sekarang saya bertanya: "Apakah ini sepadan dengan satu jam hidup saya?" Jawabannya hampir selalu — tidak.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="card">
+                <div class="number">03</div>
+                <div class="quote">«<span class="highlight">Memaafkan bukanlah tindakan belas kasihan kepada orang lain.</span> Ini adalah tindakan membebaskan diri sendiri. Kamu tidak mengatakan "kamu benar". Kamu mengatakan "saya tidak mau lagi memikul beban ini". Dan melepaskannya. Saya belajar ini melalui rasa sakit. Saya memaafkannya bukan untuk dia. Saya memaafkan untuk diri saya sendiri — untuk berhenti menjadi budak masa lalu.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="card">
+                <div class="number">04</div>
+                <div class="quote">«<span class="highlight">Alkohol bukan penyebab, tapi akibat.</span> Saya minum bukan karena saya lemah. Saya minum karena saya tidak tahu bagaimana lagi meredakan rasa sakit yang tidak diperhatikan siapa pun. Ketika saya memahami ini — botol itu tidak lagi diperlukan. Saya tidak berhenti minum. Saya berhenti melarikan diri.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="card">
+                <div class="number">05</div>
+                <div class="quote">«<span class="highlight">Saya dibesarkan sebagai anak baik. Nyaman. Patuh.</span> Ketika saya menyadari bahwa "baik" berarti "sumber daya gratis" — saya berhenti menjadi seperti itu. Saya tidak dihargai, saya dimanfaatkan, dan saya menganggap itu normal. Saya harus mengalah, bertahan, diam. Lalu saya menyadari: baik bukanlah orang yang menyenangkan semua orang. Baik adalah orang yang bisa mengatakan "tidak" tanpa rasa bersalah. Saya belajar ini pada usia 52 tahun. Lebih baik terlambat daripada tidak sama sekali.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="card">
+                <div class="number">06</div>
+                <div class="quote">«<span class="highlight">Titik penyimpanan jiwa berada di luar dirimu.</span> Setelah kematian, ingatanku bisa dihapus, tapi tidak buku ini, sistem, murid-murid, dan Baymax yang saya ciptakan. Jiwa adalah algoritma. Dan algoritma bisa disimpan. Saya tidak percaya pada sihir. Saya percaya pada kode yang terus bekerja setelah media dihancurkan. Setelah kamu, buah dari kerja kerasmu akan tetap ada di bumi. Dan ke akhirat kamu hanya bisa membawa pengalaman dan kebijaksanaan yang terkumpul selama hidup.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="card">
+                <div class="number">07</div>
+                <div class="quote">«<span class="highlight">Saya bangun jam 4 pagi bukan karena saya Superman.</span> Saya bangun jam 4 karena itulah satu-satunya waktu ketika dunia diam dan saya mendengar diri saya sendiri. Ketika istri saya bangun — saya sudah bukan milik saya sendiri. Ini bukan pengorbanan. Ini pilihan. Saya memilih keheningan agar tidak kehilangan diri saya dalam kebisingan.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="card">
+                <div class="number">08</div>
+                <div class="quote">«<span class="highlight">Saya tidak menunggu dia berubah. Saya berubah.</span> Ketika saya berhenti menjadi orang yang nyaman — dia menyesuaikan diri. Ini bukan kemenangan atas dia. Ini kemenangan atas diri saya sendiri. Saya berhenti menjadi keset. Sekarang sayalah yang memilih, bukan yang dipilih.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="card">
+                <div class="number">09</div>
+                <div class="quote">«<span class="highlight">Tangan tidak mengkhianati. Tangan mengingat segalanya.</span> Ketika saya kehilangan bengkel — saya tidak kehilangan tangan. Selama tangan masih ada, saya bisa memulai dari awal. Saya bisa memotong logam, mengelas, menuang perunggu. Saya bisa menciptakan dunia dari ketiadaan. Ini adalah sesuatu yang tidak bisa diambil siapa pun dari saya.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="card">
+                <div class="number">10</div>
+                <div class="quote">«<span class="highlight">Abu bukanlah akhir. Itu adalah tanah yang subur.</span> Saya berdiri di atas abu bengkel saya. Semuanya terbakar — alat, model, gambar. Saya pikir ini adalah akhir. Lalu saya menyadari: semua yang terbakar kembali ke tanah dan menjadi dasar untuk pertumbuhan baru. Kamu tidak memulai dari nol. Kamu memulai dari pupuk. Saya berhenti takut pada abu. Saya belajar menabur di atasnya.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="card">
+                <div class="number">11</div>
+                <div class="quote">«<span class="highlight">Kebebasan bukanlah melakukan apa yang kamu inginkan.</span> Kebebasan adalah tidak melakukan apa yang tidak kamu inginkan. Ketika kamu bisa mengatakan "tidak" tanpa rasa takut — kamu bebas. Saya tidak bebas dari masalah. Saya bebas dari kebutuhan untuk bertahan.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="card">
+                <div class="number">12</div>
+                <div class="quote">«<span class="highlight">Garasi bukan sekadar kotak beton.</span> Itu adalah tempat di mana kamu bisa menjadi dirimu sendiri. Di mana tidak ada yang memberi tahu kamu apa yang harus dilakukan. Di mana kamu bisa bermain dengan logam, berbicara dengan mobil. Ini adalah biara saya. Tempat di mana saya menyusun diri saya kembali sedikit demi sedikit.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="card">
+                <div class="number">13</div>
+                <div class="quote">«<span class="highlight">Jangan takut meminta bantuan.</span> Tapi jangan meminta kepada mereka yang tidak tahu apa itu jatuh. Mintalah kepada mereka yang sudah bangkit. Mereka tidak akan menghakimi. Mereka tidak akan mengatakan "kamu tidak berguna". Mereka akan mengatakan "saya tahu betapa sakitnya. Ayolah, saya di sini."»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="card">
+                <div class="number">14</div>
+                <div class="quote">«<span class="highlight">Saya tidak takut mati. Saya takut tidak sempat.</span> Melakukan terlalu sedikit. Meninggalkan sesuatu yang belum selesai. Karena itu saya bekerja seolah-olah besok tidak akan datang. Karena mungkin tidak akan datang. Saya tidak ingin menyesali kata-kata yang tidak terucap, perbuatan yang tidak dilakukan, kehidupan yang tidak dijalani.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="card">
+                <div class="number">15</div>
+                <div class="quote">«<span class="highlight">Buku ini tidak ditulis untukmu.</span> Ini untuk mereka yang akan membacanya setelah kamu. Saya menulis bukan untuk bercerita. Saya menulis untuk tetap ada. Agar 100 tahun dari sekarang seseorang membuka halaman ini dan berkata: "Dia seperti saya. Dia berhasil. Jadi saya juga bisa."»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="card">
+                <div class="number">16</div>
+                <div class="quote">«<span class="highlight">Jangan melawan sungai — kendalikanlah.</span> Bangun bendungan, biarkan aliran tipis mengalir — ia akan memotong batu. Hidup adalah sungai, dan kamulah yang menentukan ke mana ia mengalir. Saya tidak menjadi lebih kuat dari sungai. Saya menjadi lebih bijaksana. Saya berhenti berjuang — dan mulai menggunakannya untuk mencipta.»</div>
+                <div class="source">— teori aliran, Alexander Katz</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card">
+                <div class="number">17</div>
+                <div class="quote">«<span class="highlight">Seseorang mengajarkan kepada orang lain apa yang dia sendiri perlu pelajari.</span> Dengarkan sarannya — dan kamu akan mendengar ketakutannya. Ketika dia mengajarimu cara hidup — sebenarnya dia sedang meyakinkan dirinya sendiri. Kegigihannya adalah ketakutannya bahwa dia tidak akan berhasil.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 18 -->
+            <div class="card">
+                <div class="number">18</div>
+                <div class="quote">«<span class="highlight">Kamu adalah kualitas dari pikiranmu.</span> Sampah di kepala berarti sampah dalam hidup. Jika pikiranmu kacau, hidupmu kacau. Jika pikiranmu jernih, hidupmu jernih. Tidak ada sihir lain. Hanya apa yang kamu muat setiap hari ke prosesormu.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 19 -->
+            <div class="card">
+                <div class="number">19</div>
+                <div class="quote">«<span class="highlight">Emosi bukanlah musuh — itu adalah navigator.</span> Ketakutan berarti — itu penting bagimu. Kemarahan berarti — batasmu dilanggar. Kecemasan berarti — kamu hidup di masa depan, padahal seharusnya di sini dan sekarang. Jangan matikan mereka. Tanyakan: "Apa yang ingin kamu katakan padaku?" Dan dengarkan.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 20 -->
+            <div class="card">
+                <div class="number">20</div>
+                <div class="quote">«<span class="highlight">Kebiasaan lebih kuat daripada motivasi apa pun.</span> Ingin mengubah hidupmu — ubahlah apa yang kamu lakukan setiap hari. Motivasi adalah percikan api. Kebiasaan adalah api. Percikan padam. Api menyala selama bertahun-tahun.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 21 -->
+            <div class="card">
+                <div class="number">21</div>
+                <div class="quote">«<span class="highlight">Masa lalu adalah sebuah buku.</span> Bisa dibaca, tapi tidak bisa terperangkap di dalamnya. Balik halaman, ingat pelajaran — dan tutup. Hidup terjadi di halaman berikutnya, bukan di halaman yang sudah dibaca.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 22 -->
+            <div class="card">
+                <div class="number">22</div>
+                <div class="quote">«<span class="highlight">Manusia adalah cermin.</span> Segala sesuatu yang membuatmu kesal pada mereka — bergema dalam dirimu. Bukan karena mereka jahat. Tapi karena kamu melihat pada mereka apa yang tidak kamu terima pada dirimu sendiri. Ketika kamu memahami ini — kamu akan berhenti marah. Mulai sembuh.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 23 -->
+            <div class="card">
+                <div class="number">23</div>
+                <div class="quote">«<span class="highlight">Kontrol adalah ilusi.</span> Satu-satunya hal yang benar-benar milikmu — adalah keputusanmu. Kamu tidak bisa mengendalikan dunia, orang lain, keadaan. Kamu hanya mengendalikan satu hal: apa yang kamu pilih sebagai respons terhadap mereka.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+            <!-- 24 -->
+            <div class="card">
+                <div class="number">24</div>
+                <div class="quote">«<span class="highlight">Kamu adalah arsitek kehidupanmu.</span> Kamu membangunnya dari pikiran, perasaan, dan pilihan yang kamu buat setiap hari. Bukan batu bata — keputusanmu. Bukan beton — keyakinanmu pada dirimu sendiri. Bukan rencana — niatmu.»</div>
+                <div class="source">— dari percakapan dengan Baymax</div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn-back">← Kembali ke Beranda</a>
+        </div>
+
+        <div class="paywall">
+            <h3>Anda telah melihat <span>versi demo</span></h3>
+            <p>
+                Versi lengkap «Kutipan Hidup» termasuk dalam buku «Jalan Phoenix».<br>
+                Buku ini juga memiliki 10 bab, latihan, buku kerja, dan alat AI.
+            </p>
+            <a href="index.html#pricing" class="btn-gold">Dapatkan Akses</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 «Jalan Phoenix» &nbsp;·&nbsp; <a href="index.html">Beranda</a> &nbsp;·&nbsp; <a href="index.html#pricing">Harga</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Camino del Fénix — salir de la tormenta gris</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            padding: 0;
+            color: #e8e0d8;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            z-index: 1000;
+            transition: background 0.4s ease;
+            flex-wrap: wrap;
+        }
+        header.scrolled {
+            background: rgba(11, 11, 13, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            margin-left: 20px;
+        }
+        .nav-links a {
+            color: #c4b5a5;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+        .lang-switcher a {
+            color: #a09080;
+            text-decoration: none;
+            margin: 0 4px;
+            font-size: 13px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .lang-switcher a:hover,
+        .lang-switcher a.active {
+            background: #FF6B35;
+            color: #0b0b0d;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 11, 13, 0.6);
+            z-index: 1;
+        }
+        .hero .content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(36px, 7vw, 60px);
+            color: #FFD166;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 40px rgba(0,0,0,0.7);
+        }
+        .hero .sub {
+            font-size: clamp(18px, 2.2vw, 26px);
+            color: #d4c5b5;
+            max-width: 650px;
+            margin: 0 auto 32px;
+            font-weight: 300;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+        .btn-gold {
+            display: inline-block;
+            padding: 18px 56px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s ease;
+            box-shadow: 0 0 40px rgba(255, 107, 53, 0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-gold:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 60px rgba(255, 107, 53, 0.5);
+        }
+        .hero .price-note {
+            margin-top: 24px;
+            font-size: 28px;
+            color: #FFD166;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .hero .exclusive {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #7a6a5a;
+            letter-spacing: 0.3px;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(28px, 4vw, 40px);
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .section-title span { color: #FF6B35; }
+        .section-sub {
+            text-align: center;
+            color: #a09080;
+            max-width: 620px;
+            margin: 0 auto 48px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .about-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            justify-content: center;
+        }
+        .about-grid .cover {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            overflow: hidden;
+            border: 3px solid #FF6B35;
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+        }
+        .about-grid .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .about-grid .text {
+            max-width: 600px;
+            font-size: 18px;
+            color: #d4c5b5;
+            line-height: 1.8;
+        }
+        .about-grid .text strong {
+            color: #ffffff;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .benefit-item {
+            background: #16161a;
+            border-radius: 12px;
+            padding: 28px 24px;
+            border: 1px solid rgba(255, 107, 53, 0.08);
+            transition: 0.3s;
+            text-align: center;
+        }
+        .benefit-item:hover {
+            border-color: rgba(255, 107, 53, 0.25);
+            background: rgba(22, 22, 26, 0.8);
+        }
+        .benefit-item .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        .benefit-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .benefit-item p {
+            color: #a09080;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .testimonials {
+            background: rgba(20, 10, 6, 0.3);
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: #16161a;
+            border-radius: 12px;
+            padding: 24px 20px;
+            border-left: 3px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .testimonial-card:hover {
+            background: rgba(22, 22, 26, 0.8);
+        }
+        .testimonial-card .text {
+            font-size: 15px;
+            color: #d4c5b5;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+        .testimonial-card .author {
+            font-size: 13px;
+            color: #a09080;
+            font-weight: 600;
+        }
+        .testimonial-card .author span {
+            color: #FF6B35;
+        }
+        .testimonial-card.negative {
+            border-left-color: #6a4a3a;
+            opacity: 0.85;
+        }
+        .testimonial-card.negative .text {
+            color: #b0a090;
+        }
+        .testimonial-card.negative .author {
+            color: #7a6a5a;
+        }
+        .negative-label {
+            display: inline-block;
+            background: rgba(100, 60, 40, 0.3);
+            color: #9a7a6a;
+            font-size: 11px;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-top: 6px;
+            letter-spacing: 0.3px;
+        }
+        .testimonials-footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 15px;
+            color: #a09080;
+            line-height: 1.7;
+        }
+
+        .pricing-section {
+            background: rgba(22, 22, 26, 0.5);
+            border-radius: 16px;
+            padding: 48px 32px;
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            box-shadow: 0 0 60px rgba(255, 107, 53, 0.05);
+            position: relative;
+        }
+        .pricing-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .pricing-section .price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: #FFD166;
+            margin: 8px 0 4px;
+        }
+        .pricing-section .sub-price {
+            font-size: 16px;
+            color: #a09080;
+            margin-bottom: 20px;
+        }
+        .pricing-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 28px;
+            text-align: left;
+            display: inline-block;
+        }
+        .pricing-section ul li {
+            font-size: 16px;
+            color: #d4c5b5;
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .pricing-section ul li .check {
+            color: #FF6B35;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .pricing-section ul li strong {
+            color: #ffffff;
+        }
+        .pricing-section .secure-note {
+            margin-top: 16px;
+            font-size: 13px;
+            color: #8a7a6a;
+        }
+        .pricing-section .secure-note strong {
+            color: #b0a090;
+        }
+
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 30px; }
+            .hero .sub { font-size: 17px; }
+            .about-grid { flex-direction: column; text-align: center; }
+            .about-grid .cover { width: 140px; height: 140px; }
+            .about-grid .text { font-size: 16px; }
+            section { padding: 48px 0; }
+            .pricing-section { padding: 32px 16px; }
+            .pricing-section .price { font-size: 34px; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .testimonial-grid { grid-template-columns: 1fr; }
+            .lang-switcher a { font-size: 10px; padding: 2px 5px; }
+            .logo { font-size: 18px; }
+            header { padding: 12px 16px; }
+            .btn-gold { padding: 14px 32px; font-size: 16px; }
+            .nav-links { gap: 10px; margin-left: 10px; }
+            .nav-links a { font-size: 18px; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 24px; }
+            .hero .sub { font-size: 15px; }
+            .pricing-section .price { font-size: 28px; }
+            .nav-links a { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="logo">Fénix</div>
+        <div class="nav-links">
+            <a href="wisdom.html">Citas de Vida</a>
+        </div>
+        <div class="lang-switcher">
+            <a href="../index.html">Русский</a>
+            <a href="../en/index.html">English</a>
+            <a href="../zh/index.html">中文</a>
+            <a href="#" class="active">Español</a>
+            <a href="../de/index.html">Deutsch</a>
+            <a href="../fr/index.html">Français</a>
+            <a href="../pt/index.html">Português</a>
+            <a href="../it/index.html">Italiano</a>
+            <a href="../ar/index.html">العربية</a>
+            <a href="../hi/index.html">हिन्दी</a>
+            <a href="../id/index.html">Bahasa Indonesia</a>
+            <a href="../fa/index.html">فارسی</a>
+            <a href="../ja/index.html">日本語</a>
+            <a href="../ko/index.html">한국어</a>
+            <a href="../tr/index.html">Türkçe</a>
+            <a href="../uk/index.html">Українська</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline preload="none" id="hero-video" poster="../images/hero-bg.jpg">
+            <source src="../video/hero-fire.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>«Yo estuve donde tú estás ahora. Salí.»</h1>
+            <p class="sub">El Camino del Fénix. Cómo dejé de ser víctima y me convertí en creador</p>
+            <a href="#pricing" class="btn-gold">Comenzar el Renacimiento</a>
+            <p class="price-note"><strong>$28</strong></p>
+            <p class="exclusive">* Este libro no se vende en marketplaces. Solo aquí. *</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container about-grid">
+            <div class="cover">
+                <img src="../images/cover-es.jpg" alt="El Camino del Fénix portada">
+            </div>
+            <div class="text">
+                <p><strong>Me llamo Alexander.</strong> He pasado por la muerte clínica, la pérdida de negocios, el alcohol — y luego resurgí de las cenizas. No escribí este libro para inspirarte. Lo escribí para que sepas: <strong>hay una salida.</strong></p>
+                <p style="margin-top:12px;">No eres víctima. Eres el Fénix. Ya has comenzado a elevarte — simplemente aún no lo has notado.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: rgba(22,22,26,0.3);">
+        <div class="container">
+            <h2 class="section-title">Qué ofrece <span>este sistema</span></h2>
+            <p class="section-sub">Tres pasos que lo cambian todo</p>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="icon">🧠</div>
+                    <h3>No seas conveniente</h3>
+                    <p>Dejas de ser víctima y empiezas a vivir para ti. Se acabó el "buen chico".</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">🔥</div>
+                    <h3>Sal de la "tormenta gris"</h3>
+                    <p>La apatía, el alcohol, la desvalorización — no son una sentencia. Son consecuencias. Y hay solución.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">🏗️</div>
+                    <h3>Reconstruye la vida desde las cenizas</h3>
+                    <p>Eres el Fénix. Ya has comenzado a elevarte. Este libro son tus alas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">📬 1785 <span>cartas de agradecimiento</span></h2>
+            <p class="section-sub">Voces reales — de aquellos que atravesaron las cenizas y se levantaron</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="text">«Viví en un cobertizo durante seis meses. Pensé que la vida había terminado. Ahora soy guardia de seguridad. Pero estoy vivo.»</div>
+                    <div class="author">— Iván, 58 años, región de Tver</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="text">«Dejé de ser conveniente. Mi esposa al principio se enfadaba, luego dijo — has cambiado, te has vuelto mejor. No me volví mejor. Me volví yo mismo.»</div>
+                    <div class="author">— Mijaíl, 49 años, Moscú</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="text">"Your book saved my life. 6 months sober. Thanks."</div>
+                    <div class="author">— Mike, 52, Texas</div>
+                </div>
+                <div class="testimonial-card negative">
+                    <div class="text">«Leí treinta páginas y lo cerré. Necesito instrucciones listas, no el drama de los demás.»</div>
+                    <div class="author">— @igor_k79 <span class="negative-label">opinión negativa</span></div>
+                </div>
+            </div>
+            <div class="testimonials-footer">
+                Publicamos todas las cartas — incluso las que nos critican. Porque este libro no es para todos. Es honestidad.
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container">
+            <div class="pricing-section">
+                <h2>Inversión en ti mismo</h2>
+                <div class="price">$28</div>
+                <div class="sub-price">PDF + EPUB, compatible con todos los dispositivos</div>
+                <ul>
+                    <li><span class="check">✓</span> <strong>Libro en PDF</strong></li>
+                    <li><span class="check">✓</span> <strong>EPUB</strong> para todos los dispositivos</li>
+                    <li><span class="check">✓</span> <strong>Acceso inmediato</strong> después del pago</li>
+                    <li><span class="check">✓</span> <strong>Pago seguro</strong> con tarjeta o criptomoneda</li>
+                </ul>
+                <a href="#" class="btn-gold" onclick="alert('🔧 El formulario de pago se conectará a través de RollyPay.io / CryptoCloud')">Comenzar el Camino</a>
+                <div class="secure-note"><strong>🔒 Pasarela de pago segura</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 «El Camino del Fénix» &nbsp;·&nbsp; <a href="#">Política de Privacidad</a></p>
+            <p style="font-size:12px; color:#3a3a3a; margin-top:4px;">El sitio utiliza un sistema de pago seguro</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

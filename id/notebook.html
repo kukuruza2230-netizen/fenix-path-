@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jalan Phoenix — Buku Kerja</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-light: #FFF0EB;
+            --secondary: #0F2027;
+            --bg-page: #FFFFFF;
+            --bg-card: #F8F9FA;
+            --text-main: #212529;
+            --text-muted: #6C757D;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #e9ecef;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 20px auto;
+            background: var(--bg-page);
+            padding: 18mm 20mm;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(1.2);
+            width: 500px; height: 500px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 60,40 90,40 65,60 75,90 50,75 25,90 35,60 10,40 40,40" fill="%23FF6B35" opacity="0.04"/></svg>') no-repeat center;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .page > * { position: relative; z-index: 1; }
+
+        /* ===== COVER ===== */
+        .cover {
+            padding: 0;
+            background: url('../images/frame-breakthrough.jpg') no-repeat center center / cover;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .cover .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.35);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .cover .overlay .line1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 44pt;
+            color: #FFD166;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            letter-spacing: 4px;
+            line-height: 1.2;
+        }
+        .cover .overlay .line2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 44pt;
+            color: #FFD166;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            letter-spacing: 4px;
+            line-height: 1.2;
+        }
+        .cover .overlay .line3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48pt;
+            color: #FF6B35;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            letter-spacing: 4px;
+            line-height: 1.2;
+            margin-top: 10px;
+        }
+        .cover .overlay .sub {
+            margin-top: 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14pt;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-top: 2px solid rgba(255,107,53,0.4);
+            padding-top: 20px;
+            width: 60%;
+        }
+
+        /* ===== COMMON BLOCKS ===== */
+        .page-header {
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .chapter-pill {
+            background: var(--primary);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 9pt;
+            padding: 4px 14px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+        .chapter-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 22pt;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .chapter-icon {
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--primary-light);
+            flex-shrink: 0;
+        }
+        .chapter-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .task-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--primary);
+            clear: both;
+        }
+        .task-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 10pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .task-description {
+            font-size: 11pt;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .task-field {
+            width: 100%;
+            border: 2px dashed #DEE2E6;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11pt;
+            color: var(--text-main);
+            background: white;
+            resize: vertical;
+            min-height: 60px;
+            transition: border-color 0.3s;
+        }
+        .task-field:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .task-field-small {
+            min-height: 40px;
+        }
+
+        .columns {
+            display: flex;
+            gap: 16px;
+            margin-top: 6px;
+        }
+        .column {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #E9ECEF;
+        }
+        .column-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            color: var(--secondary);
+            text-align: center;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .column .task-field {
+            min-height: 80px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #E9ECEF;
+        }
+        .checklist-square {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            background: white;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--primary);
+            user-select: none;
+        }
+        .checklist-square.checked {
+            background: var(--primary);
+            color: white;
+        }
+        .checklist-text {
+            font-size: 11pt;
+            color: var(--text-main);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF8C61 100%);
+            color: white;
+            padding: 14px;
+            margin: 10px 0;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13pt;
+            font-weight: 700;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(255,107,53,0.2);
+        }
+
+        .table-expenses {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #E9ECEF;
+            background: white;
+        }
+        .table-expenses th {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            color: var(--secondary);
+            text-transform: uppercase;
+            padding: 8px 10px;
+            background: var(--primary-light);
+            border-bottom: 2px solid var(--primary);
+            text-align: left;
+        }
+        .table-expenses td {
+            padding: 4px 10px;
+            border-bottom: 1px solid #E9ECEF;
+        }
+        .table-expenses tr:last-child td {
+            background: var(--primary-light);
+            font-weight: 700;
+        }
+        .table-expenses input[type="text"] {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-size: 11pt;
+            padding: 6px 0;
+            border-bottom: 1px dotted #DEE2E6;
+        }
+        .table-expenses input[type="text"]:focus {
+            border-bottom-color: var(--primary);
+            outline: none;
+        }
+        .table-expenses .checkbox-cell {
+            text-align: center;
+        }
+        .table-expenses .checkbox-cell input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 15mm;
+            right: 20mm;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+        .page-number span {
+            color: var(--primary);
+            font-size: 14pt;
+        }
+
+        .intro-quote {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: var(--secondary);
+            text-align: center;
+            line-height: 1.4;
+            margin: 10px 0 16px;
+            padding: 16px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            position: relative;
+            clear: both;
+        }
+        .intro-quote::before {
+            content: '“';
+            position: absolute;
+            top: 0px;
+            left: 15px;
+            font-size: 50pt;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: serif;
+            line-height: 1;
+        }
+        .intro-text {
+            font-size: 11.5pt;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .date-field {
+            margin-top: 20px;
+            padding: 16px;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            text-align: center;
+            background: rgba(255,107,53,0.04);
+        }
+        .date-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .date-line {
+            font-size: 16pt;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            min-width: 200px;
+            padding: 4px 16px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--primary);
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 16pt;
+            width: 60%;
+        }
+        .date-line:focus {
+            outline: none;
+            border-bottom-color: #FF8C61;
+        }
+
+        .spread {
+            padding: 0;
+            background: #0F2027;
+            justify-content: center;
+            align-items: center;
+        }
+        .spread img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .spread .caption {
+            position: absolute;
+            bottom: 20mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Inter', sans-serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            max-width: 85%;
+            text-shadow: 0 8px 30px rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.5);
+            padding: 10px 28px;
+            border-radius: 12px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.1);
+            line-height: 1.4;
+        }
+
+        .action-bar {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .btn-collect {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 14pt;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255,107,53,0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-collect:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 35px rgba(255,107,53,0.4);
+        }
+        .btn-collect:active {
+            transform: scale(0.98);
+        }
+
+        #outputArea {
+            margin-top: 30px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            display: none;
+        }
+        #outputArea h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+        #outputArea textarea {
+            width: 100%;
+            min-height: 300px;
+            border: 1px solid #DEE2E6;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11pt;
+            resize: vertical;
+        }
+        #outputArea .copy-btn {
+            margin-top: 10px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; height: 297mm; }
+            .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .task-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .formula-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .spread { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .btn-collect, #outputArea { display: none !important; }
+            .task-field { border: 1px solid #ccc; background: transparent; min-height: 40px; }
+        }
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .page { padding: 12mm 14mm; }
+            .chapter-title { font-size: 18pt; }
+            .cover .overlay .line1,
+            .cover .overlay .line2 { font-size: 32pt; }
+            .cover .overlay .line3 { font-size: 36pt; }
+            .columns { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- COVER -->
+    <!-- ============================================================ -->
+    <div class="page cover" id="page-cover">
+        <div class="overlay">
+            <div class="line1">Bekerja dengan buku.</div>
+            <div class="line2">Isi.</div>
+            <div class="line3">Berubah.</div>
+            <div class="sub">Jalan Phoenix · Buku Kerja</div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SPREAD: INTRODUCTION (frame #2) -->
+    <!-- ============================================================ -->
+    <div class="page spread" id="page-intro-spread">
+        <img src="../images/frame-destiny-author.jpg" alt="Penulis takdir sendiri" loading="lazy">
+        <div class="caption">"Kamu akan menembus tembok. Saya sudah melakukannya. Kamu juga bisa."</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- PAGE 1: INTRODUCTION TEXT -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-intro-text">
+        <div class="page-header">
+            <span class="chapter-pill">Mulai</span>
+            <h2 class="chapter-title">Pendahuluan</h2>
+        </div>
+        <div class="intro-quote">
+            Setiap latihan adalah langkah.<br>Lakukan dengan jujur. Tanpa sensor. Tanpa menipu diri sendiri.
+        </div>
+        <p class="intro-text">Buku kerja ini bukan sekadar buku catatan. Ini adalah alat transformasi pribadimu. Kamu akan menulis tentang apa yang menyakitkan. Mencatat kemenangan kecil. Melihat kemajuan nyata.</p>
+        <p class="intro-text">Dalam sebulan, kamu akan membukanya dan tidak mengenali dirimu sendiri.</p>
+        <p class="intro-text">Tidak ada jawaban benar di sini. Hanya jawabanmu. Tulis dengan tangan, ketik, gambar. Yang penting jangan berhenti.</p>
+        <p class="intro-text" style="color: var(--primary); font-weight: 600;">Buku kerja ini akan menjadi saksi transformasimu. Dari korban menjadi pencipta. Dari abu menjadi sayap api.</p>
+        <div class="date-field">
+            <div class="date-label">🔥 Tanggal mulai perjalananmu</div>
+            <input type="text" class="date-line" id="start_date" placeholder="__.__.____">
+        </div>
+        <div class="page-number"><span>01</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 1 (page 02) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch1-1">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 1</span>
+            <h2 class="chapter-title">Badai Kelabu</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch1-storm.jpg" alt="Badai Kelabu" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 1. Gambarkan badaimu</div>
+            <div class="task-description">Tutup matamu. Ingat saat kamu menyadari bahwa hidup tidak berjalan dengan benar. Gambarkan secara detail: apa yang kamu lihat, rasakan, dengar. Tanpa filter.</div>
+            <textarea class="task-field" id="task_1_1" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 2. Tiga tanda</div>
+            <div class="task-description">Sebutkan tiga tanda bahwa kamu sedang berada dalam "badai kelabu" saat ini.</div>
+            <div style="margin-top: 6px;">
+                <input type="text" class="task-field task-field-small" id="task_1_2_1" placeholder="1.">
+                <input type="text" class="task-field task-field-small" id="task_1_2_2" placeholder="2.">
+                <input type="text" class="task-field task-field-small" id="task_1_2_3" placeholder="3.">
+            </div>
+        </div>
+        <div class="page-number"><span>02</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 1 (cont., page 03) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch1-2">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 1</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Badai Kelabu</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch1-storm.jpg" alt="Badai Kelabu" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 3. Apa yang kamu rasakan</div>
+            <div class="task-description">Tandai yang sesuai denganmu. Tambahkan sendiri jika perlu.</div>
+            <div class="checklist" id="checklist_1_3">
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Lelah dan burnout</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Takut akan masa depan</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Kemarahan tersembunyi</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Ketidakberdayaan mengubah apapun</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Kesepian</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text">Harapan (bahkan secercah kecil)</div></div>
+                <div class="checklist-item"><div class="checklist-square" data-checked="false" onclick="toggleCheck(this)"></div><div class="checklist-text"><input type="text" style="border:none; border-bottom:1px dashed #ccc; width:180px; font-family:inherit; font-size:11pt;" placeholder="Lainnya..." id="task_1_3_other"></div></div>
+            </div>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 4. Satu kalimat tentang dirimu</div>
+            <div class="task-description">Lengkapi kalimat: "Saat ini, aku adalah..."</div>
+            <textarea class="task-field" id="task_1_4" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="page-number"><span>03</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 2 (page 04) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch2-1">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 2</span>
+            <h2 class="chapter-title">Dua Diri</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch2-two-faces.jpg" alt="Dua Diri" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 1. Suara batin</div>
+            <div class="task-description">Ingat lima kalimat terakhir yang kamu katakan pada dirimu sendiri di kepala. Tuliskan kata demi kata, tanpa hiasan.</div>
+            <textarea class="task-field" id="task_2_1" placeholder="1. ..."></textarea>
+            <textarea class="task-field" id="task_2_1b" placeholder="2. ..."></textarea>
+            <textarea class="task-field" id="task_2_1c" placeholder="3. ..."></textarea>
+            <textarea class="task-field" id="task_2_1d" placeholder="4. ..."></textarea>
+            <textarea class="task-field" id="task_2_1e" placeholder="5. ..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 2. Pisahkan suara</div>
+            <div class="task-description">Suara mana yang "milik mereka" (orang tua, masyarakat, pengalaman masa lalu) dan mana yang benar-benar milikmu?</div>
+            <div class="columns">
+                <div class="column">
+                    <div class="column-title">Suara "mereka"</div>
+                    <textarea class="task-field" id="task_2_2_their" placeholder="..."></textarea>
+                </div>
+                <div class="column">
+                    <div class="column-title">Suaraku</div>
+                    <textarea class="task-field" id="task_2_2_mine" placeholder="..."></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="page-number"><span>04</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 2 (cont., page 05) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch2-2">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 2</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Dua Diri</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch2-two-faces.jpg" alt="Dua Diri" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 3. Peranmu</div>
+            <div class="task-description">Peran apa yang kamu mainkan selama bertahun‑tahun? Korban? Penyelamat? Pengamat? Gambarkan peran itu dan jawab: apakah cocok untukmu?</div>
+            <textarea class="task-field" id="task_2_3" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 4. Siapa yang kamu inginkan</div>
+            <div class="task-description">Jika kamu bisa memilih peran apa pun tanpa batasan, akan menjadi apa kamu?</div>
+            <textarea class="task-field" id="task_2_4" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="page-number"><span>05</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SPREAD: MOMENT OF REBIRTH (frame #3) -->
+    <!-- ============================================================ -->
+    <div class="page spread" id="page-spread-rebirth">
+        <img src="../images/frame-rebirth.jpg" alt="Momen kelahiran kembali" loading="lazy">
+        <div class="caption">"Sunyi setelah badai. Kamu berdiri di antara reruntuhan dan cahaya. Pilih fajar."</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 3 (page 06) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch3-1">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 3</span>
+            <h2 class="chapter-title">Kebangkitan Pemberontak</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch3-spark.jpg" alt="Kebangkitan Pemberontak" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 1. "Tidak" pertamamu</div>
+            <div class="task-description">Ingat saat terakhir kamu mengatakan "tidak" — dan itu benar. Gambarkan situasi dan perasaanmu.</div>
+            <textarea class="task-field" id="task_3_1" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 2. Yang kamu takut katakan</div>
+            <div class="task-description">Tulis tiga hal yang sudah lama ingin kamu katakan tetapi takut. Tidak ada yang akan membaca ini kecuali kamu.</div>
+            <textarea class="task-field task-field-small" id="task_3_2_1" placeholder="1."></textarea>
+            <textarea class="task-field task-field-small" id="task_3_2_2" placeholder="2."></textarea>
+            <textarea class="task-field task-field-small" id="task_3_2_3" placeholder="3."></textarea>
+        </div>
+        <div class="page-number"><span>06</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 3 (cont., page 07) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch3-2">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 3</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Kebangkitan Pemberontak</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch3-spark.jpg" alt="Kebangkitan Pemberontak" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 3. Pemberontak dalam dirimu</div>
+            <div class="task-description">Gambarkan pemberontak dalam dirimu. Bagaimana rupanya? Apa katanya? Apa yang diinginkannya untukmu?</div>
+            <textarea class="task-field" id="task_3_3" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 4. Tindakan pertama</div>
+            <div class="task-description">Tindakan kecil tapi nyata apa yang bisa kamu lakukan hari ini untuk mengekspresikan pemberontakanmu?</div>
+            <textarea class="task-field" id="task_3_4" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="page-number"><span>07</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 4 (page 08) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch4-1">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 4</span>
+            <h2 class="chapter-title">Jalan Memutar</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch4-road.jpg" alt="Jalan Memutar" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 1. Peta hidupku</div>
+            <div class="task-description">Gambarkan atau deskripsikan "peta hidup" mu saat ini. Di mana kamu sekarang? Ke mana kamu pergi? Di mana jalan memutarnya?</div>
+            <textarea class="task-field" id="task_4_1" placeholder="Tulis di sini atau buat diagram..."></textarea>
+        </div>
+        <div class="page-number"><span>08</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 4 (cont., page 09) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch4-2">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 4</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Jalan Memutar</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch4-road.jpg" alt="Jalan Memutar" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 2. Satu pilihan</div>
+            <div class="task-description">Pilihan penting apa yang kamu hindari? Apa yang akan terjadi jika kamu mengambilnya?</div>
+            <textarea class="task-field" id="task_4_2" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 3. Harga ketidakaktifan</div>
+            <div class="task-description">Apa yang akan kamu kehilangan (waktu, uang, hubungan, kesehatan) jika kamu tidak mengubah apapun dalam 5 tahun ke depan?</div>
+            <textarea class="task-field" id="task_4_3" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="page-number"><span>09</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5 (page 10) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch5-1">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 5</span>
+            <h2 class="chapter-title">Rencana 1 Tahun dan 10 Tahun</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch5-horizon.jpg" alt="Rencana 1 Tahun dan 10 Tahun" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 1. Angka kebebasanku</div>
+            <div class="task-description">Hitung "bantalan kebebasan" mu dengan rumus:</div>
+            <div class="formula-box">(Pengeluaran bulanan × 6) + (Hutang) + (Tujuan impian) = Angka kebebasan</div>
+            <div style="margin-top: 6px;">
+                <input type="text" class="task-field task-field-small" id="task_5_1_expenses" placeholder="Pengeluaran bulananku: _______________ ₽">
+                <input type="text" class="task-field task-field-small" id="task_5_1_debts" placeholder="Hutangku: _______________ ₽">
+                <input type="text" class="task-field task-field-small" id="task_5_1_goal" placeholder="Tujuan impianku: _______________ ₽">
+                <input type="text" class="task-field task-field-small" id="task_5_1_result" placeholder="Angka kebebasanku: _______________ ₽" style="border-bottom: 2px solid var(--primary); font-weight: 700; color: var(--primary);">
+            </div>
+        </div>
+        <div class="page-number"><span>10</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5 (cont., page 11) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch5-2">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 5</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Rencana 1 Tahun dan 10 Tahun</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch5-horizon.jpg" alt="Rencana 1 Tahun dan 10 Tahun" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 2. 3 tujuanku tahun ini</div>
+            <div class="task-description">Rumuskan tiga tujuan konkret untuk tahun mendatang. Tujuan harus terukur.</div>
+            <input type="text" class="task-field task-field-small" id="task_5_2_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_5_2_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_5_2_3" placeholder="3.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 3. Tujuanku dalam 10 tahun</div>
+            <div class="task-description">Gambarkan hidupmu dalam 10 tahun. Di mana kamu? Siapa bersamamu? Apa yang kamu lakukan? Berapa penghasilanmu?</div>
+            <textarea class="task-field" id="task_5_3" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="page-number"><span>11</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5 (cont., page 12) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch5-3">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 5</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Rencana 1 Tahun dan 10 Tahun</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch5-horizon.jpg" alt="Rencana 1 Tahun dan 10 Tahun" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 4. Langkah pertama</div>
+            <div class="task-description">Tindakan apa yang bisa kamu lakukan minggu ini untuk mendekati tujuan 10 tahunmu?</div>
+            <textarea class="task-field" id="task_5_4" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 5. Apa yang menghalangiku</div>
+            <div class="task-description">Jujur: apa yang menghentikanmu untuk memulai sekarang? (takut, malas, kurang pengetahuan, lingkungan)</div>
+            <textarea class="task-field" id="task_5_5" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="page-number"><span>12</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 6 (page 13) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch6-1">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 6</span>
+            <h2 class="chapter-title">Sistem Keuanganku</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch6-money.jpg" alt="Sistem Keuanganku" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 1. Ke mana uang pergi</div>
+            <div class="task-description">Isi tabel pengeluaran nyata bulan lalu.</div>
+            <table class="table-expenses" id="expense-table">
+                <thead>
+                    <tr><th>Kategori</th><th>Jumlah (₽)</th><th>Penting?</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Tempat tinggal</td><td><input type="text" id="exp_1" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_1_chk"></td></tr>
+                    <tr><td>Makanan</td><td><input type="text" id="exp_2" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_2_chk"></td></tr>
+                    <tr><td>Transportasi</td><td><input type="text" id="exp_3" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_3_chk"></td></tr>
+                    <tr><td>Komunikasi</td><td><input type="text" id="exp_4" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_4_chk"></td></tr>
+                    <tr><td>Hiburan</td><td><input type="text" id="exp_5" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_5_chk"></td></tr>
+                    <tr><td>Lainnya</td><td><input type="text" id="exp_6" placeholder="₽"></td><td class="checkbox-cell"><input type="checkbox" id="exp_6_chk"></td></tr>
+                    <tr><td><b>TOTAL</b></td><td><input type="text" id="exp_total" placeholder="₽" readonly style="font-weight:700; background:transparent; border:none;"></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="page-number"><span>13</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 6 (cont., page 14) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch6-2">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 6</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Sistem Keuanganku</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch6-money.jpg" alt="Sistem Keuanganku" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 2. Tiga kebocoran</div>
+            <div class="task-description">Temukan tiga pengeluaran yang bisa kamu kurangi atau hilangkan tanpa mengorbankan kualitas hidup.</div>
+            <input type="text" class="task-field task-field-small" id="task_6_2_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_6_2_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_6_2_3" placeholder="3.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 3. Satu aset</div>
+            <div class="task-description">Aset apa yang bisa kamu ciptakan atau peroleh dalam 6 bulan ke depan?</div>
+            <textarea class="task-field" id="task_6_3" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="page-number"><span>14</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 7 (page 15) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch7-1">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 7</span>
+            <h2 class="chapter-title">Sayap Api Phoenix</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch7-fire-wings.jpg" alt="Sayap Api" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 1. Apa yang kuambil dari abu</div>
+            <div class="task-description">Tiga pelajaran atau kekuatan apa yang kamu ambil dari "abu" mu? Apa yang membuatmu lebih kuat?</div>
+            <input type="text" class="task-field task-field-small" id="task_7_1_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_7_1_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_7_1_3" placeholder="3.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 2. Sayap apiku</div>
+            <div class="task-description">Apa yang memberimu kekuatan untuk bangkit? Tiga sumber energi dalam dirimu.</div>
+            <input type="text" class="task-field task-field-small" id="task_7_2_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_7_2_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_7_2_3" placeholder="3.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 3. Manifesto Phoenix</div>
+            <div class="task-description">Tulis manifesto singkat — 3–5 kalimat tentang siapa dirimu sekarang.</div>
+            <textarea class="task-field" id="task_7_3" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="page-number"><span>15</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 8 (page 16) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch8-1">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 8</span>
+            <h2 class="chapter-title">Kenapa Kamu Menjadi Lemah</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch8-chain.jpg" alt="Kenapa Kamu Menjadi Lemah" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 1. Keyakinanku</div>
+            <div class="task-description">Tulis tiga keyakinan beracun yang membuatmu "lemah".</div>
+            <input type="text" class="task-field task-field-small" id="task_8_1_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_8_1_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_8_1_3" placeholder="3.">
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 2. Keyakinan baru</div>
+            <div class="task-description">Ubah masing‑masing menjadi kekuatan. Ubah racun menjadi obat.</div>
+            <input type="text" class="task-field task-field-small" id="task_8_2_1" placeholder="Dulu: ... → Sekarang: ...">
+            <input type="text" class="task-field task-field-small" id="task_8_2_2" placeholder="Dulu: ... → Sekarang: ...">
+            <input type="text" class="task-field task-field-small" id="task_8_2_3" placeholder="Dulu: ... → Sekarang: ...">
+        </div>
+        <div class="page-number"><span>16</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 8 (cont., page 17) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch8-2">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 8</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Kenapa Kamu Menjadi Lemah</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch8-chain.jpg" alt="Kenapa Kamu Menjadi Lemah" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 3. Siapa dirimu jika bukan korban?</div>
+            <div class="task-description">Gambarkan dirimu tanpa peran korban. Siapa dirimu sebenarnya ketika melepaskan topeng itu?</div>
+            <textarea class="task-field" id="task_8_3" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 4. Batasan</div>
+            <div class="task-description">Sebutkan tiga batasan tegas yang siap kamu tetapkan sekarang.</div>
+            <input type="text" class="task-field task-field-small" id="task_8_4_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_8_4_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_8_4_3" placeholder="3.">
+        </div>
+        <div class="page-number"><span>17</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 9 (page 18) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch9-1">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 9</span>
+            <h2 class="chapter-title">Hidup Baru</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch9-sunrise.jpg" alt="Hidup Baru" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 1. Hari sempurnaku dalam setahun</div>
+            <div class="task-description">Gambarkan satu hari dari hidupmu dalam setahun. Dari pagi hingga malam. Secara detail, dengan emosi.</div>
+            <textarea class="task-field" id="task_9_1" placeholder="Tulis di sini..." style="min-height:120px;"></textarea>
+        </div>
+        <div class="page-number"><span>18</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 9 (cont., page 19) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch9-2">
+        <div class="page-header">
+            <span class="chapter-pill">Bab 9</span>
+            <h2 class="chapter-title" style="font-size:18pt;">Hidup Baru</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch9-sunrise.jpg" alt="Hidup Baru" loading="lazy"></div>
+        <div class="task-card">
+            <div class="task-number">Latihan 2. Langkah pertama</div>
+            <div class="task-description">Tindakan konkret apa yang akan kamu lakukan besok pagi untuk mulai bergerak menuju hari itu?</div>
+            <textarea class="task-field" id="task_9_2" placeholder="Tulis di sini..."></textarea>
+        </div>
+        <div class="task-card">
+            <div class="task-number">Latihan 3. Timku</div>
+            <div class="task-description">Siapa tiga orang yang bisa membantumu dalam perjalanan ini? (mentor/teman nyata atau masa depan)</div>
+            <input type="text" class="task-field task-field-small" id="task_9_3_1" placeholder="1.">
+            <input type="text" class="task-field task-field-small" id="task_9_3_2" placeholder="2.">
+            <input type="text" class="task-field task-field-small" id="task_9_3_3" placeholder="3.">
+        </div>
+        <div class="page-number"><span>19</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 10 (page 20) -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-ch10">
+        <div class="page-header">
+            <span class="chapter-pill">Akhir</span>
+            <h2 class="chapter-title">Kesimpulan</h2>
+        </div>
+        <div class="chapter-icon"><img src="../images/ch10-letter.jpg" alt="Kesimpulan" loading="lazy"></div>
+        <div class="task-card" style="border-left-color: var(--secondary);">
+            <div class="task-number" style="color: var(--secondary);">Latihan 1. Surat untuk dirimu sendiri dalam setahun</div>
+            <div class="task-description">Tulis surat untuk dirimu sendiri — orang yang akan membaca buku kerja ini dalam setahun. Ceritakan di mana kamu sekarang, apa yang kamu takuti, apa yang kamu harapkan. Segel surat itu. Buka dalam 12 bulan.</div>
+            <textarea class="task-field" id="task_10_1" placeholder="Diriku yang terkasih dalam setahun..." style="min-height:180px;"></textarea>
+            <div style="margin-top:8px; text-align:right;">
+                <span style="font-weight:600;">Dengan keyakinan padamu, </span><input type="text" id="task_10_sig" placeholder="___________________" style="border:none; border-bottom:1px solid #ccc; width:150px; font-family:inherit; font-size:11pt;">
+                <span style="font-weight:600; margin-left:20px;">Tanggal: </span><input type="text" id="task_10_date" placeholder="__.__.____" style="border:none; border-bottom:1px solid #ccc; width:100px; font-family:inherit; font-size:11pt;">
+            </div>
+        </div>
+        <div class="page-number"><span>20</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- FINAL SPREAD (frame #4) -->
+    <!-- ============================================================ -->
+    <div class="page spread" id="page-spread-final">
+        <img src="../images/frame-new-life.jpg" alt="Hidup Baru" loading="lazy">
+        <div class="caption">"Ini bukan mimpi. Ini rencana. Kamu sudah sedang membangunnya."</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SUBMIT PAGE -->
+    <!-- ============================================================ -->
+    <div class="page" id="page-submit" style="justify-content: center; align-items: center; text-align: center; padding: 30mm 20mm;">
+        <h2 style="font-family: 'Montserrat', sans-serif; color: var(--secondary); margin-bottom: 20px;">Pekerjaanmu siap</h2>
+        <p style="font-size: 14pt; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;">
+            Kamu telah mengisi buku kerja. Sekarang kamu bisa mengumpulkan semua jawabanmu dan mengirimkannya ke DeepSeek untuk dianalisis.
+        </p>
+        <button class="btn-collect" onclick="collectAnswers()">Kumpulkan jawaban untuk AI</button>
+        <div id="outputArea">
+            <h3>Salin teks ini dan tempel di DeepSeek</h3>
+            <textarea id="outputText" readonly></textarea>
+            <button class="copy-btn" onclick="copyOutput()">📋 Salin</button>
+        </div>
+        <div class="page-number" style="bottom: 15mm; right: 20mm;"><span>—</span></div>
+    </div>
+
+    <script>
+        // ===== Helper functions =====
+
+        function toggleCheck(el) {
+            el.classList.toggle('checked');
+            el.dataset.checked = el.classList.contains('checked') ? 'true' : 'false';
+        }
+
+        function collectAnswers() {
+            const fields = document.querySelectorAll('input[type="text"], textarea, input[type="checkbox"]:checked');
+            let result = 'Jawabanku dari buku kerja "Jalan Phoenix":\n\n';
+
+            const textInputs = document.querySelectorAll('input[type="text"]:not(.date-line):not([readonly]), textarea');
+            textInputs.forEach(el => {
+                if (el.value && el.value.trim() !== '') {
+                    const label = el.closest('.task-card')?.querySelector('.task-number')?.innerText || el.placeholder || 'Kolom';
+                    const id = el.id || 'unknown';
+                    result += `${label} (${id}):\n${el.value.trim()}\n\n`;
+                }
+            });
+
+            const checkboxes = document.querySelectorAll('.checklist-square.checked');
+            if (checkboxes.length > 0) {
+                result += 'Item yang dicentang:\n';
+                checkboxes.forEach(el => {
+                    const text = el.closest('.checklist-item')?.querySelector('.checklist-text')?.innerText || 'item';
+                    result += `- ${text}\n`;
+                });
+                result += '\n';
+            }
+
+            const startDate = document.getElementById('start_date')?.value;
+            if (startDate) {
+                result += `Tanggal mulai: ${startDate}\n\n`;
+            }
+
+            const expenseInputs = document.querySelectorAll('#expense-table input[type="text"]');
+            let total = 0;
+            if (expenseInputs.length > 0) {
+                result += 'Pengeluaran bulanan:\n';
+                expenseInputs.forEach(el => {
+                    const val = parseFloat(el.value.replace(/\s/g, '')) || 0;
+                    if (val > 0) {
+                        const label = el.closest('tr')?.querySelector('td:first-child')?.innerText || 'kategori';
+                        result += `${label}: ${val} ₽\n`;
+                        total += val;
+                    }
+                });
+                result += `TOTAL: ${total} ₽\n\n`;
+            }
+
+            if (result.trim() === 'Jawabanku dari buku kerja "Jalan Phoenix":\n\n') {
+                result = 'Kamu belum memasukkan apapun. Isi setidaknya beberapa kolom untuk mendapatkan analisis.';
+            } else {
+                result += '\n---\nAnalisis jawaban ini. Apa yang kamu lihat? Pola apa yang berulang? Apa yang harus aku perhatikan? Apa yang bisa aku lakukan untuk melangkah maju?';
+            }
+
+            document.getElementById('outputText').value = result;
+            document.getElementById('outputArea').style.display = 'block';
+            document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyOutput() {
+            const text = document.getElementById('outputText');
+            text.select();
+            document.execCommand('copy');
+            alert('Teks disalin ke clipboard. Tempelkan ke DeepSeek.');
+        }
+
+        document.addEventListener('input', function(e) {
+            if (e.target.closest('#expense-table input[type="text"]')) {
+                const inputs = document.querySelectorAll('#expense-table input[type="text"]:not([readonly])');
+                let total = 0;
+                inputs.forEach(inp => {
+                    const val = parseFloat(inp.value.replace(/\s/g, '')) || 0;
+                    total += val;
+                });
+                const totalField = document.getElementById('exp_total');
+                if (totalField) totalField.value = total + ' ₽';
+            }
+        });
+    </script>
+
+</body>
+</html>

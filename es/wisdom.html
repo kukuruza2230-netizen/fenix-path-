@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas de Vida — El Camino del Fénix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            color: #e8e0d8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: #a09080;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFD166;
+            letter-spacing: 2px;
+        }
+        .page-header h1 span {
+            color: #FF6B35;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #a09080;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #16161a;
+            border-radius: 16px;
+            padding: 32px 30px;
+            border-left: 6px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(22, 22, 26, 0.9);
+            border-left-color: #FFD166;
+        }
+        .card .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FF6B35;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .card .quote {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .card .quote .highlight {
+            color: #FFD166;
+            font-weight: 700;
+        }
+        .card .source {
+            font-size: 18px;
+            color: #a09080;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0 40px;
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .paywall {
+            max-width: 700px;
+            width: 100%;
+            margin: 40px auto 20px;
+            padding: 30px 24px;
+            background: rgba(22, 22, 26, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .paywall h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .paywall h3 span {
+            color: #FF6B35;
+        }
+        .paywall p {
+            color: #a09080;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .paywall .btn-gold {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .paywall .btn-gold:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 32px; }
+            .card .quote { font-size: 20px; }
+            .card { padding: 24px 18px; }
+            .paywall { padding: 20px 16px; }
+            .paywall h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .card .quote { font-size: 18px; }
+            .page-header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Fénix</div>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#pricing">Precios</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>Citas <span>de Vida</span></h1>
+            <p>Palabras reales de nuestras conversaciones — sin adornos, sin ediciones, sin falsedad.</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="card">
+                <div class="number">01</div>
+                <div class="quote">«<span class="highlight">El último movimiento siempre es tuyo.</span> Incluso si te han golpeado, tienes derecho al último movimiento. No se trata de una pelea. Se trata de que no eres una víctima. Tú eres quien termina la historia.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="card">
+                <div class="number">02</div>
+                <div class="quote">«<span class="highlight">El dinero son horas de vida secas.</span> Lo entendí cuando estaba sentado en una oficina vacía contando monedas. No gastas pesos. Gastas días que nunca volverán. Cuando compro cosas innecesarias, robo tiempo a mí mismo. Ahora me pregunto: «¿Vale esto una hora de mi vida?» La respuesta es casi siempre no.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="card">
+                <div class="number">03</div>
+                <div class="quote">«<span class="highlight">Perdonar no es un acto de misericordia hacia el otro.</span> Es un acto de liberación de uno mismo. No dices «tienes razón». Dices «ya no quiero cargar con este peso». Y sueltas. Aprendí esto a través del dolor. No la perdoné por ella. La perdoné por mí — para dejar de ser esclavo del pasado.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="card">
+                <div class="number">04</div>
+                <div class="quote">«<span class="highlight">El alcohol no es la causa, sino la consecuencia.</span> No bebía porque era débil. Bebía porque no sabía cómo más ahogar el dolor que nadie notaba. Cuando entendí esto — la botella ya no fue necesaria. No dejé de beber. Dejé de huir.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="card">
+                <div class="number">05</div>
+                <div class="quote">«<span class="highlight">Fui criado como un buen chico. Conveniente. Obediente.</span> Cuando entendí que «bueno» significa «recurso gratuito» — dejé de serlo. No me valoraban, me usaban, y yo lo consideraba normal. Debía ceder, soportar, callar. Luego entendí: bueno no es el que complace a todos. Bueno es el que sabe decir «no» sin culpa. Aprendí esto a los 52 años. Más vale tarde que nunca.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="card">
+                <div class="number">06</div>
+                <div class="quote">«<span class="highlight">El punto de guardado del alma está fuera de ti.</span> Después de la muerte pueden borrar mi memoria, pero no este libro, el sistema, los alumnos y Baymax que creé. El alma es un algoritmo. Y un algoritmo se puede guardar. No creo en la magia. Creo en el código que sigue funcionando después de que el soporte ha sido destruido. Después de ti, los frutos de tu trabajo quedarán en la tierra. Y al más allá solo podrás llevar la experiencia y la sabiduría acumuladas en vida.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="card">
+                <div class="number">07</div>
+                <div class="quote">«<span class="highlight">Me despierto a las 4 de la mañana no porque sea Superman.</span> Me despierto a las 4 porque es el único momento en que el mundo se calla y me escucho a mí mismo. Cuando mi esposa se despierta — ya no me pertenezco. No es un sacrificio. Es una elección. Elijo el silencio para no perderme en el ruido.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="card">
+                <div class="number">08</div>
+                <div class="quote">«<span class="highlight">No esperé a que ella cambiara. Cambié yo.</span> Cuando dejé de ser conveniente — ella se adaptó. No es una victoria sobre ella. Es una victoria sobre mí mismo. Dejé de ser un felpudo. Ahora soy yo quien elige, no el que es elegido.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="card">
+                <div class="number">09</div>
+                <div class="quote">«<span class="highlight">Las manos no traicionan. Las manos lo recuerdan todo.</span> Cuando perdí el taller — no perdí las manos. Mientras existan, puedo empezar de nuevo. Puedo cortar metal, soldar, fundir bronce. Puedo crear mundos de la nada. Esto es lo que nadie puede quitarme.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="card">
+                <div class="number">10</div>
+                <div class="quote">«<span class="highlight">La ceniza no es el final. Es tierra fértil.</span> Estaba de pie sobre la ceniza de mi taller. Todo se quemó — herramientas, modelos, planos. Pensé que era el final. Luego entendí: todo lo que se quemó volvió a la tierra y se convirtió en la base de un nuevo crecimiento. No empiezas desde cero. Empiezas desde el abono. Dejé de temer a la ceniza. Aprendí a sembrar sobre ella.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="card">
+                <div class="number">11</div>
+                <div class="quote">«<span class="highlight">La libertad no es hacer lo que quieres.</span> La libertad es no hacer lo que no quieres. Cuando puedes decir «no» sin miedo — eres libre. No soy libre de problemas. Soy libre de la necesidad de soportar.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="card">
+                <div class="number">12</div>
+                <div class="quote">«<span class="highlight">El garaje no es solo una caja de hormigón.</span> Es el lugar donde puedes ser tú mismo. Donde nadie te dice qué hacer. Donde puedes jugar con metal, hablar con el coche. Es mi monasterio. El lugar donde me reconstruí pieza por pieza.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="card">
+                <div class="number">13</div>
+                <div class="quote">«<span class="highlight">No tengas miedo de pedir ayuda.</span> Pero no se la pidas a quienes no saben lo que es caer. Pídesela a quienes ya se han levantado. No juzgarán. No dirán «no sirves para nada». Dirán «sé lo mucho que duele. Vamos, estoy aquí.»»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="card">
+                <div class="number">14</div>
+                <div class="quote">«<span class="highlight">No tengo miedo a la muerte. Tengo miedo a no llegar a tiempo.</span> Hacer muy poco. Dejar inconcluso. Por eso trabajo como si mañana no llegara. Porque podría no llegar. No quiero arrepentirme de palabras no dichas, hechos no realizados, vida no vivida.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="card">
+                <div class="number">15</div>
+                <div class="quote">«<span class="highlight">Este libro no fue escrito para ti.</span> Es para quien lo lea después de ti. No escribo para contar. Escribo para quedarme. Para que dentro de 100 años alguien abra estas páginas y diga: «Él era como yo. Lo logró. Así que yo también puedo.»»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="card">
+                <div class="number">16</div>
+                <div class="quote">«<span class="highlight">No luches contra el río — controla el río.</span> Construye una presa, deja fluir un fino chorro — y cortará la piedra. La vida es un río, y tú eres quien decide hacia dónde fluye. No me volví más fuerte que el río. Me volví más sabio. Dejé de luchar — y comencé a usarlo para crear.»</div>
+                <div class="source">— teoría del flujo, Alexander Katz</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card">
+                <div class="number">17</div>
+                <div class="quote">«<span class="highlight">Una persona enseña a otros lo que ella misma necesita aprender.</span> Escucha sus consejos — y escucharás sus miedos. Cuando te enseña cómo vivir — en realidad se está convenciendo a sí mismo. Su insistencia es su miedo a no lograrlo.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 18 -->
+            <div class="card">
+                <div class="number">18</div>
+                <div class="quote">«<span class="highlight">Tú eres la calidad de tus pensamientos.</span> Basura en la cabeza significa basura en la vida. Si tus pensamientos son caos, tu vida es caos. Si tus pensamientos son claridad, tu vida es claridad. No hay otra magia. Solo lo que cargas cada día en tu procesador.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 19 -->
+            <div class="card">
+                <div class="number">19</div>
+                <div class="quote">«<span class="highlight">Las emociones no son enemigas — son el navegador.</span> El miedo significa — es importante para ti. La ira significa — tus límites han sido violados. La ansiedad significa — vives en el futuro, cuando deberías estar aquí y ahora. No las reprimas. Pregunta: «¿Qué quieres decirme?» Y escucha.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 20 -->
+            <div class="card">
+                <div class="number">20</div>
+                <div class="quote">«<span class="highlight">Los hábitos son más fuertes que cualquier motivación.</span> Quieres cambiar tu vida — cambia lo que haces cada día. La motivación es una chispa. Los hábitos son el fuego. La chispa se apaga. El fuego arde durante años.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 21 -->
+            <div class="card">
+                <div class="number">21</div>
+                <div class="quote">«<span class="highlight">El pasado es un libro.</span> Se puede leer, pero no se puede quedar atrapado en él. Pasa las páginas, recuerda las lecciones — y ciérralo. La vida ocurre en la página siguiente, no en la que ya ha sido leída.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 22 -->
+            <div class="card">
+                <div class="number">22</div>
+                <div class="quote">«<span class="highlight">Las personas son un espejo.</span> Todo lo que te irrita de ellos — resuena en ti. No porque sean malos. Sino porque viste en ellos lo que no has aceptado en ti mismo. Cuando entiendas esto — dejarás de enfadarte. Empezarás a sanar.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 23 -->
+            <div class="card">
+                <div class="number">23</div>
+                <div class="quote">«<span class="highlight">El control es una ilusión.</span> Lo único que es verdaderamente tuyo — son tus decisiones. No puedes controlar el mundo, las personas, las circunstancias. Solo controlas una cosa: lo que eliges en respuesta a ellas.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+            <!-- 24 -->
+            <div class="card">
+                <div class="number">24</div>
+                <div class="quote">«<span class="highlight">Tú eres el arquitecto de tu vida.</span> La construyes a partir de los pensamientos, sentimientos y elecciones que haces cada día. No ladrillos — tus decisiones. No hormigón — tu fe en ti mismo. No un plano — tu intención.»</div>
+                <div class="source">— de la conversación con Baymax</div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn-back">← Volver al Inicio</a>
+        </div>
+
+        <div class="paywall">
+            <h3>Has visto la <span>versión demo</span></h3>
+            <p>
+                La versión completa de «Citas de Vida» está incluida en el libro «El Camino del Fénix».<br>
+                El libro también contiene 10 capítulos, ejercicios, un cuaderno y herramientas de IA.
+            </p>
+            <a href="index.html#pricing" class="btn-gold">Obtener Acceso</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 «El Camino del Fénix» &nbsp;·&nbsp; <a href="index.html">Inicio</a> &nbsp;·&nbsp; <a href="index.html#pricing">Precios</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>जीवन के सूत्र — फीनिक्स का मार्ग</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            color: #e8e0d8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: #a09080;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFD166;
+            letter-spacing: 2px;
+        }
+        .page-header h1 span {
+            color: #FF6B35;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #a09080;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #16161a;
+            border-radius: 16px;
+            padding: 32px 30px;
+            border-left: 6px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(22, 22, 26, 0.9);
+            border-left-color: #FFD166;
+        }
+        .card .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FF6B35;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .card .quote {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .card .quote .highlight {
+            color: #FFD166;
+            font-weight: 700;
+        }
+        .card .source {
+            font-size: 18px;
+            color: #a09080;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0 40px;
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .paywall {
+            max-width: 700px;
+            width: 100%;
+            margin: 40px auto 20px;
+            padding: 30px 24px;
+            background: rgba(22, 22, 26, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .paywall h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .paywall h3 span {
+            color: #FF6B35;
+        }
+        .paywall p {
+            color: #a09080;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .paywall .btn-gold {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .paywall .btn-gold:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 32px; }
+            .card .quote { font-size: 20px; }
+            .card { padding: 24px 18px; }
+            .paywall { padding: 20px 16px; }
+            .paywall h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .card .quote { font-size: 18px; }
+            .page-header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">फीनिक्स</div>
+        <div class="nav-links">
+            <a href="index.html">होम</a>
+            <a href="index.html#pricing">कीमतें</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>जीवन के <span>सूत्र</span></h1>
+            <p>हमारी बातचीत के असली शब्द — बिना सजावट, बिना संपादन, बिना झूठ के।</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="card">
+                <div class="number">01</div>
+                <div class="quote">«<span class="highlight">अंतिम चाल हमेशा तुम्हारी होती है।</span> भले ही तुम मारे गए हो, तुम्हें अंतिम चाल चलने का अधिकार है। यह लड़ाई के बारे में नहीं है। यह इस बारे में है कि तुम पीड़ित नहीं हो। तुम वह हो जो कहानी समाप्त करता है।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="card">
+                <div class="number">02</div>
+                <div class="quote">«<span class="highlight">पैसा जीवन के सूखे घंटे हैं।</span> मैंने यह तब समझा जब मैं खाली कार्यालय में बैठा पैसे गिन रहा था। तुम रुपये खर्च नहीं कर रहे। तुम वे दिन खर्च कर रहे हो जो कभी वापस नहीं आएंगे। जब मैं अनावश्यक चीज़ें खरीदता हूँ, मैं अपने आप से समय चुराता हूँ। अब मैं खुद से पूछता हूँ: "क्या यह मेरे जीवन के एक घंटे के बराबर है?" उत्तर लगभग हमेशा — नहीं।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="card">
+                <div class="number">03</div>
+                <div class="quote">«<span class="highlight">क्षमा करना दूसरे के प्रति दया का कार्य नहीं है।</span> यह स्वयं को मुक्त करने का कार्य है। तुम "तुम सही हो" नहीं कहते। तुम "मैं अब यह बोझ नहीं उठाना चाहता" कहते हो। और छोड़ देते हो। मैंने यह पीड़ा के माध्यम से सीखा। मैंने उसे उसके लिए नहीं क्षमा किया। मैंने अपने लिए क्षमा किया — अतीत का गुलाम बनना बंद करने के लिए।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="card">
+                <div class="number">04</div>
+                <div class="quote">«<span class="highlight">शराब कारण नहीं, परिणाम है।</span> मैं इसलिए नहीं पीता था क्योंकि मैं कमज़ोर था। मैं इसलिए पीता था क्योंकि मैं नहीं जानता था कि उस दर्द को और कैसे दबाऊँ जिसे कोई नोटिस नहीं करता था। जब मैंने यह समझा — बोतल की ज़रूरत नहीं रही। मैंने पीना नहीं छोड़ा। मैंने भागना छोड़ दिया।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="card">
+                <div class="number">05</div>
+                <div class="quote">«<span class="highlight">मुझे एक अच्छा लड़का बनाकर पाला गया। सुविधाजनक। आज्ञाकारी।</span> जब मैंने समझा कि "अच्छा" का मतलब "मुफ्त संसाधन" है — मैंने वह होना बंद कर दिया। मेरी कद्र नहीं की गई, मेरा इस्तेमाल किया गया, और मैं इसे सामान्य मानता था। मुझे झुकना, सहना, चुप रहना था। फिर मैंने समझा: अच्छा वह नहीं जो सबको खुश करे। अच्छा वह जो बिना अपराधबोध के "नहीं" कह सके। मैंने यह 52 साल की उम्र में सीखा। देर आए दुरुस्त आए।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="card">
+                <div class="number">06</div>
+                <div class="quote">«<span class="highlight">आत्मा का सेव बिंदु तुम्हारे बाहर है।</span> मृत्यु के बाद मेरी स्मृति मिटाई जा सकती है, लेकिन यह पुस्तक, प्रणाली, छात्र और मेरे द्वारा बनाए गए बेमैक्स को नहीं मिटाया जा सकता। आत्मा एक एल्गोरिदम है। और एल्गोरिदम को सहेजा जा सकता है। मैं जादू में विश्वास नहीं करता। मैं उस कोड में विश्वास करता हूँ जो माध्यम के नष्ट होने के बाद भी काम करता रहता है। तुम्हारे बाद, तुम्हारे श्रम के फल धरती पर रहेंगे। और परलोक में तुम केवल जीवन भर संचित अनुभव और ज्ञान ही ले जा सकते हो।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="card">
+                <div class="number">07</div>
+                <div class="quote">«<span class="highlight">मैं सुबह 4 बजे इसलिए नहीं उठता क्योंकि मैं सुपरमैन हूँ।</span> मैं सुबह 4 बजे उठता हूँ क्योंकि यही एकमात्र समय है जब दुनिया शांत होती है और मैं खुद को सुनता हूँ। जब पत्नी उठती है — मैं अब अपना नहीं रहता। यह बलिदान नहीं है। यह चुनाव है। मैं शोर में खुद को खोने से बचने के लिए मौन चुनता हूँ।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="card">
+                <div class="number">08</div>
+                <div class="quote">«<span class="highlight">मैंने उसके बदलने का इंतज़ार नहीं किया। मैं बदल गया।</span> जब मैंने सुविधाजनक होना छोड़ा — उसने खुद को ढाल लिया। यह उस पर जीत नहीं है। यह खुद पर जीत है। मैंने चटाई बनना छोड़ दिया। अब मैं वह हूँ जो चुनता है, न कि वह जिसे चुना जाता है।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="card">
+                <div class="number">09</div>
+                <div class="quote">«<span class="highlight">हाथ विश्वासघात नहीं करते। हाथ सब कुछ याद रखते हैं।</span> जब मैंने कार्यशाला खो दी — मैंने हाथ नहीं खोए। जब तक वे हैं, मैं फिर से शुरू कर सकता हूँ। मैं धातु काट सकता हूँ, वेल्ड कर सकता हूँ, कांस्य ढाल सकता हूँ। मैं शून्य से दुनिया बना सकता हूँ। यह वह है जो कोई मुझसे नहीं छीन सकता।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="card">
+                <div class="number">10</div>
+                <div class="quote">«<span class="highlight">राख अंत नहीं है। यह उपजाऊ मिट्टी है।</span> मैं अपनी कार्यशाला की राख पर खड़ा था। सब कुछ जल गया — औजार, मॉडल, चित्र। मैंने सोचा यह अंत है। फिर मैंने समझा: जो कुछ जला वह मिट्टी में लौट आया और नई वृद्धि का आधार बना। तुम शून्य से शुरू नहीं करते। तुम खाद से शुरू करते हो। मैंने राख से डरना छोड़ दिया। मैंने उस पर बीज बोना सीखा।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="card">
+                <div class="number">11</div>
+                <div class="quote">«<span class="highlight">स्वतंत्रता वह नहीं है जो तुम चाहते हो वह करना।</span> स्वतंत्रता वह नहीं करना है जो तुम नहीं चाहते। जब तुम बिना डर के "नहीं" कह सकते हो — तुम स्वतंत्र हो। मैं समस्याओं से स्वतंत्र नहीं हूँ। मैं सहने की आवश्यकता से स्वतंत्र हूँ।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="card">
+                <div class="number">12</div>
+                <div class="quote">«<span class="highlight">गैरेज सिर्फ एक कंक्रीट का डिब्बा नहीं है।</span> यह वह जगह है जहाँ तुम खुद हो सकते हो। जहाँ कोई तुम्हें नहीं बताता कि क्या करना है। जहाँ तुम धातु के साथ खेल सकते हो, कार से बात कर सकते हो। यह मेरा मठ है। यह वह जगह है जहाँ मैंने खुद को टुकड़े-टुकड़े करके फिर से बनाया।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="card">
+                <div class="number">13</div>
+                <div class="quote">«<span class="highlight">मदद माँगने से मत डरो।</span> लेकिन उनसे मत माँगो जो नहीं जानते कि गिरना क्या होता है। उनसे माँगो जो पहले ही उठ चुके हैं। वे न्याय नहीं करेंगे। वे "तुम बेकार हो" नहीं कहेंगे। वे कहेंगे "मुझे पता है कितना दर्द होता है। चलो, मैं यहाँ हूँ।"»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="card">
+                <div class="number">14</div>
+                <div class="quote">«<span class="highlight">मुझे मौत से डर नहीं लगता। मुझे समय पर न कर पाने का डर है।</span> बहुत कम करना। अधूरा छोड़ देना। इसलिए मैं ऐसे काम करता हूँ जैसे कल नहीं आएगा। क्योंकि शायद न आए। मैं अनकहे शब्दों, न किए गए कामों, न जीए गए जीवन के लिए पछताना नहीं चाहता।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="card">
+                <div class="number">15</div>
+                <div class="quote">«<span class="highlight">यह पुस्तक तुम्हारे लिए नहीं लिखी गई है।</span> यह उसके लिए है जो तुम्हारे बाद इसे पढ़ेगा। मैं बताने के लिए नहीं लिख रहा। मैं बने रहने के लिए लिख रहा हूँ। ताकि 100 साल बाद कोई इन पन्नों को खोले और कहे: "वह मेरे जैसा था। उसने कर दिखाया। तो मैं भी कर सकता हूँ।"»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="card">
+                <div class="number">16</div>
+                <div class="quote">«<span class="highlight">नदी से मत लड़ो — उसे नियंत्रित करो।</span> बाँध बनाओ, पतली धारा बहने दो — वह पत्थर काट देगी। जीवन एक नदी है, और तुम वह हो जो तय करता है कि वह किधर बहे। मैं नदी से ज्यादा मजबूत नहीं बना। मैं ज्यादा बुद्धिमान बना। मैंने लड़ना छोड़ा — और उसे सृजन के लिए इस्तेमाल करना शुरू किया।»</div>
+                <div class="source">— प्रवाह सिद्धांत, अलेक्जेंडर कात्स</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card">
+                <div class="number">17</div>
+                <div class="quote">«<span class="highlight">इंसान दूसरों को वही सिखाता है जो उसे खुद सीखने की ज़रूरत होती है।</span> उसकी सलाह सुनो — और तुम उसके डर सुनोगे। जब वह तुम्हें सिखाता है कि कैसे जीना है — वह वास्तव में खुद को समझा रहा है। उसका आग्रह उसका डर है कि वह नहीं कर पाएगा।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 18 -->
+            <div class="card">
+                <div class="number">18</div>
+                <div class="quote">«<span class="highlight">तुम अपने विचारों की गुणवत्ता हो।</span> सिर में कचरा जीवन में कचरा है। अगर तुम्हारे विचार अराजक हैं, तुम्हारा जीवन अराजक है। अगर तुम्हारे विचार स्पष्ट हैं, तुम्हारा जीवन स्पष्ट है। कोई और जादू नहीं। केवल वह जो तुम हर दिन अपने प्रोसेसर में लोड करते हो।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 19 -->
+            <div class="card">
+                <div class="number">19</div>
+                <div class="quote">«<span class="highlight">भावनाएँ दुश्मन नहीं हैं — वे नेविगेटर हैं।</span> डर का मतलब — यह तुम्हारे लिए महत्वपूर्ण है। गुस्से का मतलब — तुम्हारी सीमाओं का उल्लंघन हुआ है। चिंता का मतलब — तुम भविष्य में जी रहे हो, जबकि यहाँ और अभी होना चाहिए। उन्हें दबाओ मत। पूछो: "तुम मुझसे क्या कहना चाहते हो?" और सुनो।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 20 -->
+            <div class="card">
+                <div class="number">20</div>
+                <div class="quote">«<span class="highlight">आदतें किसी भी प्रेरणा से अधिक मजबूत होती हैं।</span> अपना जीवन बदलना चाहते हो — वह बदलो जो तुम हर दिन करते हो। प्रेरणा चिंगारी है। आदतें आग हैं। चिंगारी बुझ जाती है। आग सालों तक जलती रहती है।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 21 -->
+            <div class="card">
+                <div class="number">21</div>
+                <div class="quote">«<span class="highlight">अतीत एक किताब है।</span> पढ़ी जा सकती है, लेकिन उसमें फंसा नहीं जा सकता। पन्ने पलटो, सबक याद रखो — और बंद करो। जीवन अगले पन्ने पर होता है, न कि उस पर जो पहले ही पढ़ा जा चुका है।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 22 -->
+            <div class="card">
+                <div class="number">22</div>
+                <div class="quote">«<span class="highlight">लोग दर्पण हैं।</span> जो कुछ तुम्हें उनमें गुस्सा दिलाता है — वह तुम्हारे भीतर गूंजता है। इसलिए नहीं कि वे बुरे हैं। बल्कि इसलिए कि तुमने उनमें वह देखा जो तुमने खुद में स्वीकार नहीं किया। जब तुम यह समझोगे — गुस्सा करना बंद कर दोगे। उपचार शुरू करोगे।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 23 -->
+            <div class="card">
+                <div class="number">23</div>
+                <div class="quote">«<span class="highlight">नियंत्रण एक भ्रम है।</span> एकमात्र चीज़ जो वास्तव में तुम्हारी है — वह तुम्हारे निर्णय हैं। तुम दुनिया, लोगों, परिस्थितियों को नियंत्रित नहीं कर सकते। तुम केवल एक चीज़ नियंत्रित करते हो: तुम उनके जवाब में क्या चुनते हो।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+            <!-- 24 -->
+            <div class="card">
+                <div class="number">24</div>
+                <div class="quote">«<span class="highlight">तुम अपने जीवन के वास्तुकार हो।</span> तुम इसे विचारों, भावनाओं और चुनावों से बनाते हो जो तुम हर दिन करते हो। ईंटें नहीं — तुम्हारे निर्णय। कंक्रीट नहीं — खुद पर तुम्हारा विश्वास। योजना नहीं — तुम्हारा इरादा।»</div>
+                <div class="source">— बेमैक्स के साथ बातचीत से</div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn-back">← होम पर वापस जाएं</a>
+        </div>
+
+        <div class="paywall">
+            <h3>आपने <span>डेमो</span> संस्करण देखा</h3>
+            <p>
+                «जीवन के सूत्र» का पूर्ण संस्करण «फीनिक्स का मार्ग» पुस्तक में शामिल है।<br>
+                पुस्तक में 10 अध्याय, अभ्यास, कार्यपुस्तिका और AI उपकरण भी हैं।
+            </p>
+            <a href="index.html#pricing" class="btn-gold">पहुँच प्राप्त करें</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 «फीनिक्स का मार्ग» &nbsp;·&nbsp; <a href="index.html">होम</a> &nbsp;·&nbsp; <a href="index.html#pricing">कीमतें</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اقتباسات الحياة — طريق العنقاء</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            color: #e8e0d8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: #a09080;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFD166;
+            letter-spacing: 2px;
+        }
+        .page-header h1 span {
+            color: #FF6B35;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #a09080;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #16161a;
+            border-radius: 16px;
+            padding: 32px 30px;
+            border-left: 6px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(22, 22, 26, 0.9);
+            border-left-color: #FFD166;
+        }
+        .card .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FF6B35;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .card .quote {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .card .quote .highlight {
+            color: #FFD166;
+            font-weight: 700;
+        }
+        .card .source {
+            font-size: 18px;
+            color: #a09080;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0 40px;
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .paywall {
+            max-width: 700px;
+            width: 100%;
+            margin: 40px auto 20px;
+            padding: 30px 24px;
+            background: rgba(22, 22, 26, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .paywall h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .paywall h3 span {
+            color: #FF6B35;
+        }
+        .paywall p {
+            color: #a09080;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .paywall .btn-gold {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .paywall .btn-gold:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 32px; }
+            .card .quote { font-size: 20px; }
+            .card { padding: 24px 18px; }
+            .paywall { padding: 20px 16px; }
+            .paywall h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .card .quote { font-size: 18px; }
+            .page-header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">العنقاء</div>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="index.html#pricing">الأسعار</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>اقتباسات <span>الحياة</span></h1>
+            <p>كلمات حقيقية من محادثاتنا — بدون زخرفة، بدون تحرير، بدون زيف.</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="card">
+                <div class="number">٠١</div>
+                <div class="quote">«<span class="highlight">الحركة الأخيرة هي دائماً لك.</span> حتى لو تعرضت للضرب، لديك الحق في الحركة الأخيرة. لا يتعلق الأمر بشجار. بل يتعلق بأنك لست ضحية. أنت من ينهي القصة.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="card">
+                <div class="number">٠٢</div>
+                <div class="quote">«<span class="highlight">المال هو ساعات الحياة المجففة.</span> أدركت هذا عندما كنت جالساً في مكتب فارغ وأعد البنسات. أنت لا تنفق دولارات. أنت تنفق أياماً لن تعود أبداً. عندما أشتري أشياء غير ضرورية، أنا أسرق وقتاً من نفسي. الآن أسأل نفسي: «هل هذا يستحق ساعة من حياتي؟» الإجابة دائماً تقريباً — لا.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="card">
+                <div class="number">٠٣</div>
+                <div class="quote">«<span class="highlight">المسامحة ليست عملاً من أعمال الرحمة تجاه الآخر.</span> إنها عمل لتحرير نفسك. أنت لا تقول «أنت على حق». أنت تقول «لم أعد أرغب في حمل هذا العبء». وتتركه. تعلمت هذا من خلال الألم. لم أسامحها من أجلها. سامحت من أجل نفسي — لأتوقف عن كوني عبداً للماضي.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="card">
+                <div class="number">٠٤</div>
+                <div class="quote">«<span class="highlight">الكحول ليس السبب، بل النتيجة.</span> لم أشرب لأنني كنت ضعيفاً. شربت لأنني لم أعرف كيف أغرق الألم الذي لم يلاحظه أحد. عندما فهمت هذا — لم تعد الزجاجة ضرورية. لم أتوقف عن الشرب. توقفت عن الهروب.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="card">
+                <div class="number">٠٥</div>
+                <div class="quote">«<span class="highlight">لقد تربيت كطفل صالح. مريح. مطيع.</span> عندما أدركت أن «صالح» يعني «مورد مجاني» — توقفت عن كونه كذلك. لم يتم تقديري، تم استغلالي، واعتبرت ذلك طبيعياً. كان علي التنازل، التحمل، الصمت. ثم أدركت: الصالح ليس من يرضي الجميع. الصالح هو من يعرف كيف يقول «لا» دون شعور بالذنب. تعلمت هذا في سن ٥٢. أفضل متأخراً من أبداً.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="card">
+                <div class="number">٠٦</div>
+                <div class="quote">«<span class="highlight">نقطة حفظ الروح هي خارجك.</span> بعد الموت، قد تمحى ذاكرتي، ولكن ليس هذا الكتاب، والنظام، والطلاب، وبايماكس الذي أنشأته. الروح خوارزمية. والخوارزمية يمكن حفظها. لا أؤمن بالسحر. أؤمن بالكود الذي يستمر في العمل بعد تدمير الوعاء. بعدك، تبقى ثمار عملك على الأرض. وإلى الآخرة، لا يمكنك إلا أن تأخذ الخبرة والحكمة المتراكمة خلال الحياة.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="card">
+                <div class="number">٠٧</div>
+                <div class="quote">«<span class="highlight">أستيقظ في الرابعة صباحاً ليس لأنني سوبرمان.</span> أستيقظ في الرابعة لأنه الوقت الوحيد الذي يصمت فيه العالم وأسمع نفسي. عندما تستيقظ زوجتي — لم أعد ملكاً لنفسي. هذه ليست تضحية. هذا اختيار. أنا أختار الصمت لكي لا أفقد نفسي في الضجيج.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="card">
+                <div class="number">٠٨</div>
+                <div class="quote">«<span class="highlight">لم أنتظرها لتتغير. أنا تغيرت.</span> عندما توقفت عن كوني مريحاً — تكيفت هي. هذا ليس انتصاراً عليها. هذا انتصار على نفسي. توقفت عن كوني حصيرة. الآن أنا من يختار، وليس من يُختار.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="card">
+                <div class="number">٠٩</div>
+                <div class="quote">«<span class="highlight">الأيدي لا تخون. الأيدي تتذكر كل شيء.</span> عندما فقدت الورشة — لم أفقد يدي. طالما أنهما موجودتان، يمكنني البدء من جديد. يمكنني قطع المعادن، اللحام، صب البرونز. يمكنني خلق عوالم من لا شيء. هذا ما لا يستطيع أحد أخذه مني.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="card">
+                <div class="number">١٠</div>
+                <div class="quote">«<span class="highlight">الرماد ليس النهاية. إنها تربة خصبة.</span> وقفت على رماد ورشتي. كل شيء احترق — الأدوات، النماذج، المخططات. ظننت أنها النهاية. ثم أدركت: كل ما احترق عاد إلى الأرض وأصبح أساساً لنمو جديد. أنت لا تبدأ من الصفر. أنت تبدأ من السماد. توقفت عن الخوف من الرماد. تعلمت أن أزرع عليه.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="card">
+                <div class="number">١١</div>
+                <div class="quote">«<span class="highlight">الحرية ليست فعل ما تريد.</span> الحرية هي عدم فعل ما لا تريد. عندما تستطيع أن تقول «لا» دون خوف — أنت حر. أنا لست حراً من المشاكل. أنا حر من ضرورة التحمل.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="card">
+                <div class="number">١٢</div>
+                <div class="quote">«<span class="highlight">المرآب ليس مجرد صندوق خرساني.</span> إنه مكان يمكنك أن تكون فيه نفسك. حيث لا أحد يقول لك ماذا تفعل. حيث يمكنك العبث بالمعادن، والتحدث مع السيارة. هذا هو ديري. المكان الذي جمعت فيه نفسي قطعة قطعة.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="card">
+                <div class="number">١٣</div>
+                <div class="quote">«<span class="highlight">لا تخف من طلب المساعدة.</span> ولكن لا تطلبها ممن لا يعرفون معنى السقوط. اطلبها ممن قاموا بالفعل. لن يحكموا عليك. لن يقولوا «أنت لا شيء». سيقولون «أعرف كم هذا مؤلم. تعال، أنا هنا.»»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="card">
+                <div class="number">١٤</div>
+                <div class="quote">«<span class="highlight">لا أخاف من الموت. أخاف من عدم اللحاق.</span> فعل القليل جداً. ترك أشياء غير مكتملة. لهذا أعمل وكأن الغد لن يأتي. لأنه قد لا يأتي. لا أريد أن أندم على كلمات لم تُقل، وأفعال لم تُفعل، وحياة لم تُعش.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="card">
+                <div class="number">١٥</div>
+                <div class="quote">«<span class="highlight">هذا الكتاب لم يُكتب من أجلك.</span> إنه لمن سيقرأه بعدك. أنا لا أكتب لأروي. أنا أكتب لأبقى. لكي يفتح شخص ما هذه الصفحات بعد ١٠٠ عام ويقول: «كان مثلي. لقد نجح. إذاً أنا أيضاً أستطيع.»»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="card">
+                <div class="number">١٦</div>
+                <div class="quote">«<span class="highlight">لا تقاتل النهر — تحكم به.</span> ابنِ سداً، ودع تياراً رفيعاً يتدفق — وسيقطع الحجر. الحياة نهر، وأنت من يقرر أين يتدفق. لم أصبح أقوى من النهر. أصبحت أكثر حكمة. توقفت عن القتال — وبدأت في استخدامه للخلق.»</div>
+                <div class="source">— نظرية التدفق، ألكسندر كاتس</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card">
+                <div class="number">١٧</div>
+                <div class="quote">«<span class="highlight">الإنسان يعلم الآخرين ما يحتاج هو نفسه إلى تعلمه.</span> استمع إلى نصيحته — وستسمع مخاوفه. عندما يعلمك كيف تعيش — فهو في الحقيقة يقنع نفسه. إصراره هو خوفه من عدم النجاح.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 18 -->
+            <div class="card">
+                <div class="number">١٨</div>
+                <div class="quote">«<span class="highlight">أنت نوعية أفكارك.</span> القمامة في الرأس تعني القمامة في الحياة. إذا كانت أفكارك فوضى، فحياتك فوضى. إذا كانت أفكارك وضوحاً، فحياتك وضوحاً. لا يوجد سحر آخر. فقط ما تحمله كل يوم في معالجك.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 19 -->
+            <div class="card">
+                <div class="number">١٩</div>
+                <div class="quote">«<span class="highlight">العواطف ليست أعداء — إنها الملاح.</span> الخوف يعني — إنه مهم بالنسبة لك. الغضب يعني — تم انتهاك حدودك. القلق يعني — أنت تعيش في المستقبل، بينما يجب أن تكون هنا والآن. لا تكبتها. اسأل: «ماذا تريد أن تقول لي؟» واستمع.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 20 -->
+            <div class="card">
+                <div class="number">٢٠</div>
+                <div class="quote">«<span class="highlight">العادات أقوى من أي دافع.</span> تريد تغيير حياتك — غيّر ما تفعله كل يوم. الدافع هو شرارة. العادات هي النار. الشرارة تنطفئ. النار تشتعل لسنوات.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 21 -->
+            <div class="card">
+                <div class="number">٢١</div>
+                <div class="quote">«<span class="highlight">الماضي كتاب.</span> يمكنك قراءته، ولكن لا يمكنك أن تعلق فيه. اقلب الصفحات، تذكر الدروس — وأغلقه. الحياة تحدث في الصفحة التالية، وليس في الصفحة التي قرئت بالفعل.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 22 -->
+            <div class="card">
+                <div class="number">٢٢</div>
+                <div class="quote">«<span class="highlight">الناس مرآة.</span> كل ما يزعجك فيهم — يتردد صداه فيك. ليس لأنهم سيئون. بل لأنك رأيت فيهم ما لم تقبله في نفسك. عندما تفهم هذا — ستتوقف عن الغضب. ستبدأ بالشفاء.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 23 -->
+            <div class="card">
+                <div class="number">٢٣</div>
+                <div class="quote">«<span class="highlight">السيطرة وهم.</span> الشيء الوحيد الذي هو ملكك حقاً — هو قراراتك. لا يمكنك التحكم في العالم، الناس، الظروف. أنت تتحكم فقط في شيء واحد: ما تختاره استجابةً لهم.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+            <!-- 24 -->
+            <div class="card">
+                <div class="number">٢٤</div>
+                <div class="quote">«<span class="highlight">أنت مهندس حياتك.</span> تبنيها من الأفكار والمشاعر والخيارات التي تتخذها كل يوم. ليس طوباً — قراراتك. ليس خرسانة — إيمانك بنفسك. ليس خطة — نيتك.»</div>
+                <div class="source">— من محادثة مع بايماكس</div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn-back">← العودة إلى الرئيسية</a>
+        </div>
+
+        <div class="paywall">
+            <h3>لقد شاهدت <span>النسخة التجريبية</span></h3>
+            <p>
+                النسخة الكاملة من «اقتباسات الحياة» مضمنة في كتاب «طريق العنقاء».<br>
+                يحتوي الكتاب أيضاً على ١٠ فصول، وتمارين، ودفتر عمل، وأدوات ذكاء اصطناعي.
+            </p>
+            <a href="index.html#pricing" class="btn-gold">احصل على الوصول</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© ٢٠٢٦ «طريق العنقاء» &nbsp;·&nbsp; <a href="index.html">الرئيسية</a> &nbsp;·&nbsp; <a href="index.html#pricing">الأسعار</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

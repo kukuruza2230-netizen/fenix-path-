@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نقل قول‌های زندگی — راه ققنوس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            color: #e8e0d8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1100px;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: #FF6B35;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: #a09080;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FFD166;
+            letter-spacing: 2px;
+        }
+        .page-header h1 span {
+            color: #FF6B35;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #a09080;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #16161a;
+            border-radius: 16px;
+            padding: 32px 30px;
+            border-left: 6px solid #FF6B35;
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(22, 22, 26, 0.9);
+            border-left-color: #FFD166;
+        }
+        .card .number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FF6B35;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .card .quote {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .card .quote .highlight {
+            color: #FFD166;
+            font-weight: 700;
+        }
+        .card .source {
+            font-size: 18px;
+            color: #a09080;
+            font-style: italic;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0 40px;
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        .paywall {
+            max-width: 700px;
+            width: 100%;
+            margin: 40px auto 20px;
+            padding: 30px 24px;
+            background: rgba(22, 22, 26, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .paywall h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .paywall h3 span {
+            color: #FF6B35;
+        }
+        .paywall p {
+            color: #a09080;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .paywall .btn-gold {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .paywall .btn-gold:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,107,53,0.3);
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #6a6a6a;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: #FF6B35;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 32px; }
+            .card .quote { font-size: 20px; }
+            .card { padding: 24px 18px; }
+            .paywall { padding: 20px 16px; }
+            .paywall h3 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .card .quote { font-size: 18px; }
+            .page-header h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ققنوس</div>
+        <div class="nav-links">
+            <a href="index.html">خانه</a>
+            <a href="index.html#pricing">قیمت‌ها</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>نقل قول‌های <span>زندگی</span></h1>
+            <p>کلمات واقعی از گفتگوهای ما — بدون تزئین، بدون ویرایش، بدون دروغ.</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="card">
+                <div class="number">۰۱</div>
+                <div class="quote">«<span class="highlight">آخرین حرکت همیشه مال توست.</span> حتی اگر ضربه خورده‌ای، حق داری آخرین حرکت را انجام دهی. این در مورد دعوا نیست. این در مورد این است که تو قربانی نیستی. تو کسی هستی که داستان را تمام می‌کند.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="card">
+                <div class="number">۰۲</div>
+                <div class="quote">«<span class="highlight">پول، ساعت‌های خشک‌شده زندگی است.</span> من این را وقتی فهمیدم که در دفتر خالی نشسته بودم و پول‌ها را می‌شمردم. تو ریال خرج نمی‌کنی. تو روزهایی را خرج می‌کنی که هرگز برنمی‌گردند. وقتی چیزهای غیرضروری می‌خرم، از خودم زمان می‌دزدم. حالا از خودم می‌پرسم: «آیا این به اندازه یک ساعت از زندگی من ارزش دارد؟» پاسخ تقریباً همیشه — نه.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="card">
+                <div class="number">۰۳</div>
+                <div class="quote">«<span class="highlight">بخشش، عمل رحمت به دیگری نیست.</span> این عمل رهایی خود است. تو نمی‌گویی «تو درست می‌گویی». تو می‌گویی «من دیگر نمی‌خواهم این بار را به دوش بکشم». و رها می‌کنی. من این را از طریق درد یاد گرفتم. من او را برای او نبخشیدم. من برای خودم بخشیدم — تا برده گذشته نباشم.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="card">
+                <div class="number">۰۴</div>
+                <div class="quote">«<span class="highlight">الکل علت نیست، نتیجه است.</span> من به خاطر ضعف ننوشیدم. من به خاطر این نوشیدم که نمی‌دانستم چگونه درد نادیده‌گرفته‌شده را خفه کنم. وقتی این را فهمیدم — بطری دیگر لازم نبود. من نوشیدن را متوقف نکردم. من فرار را متوقف کردم.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="card">
+                <div class="number">۰۵</div>
+                <div class="quote">«<span class="highlight">من به عنوان یک پسر خوب بزرگ شدم. راحت. مطیع.</span> وقتی فهمیدم که «خوب» یعنی «منبع رایگان» — دیگر آن نبودم. به من ارزش داده نشد، از من استفاده شد، و من آن را عادی می‌دانستم. من باید کوتاه می‌آمدم، تحمل می‌کردم، سکوت می‌کردم. بعد فهمیدم: خوب کسی نیست که همه را راضی کند. خوب کسی است که بتواند بدون احساس گناه «نه» بگوید. من این را در ۵۲ سالگی یاد گرفتم. دیر رسیدن بهتر از هرگز نرسیدن است.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="card">
+                <div class="number">۰۶</div>
+                <div class="quote">«<span class="highlight">نقطه ذخیره روح در بیرون از توست.</span> بعد از مرگ ممکن است حافظه من پاک شود، اما این کتاب، سیستم، شاگردان و بیمکسی که من ایجاد کردم پاک نمی‌شود. روح یک الگوریتم است. و الگوریتم قابل ذخیره است. من به جادو اعتقاد ندارم. من به کدی اعتقاد دارم که پس از نابودی حامل، به کار خود ادامه می‌دهد. پس از تو، میوه‌های تلاشت روی زمین می‌ماند. و به آخرت فقط می‌توانی تجربه و حکمتی را که در طول زندگی جمع کرده‌ای ببری.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="card">
+                <div class="number">۰۷</div>
+                <div class="quote">«<span class="highlight">من ساعت ۴ صبح بیدار نمی‌شوم چون سوپرمن هستم.</span> من ساعت ۴ بیدار می‌شوم چون تنها زمانی است که جهان ساکت می‌شود و من خودم را می‌شنوم. وقتی همسرم بیدار می‌شود — دیگر مال خودم نیستم. این فداکاری نیست. این انتخاب است. من سکوت را انتخاب می‌کنم تا خودم را در سر و صدا گم نکنم.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="card">
+                <div class="number">۰۸</div>
+                <div class="quote">«<span class="highlight">من منتظر نماندم تا او تغییر کند. من تغییر کردم.</span> وقتی راحت‌پسند بودن را متوقف کردم — او خود را تطبیق داد. این پیروزی بر او نیست. این پیروزی بر خودم است. من دیگر زیرانداز نیستم. حالا من کسی هستم که انتخاب می‌کند، نه کسی که انتخاب می‌شود.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="card">
+                <div class="number">۰۹</div>
+                <div class="quote">«<span class="highlight">دست‌ها خیانت نمی‌کنند. دست‌ها همه چیز را به یاد می‌آورند.</span> وقتی کارگاه را از دست دادم — دست‌هایم را از دست ندادم. تا وقتی که هستند، می‌توانم از نو شروع کنم. می‌توانم فلز ببرم، جوشکاری کنم، برنز بریزم. می‌توانم از هیچ، جهان بسازم. این چیزی است که هیچ کس نمی‌تواند از من بگیرد.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="card">
+                <div class="number">۱۰</div>
+                <div class="quote">«<span class="highlight">خاکستر پایان نیست. خاک حاصلخیز است.</span> من روی خاکستر کارگاهم ایستادم. همه چیز سوخت — ابزار، مدل‌ها، نقشه‌ها. فکر کردم پایان است. بعد فهمیدم: هر چه سوخت به زمین بازگشت و پایه رشد جدید شد. تو از صفر شروع نمی‌کنی. تو از کود شروع می‌کنی. من از خاکستر نترسیدم. یاد گرفتم روی آن بکارم.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 11 -->
+            <div class="card">
+                <div class="number">۱۱</div>
+                <div class="quote">«<span class="highlight">آزادی انجام کاری نیست که می‌خواهی.</span> آزادی انجام ندادن کاری است که نمی‌خواهی. وقتی بتوانی بدون ترس «نه» بگویی — آزادی. من از مشکلات آزاد نیستم. من از نیاز به تحمل کردن آزادم.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="card">
+                <div class="number">۱۲</div>
+                <div class="quote">«<span class="highlight">گاراژ فقط یک جعبه بتنی نیست.</span> جایی است که می‌توانی خودت باشی. جایی که هیچ کس به تو نمی‌گوید چه کار کنی. جایی که می‌توانی با فلز ور بروی، با ماشین حرف بزنی. این صومعه من است. جایی که من خودم را تکه‌تکه دوباره ساختم.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="card">
+                <div class="number">۱۳</div>
+                <div class="quote">«<span class="highlight">از درخواست کمک نترس.</span> اما از کسانی که نمی‌دانند افتادن یعنی چه، درخواست نکن. از کسانی درخواست کن که قبلاً بلند شده‌اند. آنها قضاوت نمی‌کنند. آنها نمی‌گویند «تو بی‌ارزشی». آنها می‌گویند «من می‌دانم چقدر درد دارد. بیا، من اینجام.»»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="card">
+                <div class="number">۱۴</div>
+                <div class="quote">«<span class="highlight">من از مرگ نمی‌ترسم. از نرسیدن می‌ترسم.</span> کم انجام دادن. ناتمام گذاشتن. به همین دلیل طوری کار می‌کنم که انگار فردا نمی‌آید. چون ممکن است نیاید. من نمی‌خواهم از حرف‌های ناگفته، کارهای نکرده، زندگی نزیسته پشیمان شوم.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="card">
+                <div class="number">۱۵</div>
+                <div class="quote">«<span class="highlight">این کتاب برای تو نوشته نشده است.</span> برای کسی است که بعد از تو آن را می‌خواند. من برای گفتن نمی‌نویسم. برای ماندن می‌نویسم. تا ۱۰۰ سال بعد کسی این صفحات را باز کند و بگوید: «او مثل من بود. او توانست. پس من هم می‌توانم.»»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="card">
+                <div class="number">۱۶</div>
+                <div class="quote">«<span class="highlight">با رودخانه نجنگ — آن را کنترل کن.</span> سد بساز، جریان باریکی را جاری کن — و سنگ را خواهد برید. زندگی رودخانه است، و تو کسی هستی که تعیین می‌کنی به کجا جریان یابد. من از رودخانه قوی‌تر نشدم. عاقل‌تر شدم. جنگیدن را متوقف کردم — و شروع به استفاده از آن برای آفرینش کردم.»</div>
+                <div class="source">— نظریه جریان، الکساندر کاتس</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="card">
+                <div class="number">۱۷</div>
+                <div class="quote">«<span class="highlight">انسان به دیگران چیزی را می‌آموزد که خودش نیاز به یادگیری دارد.</span> به نصیحت‌هایش گوش کن — و ترس‌هایش را خواهی شنید. وقتی او به تو یاد می‌دهد چگونه زندگی کنی — در واقع دارد خودش را قانع می‌کند. اصرار او ترس اوست از اینکه نتواند.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 18 -->
+            <div class="card">
+                <div class="number">۱۸</div>
+                <div class="quote">«<span class="highlight">تو کیفیت افکارت هستی.</span> زباله در سر یعنی زباله در زندگی. اگر افکارت هرج و مرج است، زندگیت هرج و مرج است. اگر افکارت روشن است، زندگیت روشن است. جادوی دیگری وجود ندارد. فقط چیزی که هر روز در پردازنده‌ات بار می‌کنی.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 19 -->
+            <div class="card">
+                <div class="number">۱۹</div>
+                <div class="quote">«<span class="highlight">احساسات دشمن نیستند — ناوبر هستند.</span> ترس یعنی — برایت مهم است. عصبانیت یعنی — مرزهایت نقض شده است. اضطراب یعنی — در آینده زندگی می‌کنی، در حالی که باید اینجا و اکنون باشی. آنها را سرکوب نکن. بپرس: «می‌خواهی به من چه بگویی؟» و گوش کن.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 20 -->
+            <div class="card">
+                <div class="number">۲۰</div>
+                <div class="quote">«<span class="highlight">عادت‌ها از هر انگیزه‌ای قوی‌ترند.</span> می‌خواهی زندگیت را تغییر دهی — کاری را که هر روز انجام می‌دهی تغییر بده. انگیزه جرقه است. عادت‌ها آتش هستند. جرقه خاموش می‌شود. آتش سال‌ها می‌سوزد.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 21 -->
+            <div class="card">
+                <div class="number">۲۱</div>
+                <div class="quote">«<span class="highlight">گذشته یک کتاب است.</span> می‌توان خواند، اما نمی‌توان در آن گیر کرد. صفحات را ورق بزن، درس‌ها را به خاطر بسپار — و ببند. زندگی در صفحه بعد اتفاق می‌افتد، نه در صفحه‌ای که قبلاً خوانده شده است.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 22 -->
+            <div class="card">
+                <div class="number">۲۲</div>
+                <div class="quote">«<span class="highlight">مردم آینه هستند.</span> هر چیزی که در آنها تو را عصبانی می‌کند — در تو طنین می‌اندازد. نه به خاطر اینکه آنها بد هستند. بلکه به خاطر اینکه تو در آنها چیزی را دیدی که در خودت نپذیرفته‌ای. وقتی این را بفهمی — از عصبانیت دست می‌کشی. شفا را آغاز می‌کنی.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 23 -->
+            <div class="card">
+                <div class="number">۲۳</div>
+                <div class="quote">«<span class="highlight">کنترل یک توهم است.</span> تنها چیزی که واقعاً مال توست — تصمیمات توست. تو نمی‌توانی جهان، مردم، شرایط را کنترل کنی. تو فقط یک چیز را کنترل می‌کنی: در پاسخ به آنها چه چیزی را انتخاب می‌کنی.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+            <!-- 24 -->
+            <div class="card">
+                <div class="number">۲۴</div>
+                <div class="quote">«<span class="highlight">تو معمار زندگی خود هستی.</span> تو آن را از افکار، احساسات و انتخاب‌هایی که هر روز انجام می‌دهی می‌سازی. نه آجر — تصمیمات تو. نه بتن — ایمان تو به خودت. نه نقشه — نیت تو.»</div>
+                <div class="source">— از گفتگو با بیمکس</div>
+            </div>
+
+        </div>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn-back">← بازگشت به خانه</a>
+        </div>
+
+        <div class="paywall">
+            <h3>شما <span>نسخه دمو</span> را مشاهده کردید</h3>
+            <p>
+                نسخه کامل «نقل قول‌های زندگی» در کتاب «راه ققنوس» گنجانده شده است.<br>
+                این کتاب همچنین شامل ۱۰ فصل، تمرین‌ها، کتاب کار و ابزارهای هوش مصنوعی است.
+            </p>
+            <a href="index.html#pricing" class="btn-gold">دسترسی دریافت کن</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© ۲۰۲۶ «راه ققنوس» &nbsp;·&nbsp; <a href="index.html">خانه</a> &nbsp;·&nbsp; <a href="index.html#pricing">قیمت‌ها</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
