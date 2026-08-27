@@ -534,23 +534,25 @@
 
     <!-- ===== НОВАЯ СЕКЦИЯ С ФОРМОЙ ОПЛАТЫ ===== -->
     <section id="pricing">
-        <div class="container">
-            <div class="pricing-section">
-                <h2>Инвестиция в себя</h2>
-                <div class="price">$28</div>
-                <div class="sub-price">PDF + EPUB, совместимо со всеми устройствами</div>
-
-                <form id="paymentForm">
-                    <label for="email">Ваш Email (на него придёт книга):</label>
-                    <input type="email" id="email" name="email" required placeholder="example@mail.com">
-                    <button type="submit" class="btn-gold">Купить</button>
-                    <div id="errorMessage" class="error"></div>
-                </form>
-
-                <div class="secure-note"><strong>🔒 Безопасный платёжный шлюз</strong></div>
-            </div>
+    <div class="container">
+        <div class="pricing-section">
+            <h2>Инвестиция в себя</h2>
+            <div class="price">$28</div>
+            <div class="sub-price">PDF + EPUB, совместимо со всеми устройствами</div>
+            <ul>
+                <li><span class="check">✓</span> <strong>Книга в PDF</strong></li>
+                <li><span class="check">✓</span> <strong>EPUB</strong> для всех устройств</li>
+                <li><span class="check">✓</span> <strong>Мгновенный доступ</strong> после оплаты</li>
+                <li><span class="check">✓</span> <strong>Безопасный платёж</strong> картой или криптовалютой</li>
+            </ul>
+            <!-- Прямая ссылка на RollyPay (без API) -->
+            <a href="https://pay.rollypay.io/pay/HksGw6K-npa7o96QuLtxRcpC-Re1pKj0xE8xbMQnv6A" class="btn-gold">
+                Купить за $28
+            </a>
+            <div class="secure-note"><strong>🔒 Безопасный платёжный шлюз</strong></div>
         </div>
-    </section>
+    </div>
+</section>
 
     <footer>
         <div class="container">
