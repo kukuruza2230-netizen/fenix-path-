@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Купить книгу «Путь Феникса»</title>
+    <style>
+        body {
+            background: #0b0b0d;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #e8e0d8;
+        }
+        .container {
+            background: #16161a;
+            padding: 40px 30px;
+            border-radius: 16px;
+            max-width: 420px;
+            width: 100%;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 0 40px rgba(255, 107, 53, 0.05);
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 26px;
+            color: #FFD166;
+            margin-bottom: 8px;
+        }
+        .sub {
+            color: #a09080;
+            font-size: 16px;
+            margin-bottom: 28px;
+        }
+        label {
+            display: block;
+            text-align: left;
+            font-size: 14px;
+            color: #d4c5b5;
+            margin-bottom: 6px;
+        }
+        input[type="email"] {
+            width: 100%;
+            padding: 14px 16px;
+            background: #0b0b0d;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #FF6B35;
+        }
+        .price {
+            font-size: 32px;
+            font-weight: 700;
+            color: #FFD166;
+            margin: 18px 0 8px;
+        }
+        .btn-gold {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #FF6B35, #FF8C61);
+            color: #0b0b0d;
+            font-weight: 700;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 12px;
+        }
+        .btn-gold:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 50px rgba(255, 107, 53, 0.4);
+        }
+        .secure {
+            margin-top: 16px;
+            font-size: 13px;
+            color: #6a6a6a;
+        }
+        .error {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Путь Феникса</h1>
+        <p class="sub">Книга + рабочая тетрадь</p>
+        <div class="price">$28</div>
+        <form id="paymentForm">
+            <label for="email">Ваш Email (на него придёт книга):</label>
+            <input type="email" id="email" name="email" required placeholder="example@mail.com">
+            <button type="submit" class="btn-gold">Купить</button>
+            <div id="errorMessage" class="error"></div>
+            <p class="secure">🔒 Безопасная оплата картой или СБП</p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.style.display = 'none';
+
+            // --- Данные из твоего аккаунта RollyPay ---
+            const terminalId = '1c7217e0-da47-4972-a23f-5af173b75db4';
+            const apiKey = 'v2iz2p7a21iSG7QS4NXz2JgTXAtYVYisOkOpEywk3Dk'; // <-- твой новый ключ
+            // -------------------------------------------
+
+            const paymentData = {
+                amount: "28.00",
+                payment_currency: "RUB",
+                order_id: "order_" + Date.now(),
+                description: "Путь Феникса — книга + тетрадь",
+                customer_id: email,
+                redirect_url: "https://kukuruza2230-netizen.github.io/success.html" // или просто на главную
+            };
+
+            try {
+                const response = await fetch('https://rollypay.io/api/v1/payments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': apiKey,
+                    },
+                    body: JSON.stringify(paymentData)
+                });
+
+                const result = await response.json();
+
+                if (result.pay_url) {
+                    window.location.href = result.pay_url;
+                } else {
+                    errorDiv.textContent = 'Ошибка: ' + (result.message || 'Не удалось создать платёж');
+                    errorDiv.style.display = 'block';
+                }
+            } catch (error) {
+                errorDiv.textContent = 'Произошла ошибка. Проверьте интернет или попробуйте позже.';
+                errorDiv.style.display = 'block';
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>
