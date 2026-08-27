@@ -119,10 +119,10 @@
             const errorDiv = document.getElementById('errorMessage');
             errorDiv.style.display = 'none';
 
-            // --- Данные из твоего аккаунта RollyPay ---
+            // --- Данные из твоего аккаунта RollyPay (ПРОВЕРЬ ИХ!) ---
             const terminalId = '1c7217e0-da47-4972-a23f-5af173b75db4';
             const apiKey = 'v2iz2p7a21iSG7QS4NXz2JgTXAtYVYisOkOpEywk3Dk'; // <-- твой новый ключ
-            // -------------------------------------------
+            // ---------------------------------------------------------
 
             const paymentData = {
                 amount: "28.00",
@@ -130,7 +130,7 @@
                 order_id: "order_" + Date.now(),
                 description: "Путь Феникса — книга + тетрадь",
                 customer_id: email,
-                redirect_url: "https://kukuruza2230-netizen.github.io/success.html" // или просто на главную
+                redirect_url: "https://kukuruza2230-netizen.github.io/fenix-path-/success.html" // или просто на главную
             };
 
             try {
