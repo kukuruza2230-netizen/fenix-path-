@@ -61,21 +61,6 @@
         .nav-links a:hover {
             color: #FF6B35;
         }
-        .lang-switcher a {
-            color: #a09080;
-            text-decoration: none;
-            margin: 0 4px;
-            font-size: 13px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: 0.3s;
-            display: inline-block;
-        }
-        .lang-switcher a:hover,
-        .lang-switcher a.active {
-            background: #FF6B35;
-            color: #0b0b0d;
-        }
 
         .hero {
             min-height: 100vh;
@@ -312,7 +297,6 @@
             line-height: 1.7;
         }
 
-        /* === НОВАЯ СЕКЦИЯ С ФОРМОЙ === */
         .pricing-section {
             background: rgba(22, 22, 26, 0.5);
             border-radius: 16px;
@@ -342,29 +326,6 @@
             color: #a09080;
             margin-bottom: 20px;
         }
-        .pricing-section label {
-            display: block;
-            text-align: left;
-            font-size: 14px;
-            color: #d4c5b5;
-            margin-bottom: 6px;
-        }
-        .pricing-section input[type="email"] {
-            width: 100%;
-            padding: 14px 16px;
-            background: #0b0b0d;
-            border: 1px solid #3a3a3a;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: 0.3s;
-            margin-bottom: 16px;
-        }
-        .pricing-section input[type="email"]:focus {
-            outline: none;
-            border-color: #FF6B35;
-        }
         .pricing-section .btn-gold {
             width: 100%;
             padding: 16px;
@@ -377,12 +338,6 @@
         }
         .pricing-section .secure-note strong {
             color: #b0a090;
-        }
-        .pricing-section .error {
-            color: #ff6b6b;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none;
         }
 
         footer {
@@ -412,7 +367,6 @@
             .pricing-section .price { font-size: 34px; }
             .benefits-grid { grid-template-columns: 1fr; }
             .testimonial-grid { grid-template-columns: 1fr; }
-            .lang-switcher a { font-size: 10px; padding: 2px 5px; }
             .logo { font-size: 18px; }
             header { padding: 12px 16px; }
             .btn-gold { padding: 14px 32px; font-size: 16px; }
@@ -433,24 +387,6 @@
         <div class="logo">Феникс</div>
         <div class="nav-links">
             <a href="wisdom.html">Цитаты из жизни</a>
-        </div>
-        <div class="lang-switcher">
-            <a href="#" class="active">Русский</a>
-            <a href="en/index.html">English</a>
-            <a href="zh/index.html">中文</a>
-            <a href="es/index.html">Español</a>
-            <a href="de/index.html">Deutsch</a>
-            <a href="fr/index.html">Français</a>
-            <a href="pt/index.html">Português</a>
-            <a href="it/index.html">Italiano</a>
-            <a href="ar/index.html">العربية</a>
-            <a href="hi/index.html">हिन्दी</a>
-            <a href="id/index.html">Bahasa Indonesia</a>
-            <a href="fa/index.html">فارسی</a>
-            <a href="ja/index.html">日本語</a>
-            <a href="ko/index.html">한국어</a>
-            <a href="tr/index.html">Türkçe</a>
-            <a href="uk/index.html">Українська</a>
         </div>
     </header>
 
@@ -532,27 +468,26 @@
         </div>
     </section>
 
-    <!-- ===== СЕКЦИЯ ПОКУПКИ С BOOSTY ===== -->
-   <section id="pricing">
-    <div class="container">
-        <div class="pricing-section">
-            <h2>Инвестиция в себя</h2>
-            <div class="price">2 498 ₽</div>
-            <div class="sub-price">PDF + EPUB + рабочая тетрадь</div>
-            <ul style="list-style: none; padding: 0; text-align: left; margin: 20px 0;">
-                <li style="margin-bottom: 10px;"><span style="color: #FF6B35; margin-right: 8px;">✓</span> <strong>Книга в PDF</strong></li>
-                <li style="margin-bottom: 10px;"><span style="color: #FF6B35; margin-right: 8px;">✓</span> <strong>EPUB</strong> для всех устройств</li>
-                <li style="margin-bottom: 10px;"><span style="color: #FF6B35; margin-right: 8px;">✓</span> <strong>Рабочая тетрадь</strong> с заданиями</li>
-                <li style="margin-bottom: 10px;"><span style="color: #FF6B35; margin-right: 8px;">✓</span> <strong>Мгновенный доступ</strong> после оплаты</li>
-                <li style="margin-bottom: 10px;"><span style="color: #FF6B35; margin-right: 8px;">✓</span> <strong>Безопасная оплата</strong> через Boosty</li>
-            </ul>
-            <a href="https://boosty.to/fenixpath/posts/429245cf-f993-4d9f-a051-46548f696475?isFromShowcase=true" class="btn-gold" target="_blank">
-                Купить за 2 498 ₽
-            </a>
-            <div class="secure-note"><strong>🔒 Безопасная оплата через Boosty</strong></div>
+    <section id="pricing">
+        <div class="container">
+            <div class="pricing-section">
+                <h2>Инвестиция в себя</h2>
+                <div class="price">2 498 ₽</div>
+                <div class="sub-price">PDF + EPUB + рабочая тетрадь</div>
+                <ul style="list-style: none; padding: 0; text-align: left; margin: 20px 0;">
+                    <li style="margin-bottom: 10px;"><span style="color: #FF6B35; margin-right: 8px;">✓</span> <strong>Книга в PDF</strong></li>
+                    <li style="margin-bottom: 10px;"><span style="color: #FF6B35; margin-right: 8px;">✓</span> <strong>EPUB</strong> для всех устройств</li>
+                    <li style="margin-bottom: 10px;"><span style="color: #FF6B35; margin-right: 8px;">✓</span> <strong>Рабочая тетрадь</strong> с заданиями</li>
+                    <li style="margin-bottom: 10px;"><span style="color: #FF6B35; margin-right: 8px;">✓</span> <strong>Мгновенный доступ</strong> после оплаты</li>
+                    <li style="margin-bottom: 10px;"><span style="color: #FF6B35; margin-right: 8px;">✓</span> <strong>Безопасная оплата</strong> через Boosty</li>
+                </ul>
+                <a href="https://boosty.to/fenixpath/posts/429245cf-f993-4d9f-a051-46548f696475?isFromShowcase=true" class="btn-gold" target="_blank">
+                    Купить за 2 498 ₽
+                </a>
+                <div class="secure-note"><strong>🔒 Безопасная оплата через Boosty</strong></div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <footer>
         <div class="container">
@@ -565,7 +500,6 @@
     </footer>
 
     <script>
-        // Скрипт для хедера
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             if (window.scrollY > 60) {
@@ -583,7 +517,6 @@
                 }
             });
         });
-        // Скрипт оплаты RollyPay удалён
     </script>
 </body>
 </html>
